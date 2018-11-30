@@ -145,6 +145,7 @@ namespace EQUINE
                             button1.Enabled = false;
                         }
                     }
+                    return;
                 }
 
                 if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))

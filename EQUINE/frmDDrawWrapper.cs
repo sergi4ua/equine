@@ -33,30 +33,60 @@ namespace EQUINE
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = !radioButton1.Checked;
-            radioButton3.Checked = !radioButton1.Checked;
+           
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton1.Checked = !radioButton2.Checked;
-            radioButton3.Checked = !radioButton2.Checked;
+
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton1.Checked = !radioButton3.Checked;
-            radioButton2.Checked = !radioButton3.Checked;
+            
         }
 
         private void frmDDrawWrapper_Load(object sender, EventArgs e)
         {
-
+            if (!System.IO.File.Exists("ddraw.dll"))
+                radioButton4.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(radioButton4.Checked)
+            if(radioButton1.Checked)
+            {
+                if(MessageBox.Show("OK to apply StrangeBytes' DDraw wrapper?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        System.IO.File.Copy(Application.StartupPath + "\\EquineData\\ddraw\\ddraw_sb.dll", Application.StartupPath + "\\ddraw.dll", true);
+                        MessageBox.Show("Operation completed successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+            }
+
+            if (radioButton2.Checked)
+            {
+                if (MessageBox.Show("OK to apply DDrawCompat?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        System.IO.File.Copy(Application.StartupPath + "\\EquineData\\ddraw\\ddrawcompat.dll", Application.StartupPath + "\\ddraw.dll", true);
+                        MessageBox.Show("Operation completed successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+            }
+
+            if (radioButton4.Checked)
             {
                 if (System.IO.File.Exists("ddraw.dll"))
                 {

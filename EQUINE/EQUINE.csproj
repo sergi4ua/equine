@@ -46,6 +46,7 @@
     <Compile Include="BackupSave.Designer.cs">
       <DependentUpon>BackupSave.cs</DependentUpon>
     </Compile>
+    <Compile Include="Downloader.cs" />
     <Compile Include="FileRoutines.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
