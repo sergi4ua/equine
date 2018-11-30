@@ -28,22 +28,31 @@ namespace EQUINE
         [STAThread]
         static void Main()
         {
+            bool noInit = false;
+
             if(!File.Exists("Diablo.exe"))
             {
-                MessageBox.Show("Unable to locate Diablo.exe!\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Unable to locate Diablo.exe!\nYou must put EQUINE.exe into your Diablo installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Environment.Exit(1);
             }
 
+            if(!Directory.Exists("EquineData"))
+                noInit = true;
+
             if(!File.Exists("DIABDAT.MPQ"))
             {
-                MessageBox.Show("Unable to locate DIABDAT.MPQ. Game mods will not run without it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if(noInit == false)
+                    MessageBox.Show("Unable to locate DIABDAT.MPQ. Game mods will not run without it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
                 GlobalVariableContainer.DIABDATPresent = true;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            if (noInit == false)
+                Application.Run(new Form1());
+            else
+                Application.Run(new frmSetupWizard());
         }
     }
 }

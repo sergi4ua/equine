@@ -94,7 +94,7 @@ namespace EQUINE
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Process:";
+            this.label2.Text = "Progess:";
             // 
             // frmCopyDIABDAT
             // 
