@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModList>
+    <Mod>
+        <ModId>0</ModId>
+        <ModName>Infernity</ModName>
+        <Game>Diablo 1</Game>
+        <Description>An awesome mod that aims to improve Diablo 1 gameplay.</Description>
+        <Author>Qndel</Author>
+        <ModVersion>1.21</ModVersion>
+        <WebSite>https://github.com/qndel/infernity</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>Enjoy playing Infernity! If you have any questions or bug reports please contact the mod developer.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Infernity.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>1</ModId>
+        <ModName>The Hell</ModName>
+        <Game>Hellfire</Game>
+        <Description>The most hardest mod for Diablo. Adds a lot of new quests, items, rares, etc.</Description>
+        <Author>The Hell DevTeam</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>http://www.diablothehell.narod.ru/</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
+        <AfterInstallMessage>Please goto 'Game > DDrawWrapper setup' and choose the StrangeBytes' ddraw patch.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>TheHell.exe</Executable>
+    </Mod>
+</ModList>
