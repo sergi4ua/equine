@@ -40,8 +40,8 @@ namespace EQUINE
 
         public string ModWebsite
         {
-            get { return label7.Text; }
-            set { label7.Text = value; }
+            get { return linkLabel1.Text; }
+            set { linkLabel1.Text = value; }
         }
 
         public frmProperties()
@@ -59,6 +59,12 @@ namespace EQUINE
                 button2.Enabled = false;
                 tabPage2.Enabled = false;
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(linkLabel1.Text != "N/A" || linkLabel1.Text != "null")
+                System.Diagnostics.Process.Start(linkLabel1.Text);
         }
     }
 }
