@@ -47,6 +47,46 @@ namespace EQUINE
             else
                 GlobalVariableContainer.DIABDATPresent = true;
 
+            try
+            {
+                if (Directory.Exists(Application.StartupPath + "\\EquineData"))
+                {
+                    if (!Directory.Exists(Application.StartupPath + "\\EquineData\\GameBackup"))
+                    {
+                        Directory.CreateDirectory(Application.StartupPath + "\\EquineData\\GameBackup");
+                    }
+                    if (File.Exists(Application.StartupPath + "\\Storm.dll") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\Storm.dll"))
+                    {
+                        File.Copy(Application.StartupPath + "\\Storm.dll", Application.StartupPath + "\\EquineData\\GameBackup\\Storm.dll");
+                    }
+                    else
+                        MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    if (File.Exists(Application.StartupPath + "\\SMACKW32.DLL") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\SMACKW32.DLL"))
+                    {
+                        File.Copy(Application.StartupPath + "\\SMACKW32.DLL", Application.StartupPath + "\\EquineData\\GameBackup\\SMACKW32.DLL");
+                    }
+                    else
+                        MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    if (File.Exists(Application.StartupPath + "\\diabloui.dll") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\diabloui.dll"))
+                    {
+                        File.Copy(Application.StartupPath + "\\diabloui.dll", Application.StartupPath + "\\EquineData\\GameBackup\\diabloui.dll");
+                    }
+                    else
+                        MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    if (File.Exists(Application.StartupPath + "\\Diablo.exe") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\Diablo.exe"))
+                    {
+                        File.Copy(Application.StartupPath + "\\Diablo.exe", Application.StartupPath + "\\EquineData\\GameBackup\\Diablo.exe");
+                    }
+                    else
+                        MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch
+            { MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (noInit == false)

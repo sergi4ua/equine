@@ -80,6 +80,21 @@ namespace EQUINE
                 this.Invoke(new Action(() => Hide()));
                 this.Invoke(new Action(() => Close()));*/
             }
+
+            try
+            {
+                List<string> files = new List<string>{ "diabloui.dll", "Diablo.exe", "SMACKW32.DLL", "storm.dll" };
+                for (int i = 0; i < files.Count; i++) {
+                    if (File.Exists(Application.StartupPath + "\\" + files[i]))
+                        File.Delete(Application.StartupPath + "\\" + files[i]);
+
+                    File.Copy(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i], Application.StartupPath + "\\"+files[i]);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Warning: can't restore game files from backup. Windows reported the error:\n"+ex.Message, "Uninstallation finished with warnings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
