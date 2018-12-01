@@ -104,7 +104,6 @@ namespace EQUINE
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
-            this.Menu = mainMenu1;
             // 
             // mainMenu1
             // 
@@ -187,6 +186,7 @@ namespace EQUINE
             // 
             // menuItem2
             // 
+            this.menuItem2.Enabled = false;
             this.menuItem2.Index = 1;
             this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem3,
@@ -477,6 +477,7 @@ namespace EQUINE
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EQUINE";

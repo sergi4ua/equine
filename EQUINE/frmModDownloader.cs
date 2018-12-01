@@ -99,10 +99,10 @@ namespace EQUINE
 
                 CreateUninstallFile();
 
-                if(File.Exists(Application.StartupPath + startExe0))
+                if(File.Exists(Application.StartupPath + "\\" + startExe0))
                 {
                     this.WindowState = FormWindowState.Minimized;
-                    var exe = System.Diagnostics.Process.Start(Application.StartupPath + startExe0);
+                    var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\"+startExe0);
                     exe.WaitForExit();
                     this.WindowState = FormWindowState.Maximized;
                 }
@@ -110,9 +110,9 @@ namespace EQUINE
                 MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart.", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists contact EQUINE developers.", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
 

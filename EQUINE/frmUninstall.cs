@@ -29,6 +29,7 @@ namespace EQUINE
     public partial class frmUninstall : Form
     {
         private List<string> files;
+
         public string modName { get; set; }
 
         public frmUninstall()
@@ -53,15 +54,17 @@ namespace EQUINE
 
                     if (attr.HasFlag(FileAttributes.Directory))
                     {
-                        System.IO.DirectoryInfo di = new DirectoryInfo(files[i]);
-                        foreach (FileInfo file in di.GetFiles())
-                        {
-                            file.Delete();
-                        }
-                        foreach (DirectoryInfo dir in di.GetDirectories())
-                        {
-                            dir.Delete(true);
-                        }
+                       
+                            System.IO.DirectoryInfo di = new DirectoryInfo(files[i]);
+                            foreach (FileInfo file in di.GetFiles())
+                            {
+                                file.Delete();
+                            }
+                            foreach (DirectoryInfo dir in di.GetDirectories())
+                            {
+                                dir.Delete(true);
+                            }
+                       
                     }
                     else
                     {
@@ -72,9 +75,10 @@ namespace EQUINE
             }
             catch(Exception ex)
             {
+               /* if (!ignoreerr) { }
                 MessageBox.Show("Uninstallation failed.\nWindows reported the error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 this.Invoke(new Action(() => Hide()));
-                this.Invoke(new Action(() => Close()));
+                this.Invoke(new Action(() => Close()));*/
             }
         }
 
