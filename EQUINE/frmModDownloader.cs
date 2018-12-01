@@ -99,6 +99,14 @@ namespace EQUINE
 
                 CreateUninstallFile();
 
+                if(File.Exists(Application.StartupPath + startExe0))
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    var exe = System.Diagnostics.Process.Start(Application.StartupPath + startExe0);
+                    exe.WaitForExit();
+                    this.WindowState = FormWindowState.Maximized;
+                }
+
                 MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart.", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             }

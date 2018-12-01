@@ -70,6 +70,24 @@
         <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
         <AfterInstallMessage>Please goto Game > DDraw Wrapper Setup to choose a compatible ddraw.dll wrapper for your system.</AfterInstallMessage>
         <DiabdatRequired>true</DiabdatRequired>
-        <Executable>HLFDRK54.zip</Executable>
+        <Executable>HLFDRK54A.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>4</ModId>
+        <ModName>Belzebub (HD Mod)</ModName>
+        <Game>Diablo</Game>
+        <Description>Makes Diablo 1 HD and more Diablo II.</Description>
+        <Author>Noktis</Author>
+        <ModVersion>1.045</ModVersion>
+        <WebSite>https://mod.diablo.noktis.pl/</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/DiabloBelzebub.zip</DL>
+        <DL2>https://sergi4ua.pp.ua/equine/vcredist_x86.exe</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vcredist_x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Belzebub.exe</Executable>
     </Mod>
 </ModList>

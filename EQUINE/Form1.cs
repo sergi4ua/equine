@@ -71,7 +71,7 @@ namespace EQUINE
                 {
                     WebClient modInfo = new WebClient();
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    modInfo.DownloadFile("https://github.com/sergi4ua/equine/raw/master/EquineData/modlist.xml", Application.StartupPath + "\\EquineData\\modlist.xml");
+                    modInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/modlist.xml", Application.StartupPath + "\\EquineData\\modlist.xml");
                 }
                 catch (Exception ex)
                 {
