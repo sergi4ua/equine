@@ -54,4 +54,22 @@
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>Purgatory.exe</Executable>
     </Mod>
+    <Mod>
+        <ModId>3</ModId>
+        <ModName>The Dark</ModName>
+        <Game>Hellfire</Game>
+        <Description>The Dark mod for Hellfire 1.01</Description>
+        <Author>Zamal and Zenda</Author>
+        <ModVersion>5.4 Revision A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/HLFDRK54.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
+        <AfterInstallMessage>Please goto Game > DDraw Wrapper Setup to choose a compatible ddraw.dll wrapper for your system.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>HLFDRK54.zip</Executable>
+    </Mod>
 </ModList>
