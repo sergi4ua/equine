@@ -81,7 +81,7 @@
         <ModVersion>1.045</ModVersion>
         <WebSite>https://mod.diablo.noktis.pl/</WebSite>
         <DL>https://sergi4ua.pp.ua/equine/DiabloBelzebub.zip</DL>
-        <DL2>https://sergi4ua.pp.ua/equine/vcredist_x86.exe</DL2>
+        <DL2>null</DL2>
         <md5>null</md5>
         <RunExeAfterInstall>vcredist_x86.exe</RunExeAfterInstall>
         <RunExeAfterInstall2>null</RunExeAfterInstall2>
