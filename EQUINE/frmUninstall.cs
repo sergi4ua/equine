@@ -83,7 +83,7 @@ namespace EQUINE
 
             try
             {
-                List<string> files = new List<string>{ "diabloui.dll", "Diablo.exe", "SMACKW32.DLL", "storm.dll" };
+                List<string> files = new List<string>{ "diabloui.dll", "Diablo.exe", "SMACKW32.DLL", "storm.dll", "battle.snp", "standard.snp" };
                 for (int i = 0; i < files.Count; i++) {
                     if (File.Exists(Application.StartupPath + "\\" + files[i]))
                         File.Delete(Application.StartupPath + "\\" + files[i]);
