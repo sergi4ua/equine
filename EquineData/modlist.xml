@@ -36,4 +36,22 @@
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>TheHell.exe</Executable>
     </Mod>
+    <Mod>
+        <ModId>2</ModId>
+        <ModName>Purgatory</ModName>
+        <Game>Hellfire</Game>
+        <Description>Purgatory mod for Hellfire 1.01</Description>
+        <Author>J.M. Hoefelein</Author>
+        <ModVersion>0.40</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/D1_Purgatory.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed and then install 1.01 patch to play this mod!</BeforeInstallMessage>
+        <AfterInstallMessage>Please goto Game > DDraw Wrapper Setup to choose a compatible ddraw.dll wrapper for your system.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Purgatory.exe</Executable>
+    </Mod>
 </ModList>
