@@ -55,9 +55,7 @@ namespace EQUINE
             Text = "Properties: '" + label3.Text + "'";
             if(label3.Text == "Vanilla Game")
             {
-                button1.Enabled = false;
-                button2.Enabled = false;
-                tabPage2.Enabled = false;
+
             }
         }
 

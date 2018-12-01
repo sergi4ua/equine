@@ -23,12 +23,14 @@ using System.IO.Compression;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Net;
 
 namespace EQUINE
 {
     public partial class Form1 : Form
     {
         private List<ModInfo> ModInfos = new List<ModInfo>();
+        private const bool _DEBUG = false;
 
         public Form1()
         {
@@ -37,11 +39,45 @@ namespace EQUINE
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Preloader();
             Text = GlobalVariableContainer.AppName;
             if (!GlobalVariableContainer.DIABDATPresent)
                 menuItem2.Enabled = false;
 
             initModList();
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        void Preloader()
+        {
+            if (CheckForInternetConnection() == true && _DEBUG == false)
+            {
+                try
+                {
+                    WebClient modInfo = new WebClient();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    modInfo.DownloadFile("https://github.com/sergi4ua/equine/raw/master/EquineData/modlist.xml", Application.StartupPath + "\\EquineData\\modlist.xml");
+                }
+                catch (Exception ex)
+                {
+                    label1.Text = "Error updating ModInfo :(";
+                }
+            }
         }
 
         private void initModList()
@@ -140,7 +176,8 @@ namespace EQUINE
                     {
                         System.Diagnostics.Process.Start("Diablo.exe");
                     }
-                    catch(Exception ex) {
+                    catch (Exception ex)
+                    {
                         if (listView1.SelectedItems.Count == 0)
                         {
                             button1.Text = "Install";
@@ -155,7 +192,36 @@ namespace EQUINE
                     System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
                 }
                 else
-                    MessageBox.Show("Mod executable not found.\nFilename: " + ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                {
+                    if (CheckForInternetConnection() == true)
+                    {
+                        if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
+                        {
+
+                            frmModDownloader modDL = new frmModDownloader();
+                            modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
+                            modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
+                            modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
+                            modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
+                            modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                            modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
+                            modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
+                            modDL.ShowDialog();
+                        }
+                        else
+                        {
+                            if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
+                            {
+                                MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
             }
         }
 
@@ -174,11 +240,17 @@ namespace EQUINE
                         {
                             button1.Text = "Install";
                             button1.Enabled = true;
+                            button2.Enabled = false;
+                            launchToolStripMenuItem.Text = "Install";
+                            uninstallToolStripMenuItem.Enabled = false;
                         }
                         else
                         {
                             button1.Text = "Play";
                             button1.Enabled = true;
+                            button2.Enabled = true;
+                            launchToolStripMenuItem.Text = "Launch";
+                            uninstallToolStripMenuItem.Enabled = true;
                         }
                     }
             }
@@ -196,7 +268,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.1\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html \nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.4\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei \nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
@@ -220,10 +292,21 @@ namespace EQUINE
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            if(listView1.SelectedItems.Count == 0)
+            if (listView1.SelectedItems.Count == 0)
             {
                 e.Cancel = true;
             }
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                {
+                    uninstallToolStripMenuItem.Enabled = false;
+                }
+
+
+            }
+
+            
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -261,6 +344,112 @@ namespace EQUINE
         private void menuItem6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                {
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        frmUninstall frmUninstall = new frmUninstall();
+                        frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                        frmUninstall.ShowDialog();
+                    }
+                }
+            }
+            else
+            {
+                button2.Enabled = false;
+            }
+        }
+
+        private void uninstallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                {
+                    return;
+                }
+                else
+                {
+                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        frmUninstall frmUninstall = new frmUninstall();
+                        frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                        frmUninstall.ShowDialog();
+                    }
+                }
+            }
+            else
+            {
+                uninstallToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void launchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start("Diablo.exe");
+                    }
+                    catch (Exception ex)
+                    {
+                        if (listView1.SelectedItems.Count == 0)
+                        {
+                            launchToolStripMenuItem.Text = "Install";
+                            launchToolStripMenuItem.Enabled = false;
+                        }
+                    }
+                    return;
+                }
+
+                if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
+                {
+                    System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
+                }
+                else
+                {
+                    if (CheckForInternetConnection() == true)
+                    {
+                        if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
+                        {
+                            frmModDownloader modDL = new frmModDownloader();
+                            modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
+                            modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
+                            modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
+                            modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
+                            modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                            modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
+                            modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
+                            modDL.ShowDialog();
+                        }
+                        else
+                        {
+                            if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
+                            {
+                                MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+            }
         }
     }
 }

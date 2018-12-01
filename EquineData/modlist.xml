@@ -23,16 +23,16 @@
         <ModName>The Hell</ModName>
         <Game>Hellfire</Game>
         <Description>The most hardest mod for Diablo. Adds a lot of new quests, items, rares, etc.</Description>
-        <Author>The Hell DevTeam</Author>
-        <ModVersion>N/A</ModVersion>
+        <Author>The Hell Team</Author>
+        <ModVersion>1233</ModVersion>
         <WebSite>http://www.diablothehell.narod.ru/</WebSite>
-        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL>https://www.dropbox.com/s/5fxcgntfv9mtrv0/D1_TheHell1233.zip?dl=1</DL>
         <DL2>null</DL2>
         <md5>null</md5>
         <RunExeAfterInstall>null</RunExeAfterInstall>
         <RunExeAfterInstall2>null</RunExeAfterInstall2>
         <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
-        <AfterInstallMessage>Please goto 'Game > DDrawWrapper setup' and choose the StrangeBytes' ddraw patch.</AfterInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>TheHell.exe</Executable>
     </Mod>

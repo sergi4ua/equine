@@ -71,6 +71,12 @@
     <Compile Include="frmDDrawWrapper.Designer.cs">
       <DependentUpon>frmDDrawWrapper.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmModDownloader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModDownloader.Designer.cs">
+      <DependentUpon>frmModDownloader.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     <Compile Include="frmSetupWizard.Designer.cs">
       <DependentUpon>frmSetupWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUninstall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUninstall.Designer.cs">
+      <DependentUpon>frmUninstall.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalVariableContainer.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="Program.cs" />
@@ -106,6 +118,9 @@
     <EmbeddedResource Include="frmDDrawWrapper.resx">
       <DependentUpon>frmDDrawWrapper.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmModDownloader.resx">
+      <DependentUpon>frmModDownloader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPing.resx">
       <DependentUpon>frmPing.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetupWizard.resx">
       <DependentUpon>frmSetupWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUninstall.resx">
+      <DependentUpon>frmUninstall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
