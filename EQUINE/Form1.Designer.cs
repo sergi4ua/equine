@@ -57,11 +57,6 @@ namespace EQUINE
             this.menuItem10 = new System.Windows.Forms.MenuItem();
             this.menuItem11 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
-            this.menuItem13 = new System.Windows.Forms.MenuItem();
-            this.menuItem14 = new System.Windows.Forms.MenuItem();
-            this.menuItem15 = new System.Windows.Forms.MenuItem();
-            this.menuItem16 = new System.Windows.Forms.MenuItem();
-            this.menuItem17 = new System.Windows.Forms.MenuItem();
             this.menuItem18 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
@@ -119,7 +114,6 @@ namespace EQUINE
             this.menuItem10,
             this.menuItem11,
             this.menuItem12,
-            this.menuItem13,
             this.menuItem18,
             this.menuItem19});
             this.menuItem1.Text = "EQUINE";
@@ -141,46 +135,15 @@ namespace EQUINE
             this.menuItem12.Index = 2;
             this.menuItem12.Text = "-";
             // 
-            // menuItem13
-            // 
-            this.menuItem13.Index = 3;
-            this.menuItem13.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem14,
-            this.menuItem15,
-            this.menuItem16,
-            this.menuItem17});
-            this.menuItem13.Text = "Language";
-            // 
-            // menuItem14
-            // 
-            this.menuItem14.Index = 0;
-            this.menuItem14.Text = "English";
-            // 
-            // menuItem15
-            // 
-            this.menuItem15.Index = 1;
-            this.menuItem15.Text = "Polish";
-            // 
-            // menuItem16
-            // 
-            this.menuItem16.Index = 2;
-            this.menuItem16.Text = "Russian";
-            this.menuItem16.Click += new System.EventHandler(this.menuItem16_Click);
-            // 
-            // menuItem17
-            // 
-            this.menuItem17.Index = 3;
-            this.menuItem17.Text = "Ukrainian";
-            // 
             // menuItem18
             // 
-            this.menuItem18.Index = 4;
+            this.menuItem18.Index = 3;
             this.menuItem18.Text = "About...";
             this.menuItem18.Click += new System.EventHandler(this.menuItem18_Click);
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 5;
+            this.menuItem19.Index = 4;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -515,11 +478,6 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem10;
         private System.Windows.Forms.MenuItem menuItem11;
         private System.Windows.Forms.MenuItem menuItem12;
-        private System.Windows.Forms.MenuItem menuItem13;
-        private System.Windows.Forms.MenuItem menuItem14;
-        private System.Windows.Forms.MenuItem menuItem15;
-        private System.Windows.Forms.MenuItem menuItem16;
-        private System.Windows.Forms.MenuItem menuItem17;
         private System.Windows.Forms.MenuItem menuItem18;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;

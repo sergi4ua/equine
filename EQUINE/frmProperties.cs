@@ -61,7 +61,7 @@ namespace EQUINE
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(linkLabel1.Text != "N/A" || linkLabel1.Text != "null")
+            if(linkLabel1.Text != "N/A" && linkLabel1.Text != "null")
                 System.Diagnostics.Process.Start(linkLabel1.Text);
         }
     }
