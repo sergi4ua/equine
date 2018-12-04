@@ -34,7 +34,7 @@ Sometimes EQUINE will fail to restart automatically. To fix it, right click on E
 
 # Credits
 
-Thanks for:
+Thanks:
 - Qndel
 - RadTang
 - Ogodei
