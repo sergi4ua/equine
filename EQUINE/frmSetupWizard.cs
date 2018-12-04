@@ -61,8 +61,9 @@ namespace EQUINE
                 }
                 zip.Close();
                 File.Delete("equinedata.zip");
-                MessageBox.Show("Initalization completed successfully!", "EQUINE initalized", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Initalization completed successfully!\nEQUINE will now restart (if the program didn't restart, please start it manually).", "EQUINE initalized", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
+
            }
             catch (Exception ex)
            {

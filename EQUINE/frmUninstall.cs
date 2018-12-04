@@ -106,7 +106,7 @@ namespace EQUINE
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Uninstallation complete. EQUINE will now restart.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Uninstallation complete. EQUINE will now restart (if it didn't, please restart it manually)", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Application.Restart();
         }
     }

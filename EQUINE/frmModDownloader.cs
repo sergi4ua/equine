@@ -107,7 +107,7 @@ namespace EQUINE
                     this.WindowState = FormWindowState.Maximized;
                 }
 
-                MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart.", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart (if the program didn't restart automatically, please do it manually).", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             //}
             //catch(Exception ex)
