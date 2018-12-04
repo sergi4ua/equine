@@ -77,8 +77,8 @@ namespace EQUINE
 
         private void ExtractFile()
         {
-            try
-            {
+            //try
+            //{
                 Uri dlUri = new Uri(dlLink0);
                 fileName = System.IO.Path.GetFileName(dlUri.LocalPath);
 
@@ -109,15 +109,23 @@ namespace EQUINE
 
                 MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart.", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
+            //    this.Hide();
+            //    this.Close();
+            //}
         }
 
         private void CreateUninstallFile()
         {
+            if (!Directory.Exists(Application.StartupPath + "\\EquineData\\moduninstall\\"))
+                Directory.CreateDirectory(Application.StartupPath + "\\EquineData\\moduninstall\\");
+
+           //if (!File.Exists(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall"))
+             //   File.Create(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall");
+
             TextWriter textWriter = new StreamWriter(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall");
             textWriter.Flush();
             for (int i = 0; i < extractedFileList.Count; i++)

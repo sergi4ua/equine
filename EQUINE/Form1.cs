@@ -359,6 +359,7 @@ namespace EQUINE
                     if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
+                        frmUninstall.modExe = ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable;
                         frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
                         frmUninstall.ShowDialog();
                     }
@@ -383,6 +384,7 @@ namespace EQUINE
                     if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
+                        frmUninstall.modExe = ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable;
                         frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
                         frmUninstall.ShowDialog();
                     }

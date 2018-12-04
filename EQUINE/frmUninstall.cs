@@ -29,6 +29,7 @@ namespace EQUINE
     public partial class frmUninstall : Form
     {
         private List<string> files;
+        public string modExe { get; set; }
 
         public string modName { get; set; }
 
@@ -75,10 +76,16 @@ namespace EQUINE
             }
             catch(Exception ex)
             {
-               /* if (!ignoreerr) { }
-                MessageBox.Show("Uninstallation failed.\nWindows reported the error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                this.Invoke(new Action(() => Hide()));
-                this.Invoke(new Action(() => Close()));*/
+                /* if (!ignoreerr) { }
+                 MessageBox.Show("Uninstallation failed.\nWindows reported the error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                 this.Invoke(new Action(() => Hide()));
+                 this.Invoke(new Action(() => Close()));*/
+                try
+                {
+                    if (File.Exists(Application.StartupPath + "\\" + modExe))
+                        File.Delete(Application.StartupPath + "\\" + modExe);
+                }
+                catch { }
             }
 
             try
