@@ -35,4 +35,6 @@ Sometimes EQUINE will fail to restart automatically. To fix it, right click on E
 
 # Legal
 
-EQUINE is not affilated or endorsed by Blizzard Entertainment in any way.
+EQUINE is not affiliated or endorsed by Blizzard Entertainment in any way.
+
+Diablo(R) is a registered trademark of Blizzard Entertainment.
