@@ -5,7 +5,6 @@ EQUINE uses XML for the mod database and it updates the file on every launch, ke
 
 
 Currently EQUINE has the following features:
-
 - Copy DIABDAT.MPQ from game CD
 - Choose either StrangeBytes' or DDrawCompat for the ddraw.dll wrapper
 - Ping IP/Host (useful for programs like ZeroTier, plus it always stays at the top, which will be much convienent when copying IPs/Hostnames)
@@ -15,14 +14,15 @@ Currently EQUINE has the following features:
 
 
 Currenly in development:
-
 - Mod folders!
 
 Currently in planning:
 - P2P Communication
 - IPX Wrapper support
 - Mod config editor?
-
+- Game version downgrader
+- Force Update to 1.09
+- Mod updater
 
 # Submit your mod
 
@@ -43,6 +43,9 @@ Thanks:
 
 for beta testing and suggestions
 
+# Inspiration:
+
+fearedbliss' Cactus: https://github.com/fearedbliss/Cactus
 
 # Legal
 
