@@ -74,7 +74,7 @@ namespace EQUINE
                     }
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 /* if (!ignoreerr) { }
                  MessageBox.Show("Uninstallation failed.\nWindows reported the error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);

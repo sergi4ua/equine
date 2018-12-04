@@ -45,6 +45,24 @@ namespace EQUINE
                 menuItem2.Enabled = false;
 
             initModList();
+            checkGameBackup();
+        }
+
+        private void checkGameBackup()
+        {
+            List<string> files = new List<string> { "Diablo.exe", "storm.dll", "battle.snp", "standard.snp", "diabloui.dll", "SMACKW32.DLL" };
+            short filesInBackup = 0;
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                if(File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i]))
+                {
+                    filesInBackup++;
+                }
+            }
+
+            if (filesInBackup == files.Count)
+                menuItem13.Enabled = true;
         }
 
         public static bool CheckForInternetConnection()
@@ -73,7 +91,7 @@ namespace EQUINE
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     modInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/modlist.xml", Application.StartupPath + "\\EquineData\\modlist.xml");
                 }
-                catch (Exception ex)
+                catch
                 {
                     label1.Text = "Error updating ModInfo :(";
                 }
@@ -176,7 +194,7 @@ namespace EQUINE
                     {
                         System.Diagnostics.Process.Start("Diablo.exe");
                     }
-                    catch (Exception ex)
+                    catch 
                     {
                         if (listView1.SelectedItems.Count == 0)
                         {
@@ -268,7 +286,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.5\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei \nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.6\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
@@ -338,7 +356,8 @@ namespace EQUINE
 
         private void menuItem8_Click(object sender, EventArgs e)
         {
-
+            frmDowngrader downgrader = new frmDowngrader();
+            downgrader.ShowDialog();
         }
 
         private void menuItem6_Click(object sender, EventArgs e)
@@ -406,7 +425,7 @@ namespace EQUINE
                     {
                         System.Diagnostics.Process.Start("Diablo.exe");
                     }
-                    catch (Exception ex)
+                    catch
                     {
                         if (listView1.SelectedItems.Count == 0)
                         {
@@ -452,6 +471,37 @@ namespace EQUINE
                     }
                 }
             }
+        }
+
+        private void menuItem13_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Warning: restoring game data may break compatibilty with some mods. Continue?", "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                List<string> files = new List<string> { "Diablo.exe", "storm.dll", "battle.snp", "standard.snp", "diabloui.dll", "SMACKW32.DLL" };
+                try
+                {
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        File.Copy(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i], Application.StartupPath + "\\" + Path.GetFileName(files[i]), true);
+                    }
+                    MessageBox.Show("Game data restored successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Operation failed.\nWindows reported the error:\n" + ex.Message + "\nPlease use 'Force Update' to try to bring your game to it's original state.", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://goo.gl/forms/wYbW4DUqoB7IHCsF2");
+        }
+
+        private void menuItem7_Click(object sender, EventArgs e)
+        {
+            frmForceUpdate fupd = new frmForceUpdate();
+            fupd.ShowDialog();
         }
     }
 }

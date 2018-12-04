@@ -93,6 +93,7 @@ namespace EQUINE
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -179,7 +180,8 @@ namespace EQUINE
             this.menuItem7,
             this.menuItem8,
             this.menuItem9,
-            this.menuItem20});
+            this.menuItem20,
+            this.menuItem13});
             this.menuItem6.Text = "Game";
             this.menuItem6.Click += new System.EventHandler(this.menuItem6_Click);
             // 
@@ -187,6 +189,7 @@ namespace EQUINE
             // 
             this.menuItem7.Index = 0;
             this.menuItem7.Text = "Force Update";
+            this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
             // 
             // menuItem8
             // 
@@ -242,6 +245,7 @@ namespace EQUINE
             this.button3.TabIndex = 3;
             this.button3.Text = "Submit Your Mod";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -431,6 +435,13 @@ namespace EQUINE
             this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // menuItem13
+            // 
+            this.menuItem13.Enabled = false;
+            this.menuItem13.Index = 4;
+            this.menuItem13.Text = "Restore game data...";
+            this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +511,7 @@ namespace EQUINE
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.MenuItem menuItem13;
     }
 }
 

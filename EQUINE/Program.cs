@@ -47,46 +47,6 @@ namespace EQUINE
             else
                 GlobalVariableContainer.DIABDATPresent = true;
 
-            try
-            {
-                if (Directory.Exists(Application.StartupPath + "\\EquineData"))
-                {
-                    if (!Directory.Exists(Application.StartupPath + "\\EquineData\\GameBackup"))
-                    {
-                        Directory.CreateDirectory(Application.StartupPath + "\\EquineData\\GameBackup");
-                    }
-                    if (File.Exists(Application.StartupPath + "\\Storm.dll") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\Storm.dll"))
-                    {
-                        File.Copy(Application.StartupPath + "\\Storm.dll", Application.StartupPath + "\\EquineData\\GameBackup\\Storm.dll");
-                    }
-                    
-                    if (File.Exists(Application.StartupPath + "\\SMACKW32.DLL") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\SMACKW32.DLL"))
-                    {
-                        File.Copy(Application.StartupPath + "\\SMACKW32.DLL", Application.StartupPath + "\\EquineData\\GameBackup\\SMACKW32.DLL");
-                    }
-                    
-                    if (File.Exists(Application.StartupPath + "\\diabloui.dll") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\diabloui.dll"))
-                    {
-                        File.Copy(Application.StartupPath + "\\diabloui.dll", Application.StartupPath + "\\EquineData\\GameBackup\\diabloui.dll");
-                    }
-                    
-                    if (File.Exists(Application.StartupPath + "\\Diablo.exe") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\Diablo.exe"))
-                    {
-                        File.Copy(Application.StartupPath + "\\Diablo.exe", Application.StartupPath + "\\EquineData\\GameBackup\\Diablo.exe");
-                    }
-                    if (File.Exists(Application.StartupPath + "\\standard.snp") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\standard.snp"))
-                    {
-                        File.Copy(Application.StartupPath + "\\standard.snp", Application.StartupPath + "\\EquineData\\GameBackup\\standard.snp");
-                    }
-                    if (File.Exists(Application.StartupPath + "\\battle.snp") && !File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\battle.snp"))
-                    {
-                        File.Copy(Application.StartupPath + "\\battle.snp", Application.StartupPath + "\\EquineData\\GameBackup\\battle.snp");
-                    }
-                }
-            }
-            catch
-            { MessageBox.Show("Warning: can't backup Diablo.exe, Storm.dll, SMACKW32.dll, diabloui.dll", "Backup", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (noInit == false)

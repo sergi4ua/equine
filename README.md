@@ -11,6 +11,8 @@ Currently EQUINE has the following features:
 - EQUINE will backup important game DLL/SNP files and restore them when uninstalling a mod
 - Save game backup (along with mod/multiplayer support)
 - Downloading/uninstlling mods
+- Game version downgrader
+- Force Update to 1.09
 
 
 Currenly in development:
@@ -20,8 +22,6 @@ Currently in planning:
 - P2P Communication
 - IPX Wrapper support
 - Mod config editor?
-- Game version downgrader
-- Force Update to 1.09
 - Mod updater
 
 # Submit your mod
