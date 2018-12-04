@@ -28,7 +28,7 @@ Currently in planning:
 
 You can submit your mod by filling out this form: https://goo.gl/forms/wYbW4DUqoB7IHCsF2
 
-# EQUINE won't restart automatically
+# 'EQUINE won't restart automatically' bug
 
 Sometimes EQUINE will fail to restart automatically. To fix it, right click on EQUINE.exe, goto 'Properties' and hit 'Unblock/Unlock' check mark/button.
 
