@@ -148,10 +148,10 @@
         <ModId>8</ModId>
         <ModName>Tchernobog (64 BIT ONLY)</ModName>
         <Game>Diablo</Game>
-        <Description>N/A</Description>
+        <Description>Multiplayer version of Belzebub.</Description>
         <Author>BrightLord</Author>
-        <ModVersion>N/A</ModVersion>
-        <WebSite>N/A</WebSite>
+        <ModVersion>0.1.0</ModVersion>
+        <WebSite>https://mod.diablo.noktis.pl/</WebSite>
         <DL>https://sergi4ua.pp.ua/equine/Tchernobog_010.zip</DL>
         <DL2>null</DL2>
         <md5>null</md5>
