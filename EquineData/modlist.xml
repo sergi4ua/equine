@@ -90,4 +90,58 @@
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>Belzebub.exe</Executable>
     </Mod>
+    <Mod>
+        <ModId>5</ModId>
+        <ModName>VandK Middle Earth Mod</ModName>
+        <Game>Diablo</Game>
+        <Description>Mod based on Tolkien.</Description>
+        <Author>Varaya and Khan</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/MiddleEarth.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>VH.EXE</Executable>
+    </Mod>
+    <Mod>
+        <ModId>6</ModId>
+        <ModName>Sinwar</ModName>
+        <Game>Diablo</Game>
+        <Description>N/A</Description>
+        <Author>Civerb[HKW]</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/sinwar.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.\nRead sinwar.txt for more information.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Sinwar.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>7</ModId>
+        <ModName>Abysmal Mod</ModName>
+        <Game>Diablo</Game>
+        <Description>N/A</Description>
+        <Author>Tommi Helminen</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/sinwar.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>Abysmal_V2+.txt</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.\nRead sinwar.txt for more information.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>false</DiabdatRequired>
+        <Executable>abysmal_V2+.exe</Executable>
+    </Mod>
 </ModList>
