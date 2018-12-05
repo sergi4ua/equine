@@ -144,4 +144,22 @@
         <DiabdatRequired>false</DiabdatRequired>
         <Executable>abysmal.exe</Executable>
     </Mod>
+        <Mod>
+        <ModId>8</ModId>
+        <ModName>Tchernobog (64 BIT ONLY)</ModName>
+        <Game>Diablo</Game>
+        <Description>N/A</Description>
+        <Author>BrightLord</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/Tchernobog_010.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vcredist_x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Tchernobog.exe</Executable>
+    </Mod>
 </ModList>

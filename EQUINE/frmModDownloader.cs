@@ -104,7 +104,7 @@ namespace EQUINE
                     this.WindowState = FormWindowState.Minimized;
                     var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\"+startExe0);
                     exe.WaitForExit();
-                    this.WindowState = FormWindowState.Maximized;
+                    this.WindowState = FormWindowState.Normal;
                 }
 
                 MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart (if the program didn't restart automatically, please do it manually).", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
