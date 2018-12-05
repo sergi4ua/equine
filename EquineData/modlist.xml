@@ -177,7 +177,7 @@
         <RunExeAfterInstall2>null</RunExeAfterInstall2>
         <BeforeInstallMessage>Please make sure your game is patched to v1.08 and NOT v1.09 as the mod may not work properly with the latter.</BeforeInstallMessage>
         <AfterInstallMessage>null</AfterInstallMessage>
-        <DiabdatRequired>true</DiabdatRequired>
+        <DiabdatRequired>false</DiabdatRequired>
         <Executable>Crucible.exe</Executable>
     </Mod>
 </ModList>
