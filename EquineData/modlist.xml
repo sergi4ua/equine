@@ -3,8 +3,8 @@
     <Mod>
         <ModId>0</ModId>
         <ModName>Infernity</ModName>
-        <Game>Diablo 1</Game>
-        <Description>An awesome mod that aims to improve Diablo 1 gameplay.</Description>
+        <Game>Diablo</Game>
+        <Description>A mod that aims to improve Diablo 1 gameplay.</Description>
         <Author>Qndel</Author>
         <ModVersion>1.21</ModVersion>
         <WebSite>https://github.com/qndel/infernity</WebSite>
@@ -14,16 +14,16 @@
         <RunExeAfterInstall>null</RunExeAfterInstall>
         <RunExeAfterInstall2>null</RunExeAfterInstall2>
         <BeforeInstallMessage>null</BeforeInstallMessage>
-        <AfterInstallMessage>Enjoy playing Infernity! If you have any questions or bug reports please contact the mod developer.</AfterInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>Infernity.exe</Executable>
     </Mod>
     <Mod>
         <ModId>1</ModId>
         <ModName>The Hell</ModName>
-        <Game>Hellfire</Game>
+        <Game>Diablo</Game>
         <Description>The most hardest mod for Diablo. Adds a lot of new quests, items, rares, etc.</Description>
-        <Author>The Hell Team</Author>
+        <Author>Mordor and The Hell Team</Author>
         <ModVersion>1233</ModVersion>
         <WebSite>http://www.diablothehell.narod.ru/</WebSite>
         <DL>https://www.dropbox.com/s/5fxcgntfv9mtrv0/D1_TheHell1233.zip?dl=1</DL>
@@ -31,7 +31,7 @@
         <md5>null</md5>
         <RunExeAfterInstall>null</RunExeAfterInstall>
         <RunExeAfterInstall2>null</RunExeAfterInstall2>
-        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
         <AfterInstallMessage>null</AfterInstallMessage>
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>TheHell.exe</Executable>
