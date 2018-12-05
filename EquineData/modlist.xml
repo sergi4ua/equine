@@ -144,7 +144,7 @@
         <DiabdatRequired>false</DiabdatRequired>
         <Executable>abysmal.exe</Executable>
     </Mod>
-        <Mod>
+    <Mod>
         <ModId>8</ModId>
         <ModName>Tchernobog (64 BIT ONLY)</ModName>
         <Game>Diablo</Game>
@@ -161,5 +161,23 @@
         <AfterInstallMessage>null</AfterInstallMessage>
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>Tchernobog.exe</Executable>
+    </Mod>
+        <Mod>
+        <ModId>9</ModId>
+        <ModName>Crucible</ModName>
+        <Game>Diablo</Game>
+        <Description>This mod aims to retain the aesthetic feel of the vanilla game while making the demons in the labyrinth as deadly and cunning as the lore depicts. Meanwhile the player is given a broad set of tools to try to survive. It is made to evoke the sense of dread, horror and psychological torment the would-be slayer of Diablo must undergo. The demons of hell are all lethal and the scales of power are irrevocably tipped in their favour. Only vigilance, tactics, planning, decisiveness and perseverance will see the player through this crucible...</Description>
+        <Author>OverUsedChewToy</Author>
+        <ModVersion>0.1.0</ModVersion>
+        <WebSite>https://discord.gg/VVmfWjG</WebSite>
+        <DL>https://drive.google.com/uc?export=download&id=1QbwKoYpjBa6k0N74S1KlZv3o9iTf3srT</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>Please make sure your game is patched to v1.08 and NOT v1.09 as the mod may not work properly with the latter.</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Crucible.exe</Executable>
     </Mod>
 </ModList>

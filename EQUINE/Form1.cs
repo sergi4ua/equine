@@ -46,6 +46,7 @@ namespace EQUINE
 
             initModList();
             checkGameBackup();
+            getModNamesforDiabloClicker();
         }
 
         private void checkGameBackup()
@@ -164,6 +165,14 @@ namespace EQUINE
                 else
                     lvi.SubItems.Add("Yes");
                 listView1.Items.Add(lvi);
+            }
+        }
+
+        private void getModNamesforDiabloClicker()
+        {
+            for(int i = 0; i < listView1.Items.Count; i++)
+            {
+                comboBox1.Items.Add(listView1.Items[i].Text);
             }
         }
 
