@@ -134,7 +134,7 @@
         <Author>Tommi Helminen</Author>
         <ModVersion>N/A</ModVersion>
         <WebSite>N/A</WebSite>
-        <DL>https://sergi4ua.pp.ua/equine/sinwar.zip</DL>
+        <DL>https://sergi4ua.pp.ua/equine/Abysmal.zip</DL>
         <DL2>null</DL2>
         <md5>null</md5>
         <RunExeAfterInstall>Abysmal_V2+.txt</RunExeAfterInstall>
@@ -142,6 +142,6 @@
         <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.\nRead sinwar.txt for more information.</BeforeInstallMessage>
         <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
         <DiabdatRequired>false</DiabdatRequired>
-        <Executable>abysmal_V2+.exe</Executable>
+        <Executable>abysmal.exe</Executable>
     </Mod>
 </ModList>
