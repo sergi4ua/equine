@@ -162,7 +162,7 @@
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>Tchernobog.exe</Executable>
     </Mod>
-        <Mod>
+    <Mod>
         <ModId>9</ModId>
         <ModName>Crucible</ModName>
         <Game>Diablo</Game>
@@ -179,5 +179,23 @@
         <AfterInstallMessage>null</AfterInstallMessage>
         <DiabdatRequired>false</DiabdatRequired>
         <Executable>Crucible.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>10</ModId>
+        <ModName>The Awakening</ModName>
+        <Game>Diablo</Game>
+        <Description>After Diablo was defeated, the Hero embedded the Soulstone of the Lord of Terror into his forehead, hoping he will be able to master the daemon. The body of prince Albrecht retrieved its natural look and was buried in vault near the Cathedral. As the time goes, the Hero stared to feel that he is loosing the fight with the overtaking demonic force, which started to gradually forcing an entrance into his soul. Through the possessed body of the Hero, Diablo, The Lord of Terror, went east throughout the mighty deserts of Aranoch, surrounding ancient city of Lut Gholein, to get to the found of hell at the end, his domain, where the frightening army starts to gather.</Description>
+        <Author>Noktis</Author>
+        <ModVersion>6.9</ModVersion>
+        <WebSite>https://diablo.noktis.pl/awake/</WebSite>
+        <DL>https://www.dropbox.com/s/i19rc6acy4tkyxv/TheAwakening.zip?dl=1</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod required 1.09 patch. Please run 'TheAwakening_BattleNet.reg' if you want to play on The Awakening PvPGN. Enjoy and thanks for playing!</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>AwakeEN.exe</Executable>
     </Mod>
 </ModList>
