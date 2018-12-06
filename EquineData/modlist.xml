@@ -198,4 +198,22 @@
         <DiabdatRequired>true</DiabdatRequired>
         <Executable>AwakeEN.exe</Executable>
     </Mod>
+    <Mod>
+        <ModId>11</ModId>
+        <ModName>DiabloPatch</ModName>
+        <Game>Diablo</Game>
+        <Description>A 'must-have' patch for Diablo 1</Description>
+        <Author>diablopat.ch</Author>
+        <ModVersion>2.10</ModVersion>
+        <WebSite>https://diablopat.ch/</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/DiabloPatch210.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vc_redist.x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>You must patch Diablo to 1.09. Use 'Game > Force Update' to do this!</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>false</DiabdatRequired>
+        <Executable>DiabloPatchLoader.exe</Executable>
+    </Mod>
 </ModList>
