@@ -24,6 +24,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Net;
+using System.Runtime.InteropServices;
+using System.Security.Principal;
+using System.Diagnostics;
 
 namespace EQUINE
 {
@@ -35,6 +38,18 @@ namespace EQUINE
         public Form1()
         {
             InitializeComponent();
+        }
+
+        [DllImport("user32")]
+        public static extern UInt32 SendMessage(IntPtr hWnd, UInt32 msg, UInt32 wParam, UInt32 lParam);
+
+        internal const int BCM_FIRST = 0x1600; //Normal button
+        internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); //Elevated button
+
+        static internal void AddShieldToButton(Button b)
+        {
+            b.FlatStyle = FlatStyle.System;
+            SendMessage(b.Handle, BCM_SETSHIELD, 0, 0xFFFFFFFF);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,6 +97,33 @@ namespace EQUINE
             }
         }
 
+        public static bool IsAdministrator()
+        {
+            var identity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        private static bool Elevate()
+        {
+            var SelfProc = new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                WorkingDirectory = Environment.CurrentDirectory,
+                FileName = Application.ExecutablePath,
+                Verb = "runas"
+            };
+            try
+            {
+                Process.Start(SelfProc);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         void Preloader()
         {
             if (CheckForInternetConnection() == true && _DEBUG == false)
@@ -97,6 +139,32 @@ namespace EQUINE
                     label1.Text = "Error updating ModInfo :(";
                 }
             }
+
+            if (!Directory.Exists(Application.StartupPath + "\\EquineData\\ipx"))
+                button6.Enabled = false;
+
+            if(!IsAdministrator())
+                AddShieldToButton(button6);
+
+            List<string> ipxWrapperFiles = new List<string> { "directplay-win32.reg", "directplay-win64.reg", "dpwsockx.dll", "ipxconfig.exe", "ipxwrapper.dll", "license.txt", "mswsock.dll", "readme.txt", "wsock32.dll" };
+            int checkedfiles = 0;
+
+            for (int i = 0; i < ipxWrapperFiles.Count; i++)
+            {
+                if (File.Exists(Application.StartupPath + "\\" + ipxWrapperFiles[i]))
+                {
+                    checkedfiles++;
+                }
+            }
+
+            if(checkedfiles == ipxWrapperFiles.Count)
+            {
+                panel1.Hide();
+                panel2.Show();
+            }
+
+            if (File.Exists(Application.StartupPath + "\\ipxwrapper.log"))
+                textBox1.Text = File.ReadAllText(Application.StartupPath + "\\ipxwrapper.log");
         }
 
         private void initModList()
@@ -203,7 +271,7 @@ namespace EQUINE
                     {
                         System.Diagnostics.Process.Start("Diablo.exe");
                     }
-                    catch 
+                    catch
                     {
                         if (listView1.SelectedItems.Count == 0)
                         {
@@ -213,41 +281,47 @@ namespace EQUINE
                     }
                     return;
                 }
-
-                if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
+                try
                 {
-                    System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
-                }
-                else
-                {
-                    if (CheckForInternetConnection() == true)
+                    if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
                     {
-                        if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
-                        {
-
-                            frmModDownloader modDL = new frmModDownloader();
-                            modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
-                            modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
-                            modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
-                            modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
-                            modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
-                            modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
-                            modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
-                            modDL.ShowDialog();
-                        }
-                        else
-                        {
-                            if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
-                            {
-                                MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                return;
-                            }
-                        }
+                        System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
                     }
                     else
                     {
-                        MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        if (CheckForInternetConnection() == true)
+                        {
+                            if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
+                            {
+
+                                frmModDownloader modDL = new frmModDownloader();
+                                modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
+                                modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
+                                modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
+                                modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
+                                modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                                modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
+                                modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
+                                modDL.ShowDialog();
+                            }
+                            else
+                            {
+                                if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
+                                {
+                                    MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
                     }
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to launch mod.", "EQUINE", MessageBoxButtons.OK);
                 }
             }
         }
@@ -510,7 +584,78 @@ namespace EQUINE
         private void menuItem7_Click(object sender, EventArgs e)
         {
             frmForceUpdate fupd = new frmForceUpdate();
+            fupd._109b = false;
             fupd.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if(!IsAdministrator())
+            {
+                Elevate();
+                Application.Exit();
+            }
+            else
+            {
+                button6.Text = "Working...";
+                button6.Enabled = false;
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
+        private void menuItem14_Click(object sender, EventArgs e)
+        {
+            frmForceUpdate fupd = new frmForceUpdate();
+            fupd._109b = true;
+            fupd.ShowDialog();
+        }
+
+        bool ipxError = false;
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                List<string> ipxWrapperFiles = new List<string> { "directplay-win32.reg", "directplay-win64.reg", "dpwsockx.dll", "ipxconfig.exe", "ipxwrapper.dll", "license.txt", "mswsock.dll", "readme.txt", "wsock32.dll" };
+
+                for (int i = 0; i < ipxWrapperFiles.Count; i++)
+                {
+                    File.Copy(Application.StartupPath + "\\EquineData\\ipx\\" + ipxWrapperFiles[i], Application.StartupPath + "\\" + ipxWrapperFiles[i], true);
+                }
+
+                if (Environment.Is64BitOperatingSystem == true)
+                {
+                    Process regeditProcess = Process.Start("regedit.exe", "/s " + Application.StartupPath + "\\directplay-win64.reg");
+                    regeditProcess.WaitForExit();
+                }
+                else
+                {
+                    Process regeditProcess = Process.Start("regedit.exe", "/s " + Application.StartupPath + "\\directplay-win32.reg");
+                    regeditProcess.WaitForExit();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Operation failed.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ipxError = true;
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (ipxError == false)
+            {
+                button6.Text = "Done!";
+                MessageBox.Show("IPX Wrapper has been successfully installed!", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                panel1.Hide();
+                panel2.Show();
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(Application.StartupPath + "\\ipxconfig.exe"))
+                Process.Start(Application.StartupPath + "\\ipxconfig.exe");
         }
     }
 }

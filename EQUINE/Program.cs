@@ -17,11 +17,29 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
+using System.Net;
 
 namespace EQUINE
 {
     static class Program
     {
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -46,6 +64,74 @@ namespace EQUINE
             }
             else
                 GlobalVariableContainer.DIABDATPresent = true;
+
+            if(!Directory.Exists(Application.StartupPath + "\\EquineData\\ipx"))
+            {
+                if (noInit == false)
+                {
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new frmUpdateEquineData());
+                    return;
+                }
+            }
+
+            if(CheckForInternetConnection() == true)
+            {
+                if (Directory.Exists(Application.StartupPath + "\\EquineData"))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile("https://sergi4ua.pp.ua/equine/EQUINE_hash.sha", Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
+                }
+            }
+
+#if RELEASE
+            if(File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
+            {
+                if (noInit == false)
+                {
+                    try
+                    {
+                        File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
+
+                        sha1 hash = new sha1();
+                        string fromfilehash = "";
+                        string apphash = "";
+
+                        fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
+                        apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
+
+                        if (fromfilehash != apphash)
+                        {
+                            var SelfProc = new ProcessStartInfo
+                            {
+                                UseShellExecute = true,
+                                WorkingDirectory = Environment.CurrentDirectory,
+                                FileName = Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe",
+                                Arguments = "-update",
+                            };
+                            File.Delete(Application.StartupPath + "\\EQUINE.hash");
+                            Process.Start(SelfProc);
+                            Environment.Exit(0);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Failed to check for updates!\n" + ex.Message);
+                    }
+                }
+            }
+#endif
+            
+            if(!File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
+            {
+                if (noInit == false)
+                {
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new frmUpdateEquineData());
+                    return;
+                }
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

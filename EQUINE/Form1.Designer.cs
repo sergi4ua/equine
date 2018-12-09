@@ -52,6 +52,7 @@ namespace EQUINE
             "N/A",
             "N/A",
             "Yes"}, -1);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem10 = new System.Windows.Forms.MenuItem();
@@ -90,30 +91,44 @@ namespace EQUINE
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuItem14 = new System.Windows.Forms.MenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -193,6 +208,7 @@ namespace EQUINE
             this.menuItem6.Index = 2;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem7,
+            this.menuItem14,
             this.menuItem8,
             this.menuItem9,
             this.menuItem20,
@@ -208,26 +224,26 @@ namespace EQUINE
             // 
             // menuItem8
             // 
-            this.menuItem8.Index = 1;
+            this.menuItem8.Index = 2;
             this.menuItem8.Text = "Downgrade...";
             this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
             // 
             // menuItem9
             // 
-            this.menuItem9.Index = 2;
+            this.menuItem9.Index = 3;
             this.menuItem9.Text = "DDraw Wrapper Setup";
             this.menuItem9.Click += new System.EventHandler(this.menuItem9_Click);
             // 
             // menuItem20
             // 
-            this.menuItem20.Index = 3;
+            this.menuItem20.Index = 4;
             this.menuItem20.Text = "Copy DIABDAT.MPQ from Diablo CD...";
             this.menuItem20.Click += new System.EventHandler(this.menuItem20_Click);
             // 
             // menuItem13
             // 
             this.menuItem13.Enabled = false;
-            this.menuItem13.Index = 4;
+            this.menuItem13.Index = 5;
             this.menuItem13.Text = "Restore game data...";
             this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
             // 
@@ -238,6 +254,7 @@ namespace EQUINE
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(7, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -419,6 +436,38 @@ namespace EQUINE
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(182, 67);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "modinfo.xml update";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(6, 38);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(169, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Update Now";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(169, 17);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Update modinfo.xml on startup";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label3);
@@ -448,49 +497,6 @@ namespace EQUINE
             this.tabPage5.Text = "Goodies";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 448);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(182, 67);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "modinfo.xml update";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(169, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Update modinfo.xml on startup";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(6, 38);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(169, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Update Now";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button5);
@@ -506,14 +512,42 @@ namespace EQUINE
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DiabloClicker";
             // 
-            // label4
+            // button5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Interval:";
+            this.button5.Location = new System.Drawing.Point(6, 85);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(185, 23);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "Enable";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(70, 58);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Enable for:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(131, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "ms";
             // 
             // numericUpDown1
             // 
@@ -527,42 +561,115 @@ namespace EQUINE
             0,
             0});
             // 
-            // label5
+            // label4
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(131, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "ms";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Interval:";
             // 
-            // label6
+            // tabPage6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 61);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Enable for:";
+            this.tabPage6.Controls.Add(this.panel2);
+            this.tabPage6.Controls.Add(this.panel1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(781, 416);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "IPXWrapper";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // panel1
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(70, 58);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(772, 407);
+            this.panel1.TabIndex = 0;
             // 
-            // button5
+            // button6
             // 
-            this.button5.Location = new System.Drawing.Point(6, 85);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(185, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Enable";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button6.Location = new System.Drawing.Point(18, 57);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(141, 23);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "Install IPXWrapper";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(630, 26);
+            this.label7.TabIndex = 0;
+            this.label7.Text = resources.GetString("label7.Text");
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(8, 448);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(258, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // menuItem14
+            // 
+            this.menuItem14.Index = 1;
+            this.menuItem14.Text = "Force Update (1.09b)";
+            this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button7);
+            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(769, 404);
+            this.panel2.TabIndex = 2;
+            this.panel2.Visible = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(559, 398);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "IPXWrapper Log";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(570, 12);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(196, 23);
+            this.button7.TabIndex = 1;
+            this.button7.Text = "Launch IPX Wrapper Config";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(547, 373);
+            this.textBox1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -584,14 +691,20 @@ namespace EQUINE
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -651,6 +764,16 @@ namespace EQUINE
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MenuItem menuItem14;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

@@ -30,6 +30,8 @@ namespace EQUINE
 {
     public partial class frmForceUpdate : Form
     {
+        public bool _109b { get; internal set; }
+
         public frmForceUpdate()
         {
             InitializeComponent();
@@ -57,7 +59,10 @@ namespace EQUINE
                 using (WebClient wc = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    wc.DownloadFile("http://sergi4ua.pp.ua/equine/versions/d1forceupdate.zip", Application.StartupPath + "\\d1forceupdate.zip");
+                    if(_109b == false)
+                        wc.DownloadFile("http://sergi4ua.pp.ua/equine/versions/d1forceupdate.zip", Application.StartupPath + "\\d1forceupdate.zip");
+                    else
+                        wc.DownloadFile("http://sergi4ua.pp.ua/equine/versions/Diablo-1.09b.zip", Application.StartupPath + "\\d1forceupdate.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\d1forceupdate.zip", System.IO.FileAccess.Read);
@@ -121,7 +126,10 @@ namespace EQUINE
 
         private void frmForceUpdate_Load(object sender, EventArgs e)
         {
-
+            if (_109b == true)
+                Text = "Force update (1.09b)";
+            else
+                Text = "Force update (1.09)";
         }
     }
 }

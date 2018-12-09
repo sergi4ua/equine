@@ -1,0 +1,267 @@
+Version 0.6.1:
+	Added support for LLC and Novell "raw" 802.3 Ethernet frame formats.
+	
+	Fix weird crashes during exit on some systems.
+	
+	Added support for sending/receiving frames using Win10Pcap.
+	
+	Added missing DirectPlay registry keys to support games which enumerate
+	them (e.g. Virtua Cop).
+
+Version 0.6.0:
+	Feature: Implemented support for sending/receiving real IPX frames on
+	the wire using WinPcap.
+	
+	Bugfix: Include IPX socket number in address cache hash table key.
+	
+	Bugfix: Correctly initialise local sa_family of SPX client sockets.
+	
+	Bugfix: Fix 3+ players in some/most DirectPlay games.
+	
+	Bugfix: Fix memory leaks in DirectPlay service provider.
+
+Version 0.5.0:
+	Bugfix: Allow address reuse when only the binding socket has SO_REUSEADDR.
+	
+	Bugfix: Initialise the ptype of IPX sockets created with a nonzero
+	protocol value correctly.
+	
+	Bugfix: Removed conflicting send and connect functions.
+	
+	Bugfix: Fixed segfault in recvfrom when called with NULL addrlen.
+	
+	Update: Log entry and target DLL of stub calls.
+	
+	Feature: Implemented support for SPX stream sockets over TCP.
+	
+	Feature: Added workarounds for Jane's Combat Simulations: WWWII Fighters.
+
+Version 0.4.1:
+	Feature: Added workaround for point-to-point links.
+	
+	Feature: Added option to automatically add Windows Firewall exceptions
+	during DLL initialisation. Disabled by default.
+
+Version 0.4.0:
+	Bugfix: Fixed a crash in closesocket.
+	
+	Bugfix: Properly handle interface indexes when some are disabled.
+	
+	Bugfix: Fixed a deadlock caused by getsockopt.
+	
+	Update: Implemented new address cache which stores the full sockaddr structure
+	for each remote socket.
+	
+	Cleanup: Integer types for storing 32 and 48-bit addresses and functions for
+	manipulating them.
+	
+	Cleanup: Rewrote registry access code.
+	
+	Cleanup: Implemented library functions for loading and saving configuration.
+	
+	Cleanup: Configuration data written to registry in more sensible format.
+	
+	Bugfix: Always use correct DLL names when logging calls in stub DLLs.
+	
+	Bugfix: Properly handle interfaces without an IP address set.
+	
+	Feature: Support interfaces with multiple assigned IP addresses.
+	
+	Update: Periodically reload the interfaces and cache the result so the list can
+	be used in more contexts without a performance hit.
+	
+	Cleanup: Check if packets were sent from us by using the source IPX address and
+	local interface list rather than maintaining a list of local IP addresses.
+	
+	Feature: Wildcard interface at index 0 to send/recv packets on all interfaces.
+	
+	Update: Removed options to disable source IP address filtering and selective
+	broadcasting.
+	
+	Update: Removed ipxrouter program, no longer needed.
+	
+	Cleanup: Removed out-of-process router support, multiple instances now keep a
+	list of bound addresses in shared memory.
+	
+	Cleanup: Update the address cache in the router main loop rather than including
+	the source IP in a header prefixed to the relayed packet.
+	
+	Update: Each instance of IPXWrapper binds to a random UDP port for sending and
+	receiving packets. The "normal" port is shared for receiving broadcasts only.
+	
+	Bugfix: Check source socket number before relaying to a connected socket.
+	
+	Update: Store IPX sockets in a hash table rather than a linked list.
+	
+	Cleanup: Removed RETURN and RETURN_WSA macros used by the WinSock code.
+	
+	Cleanup: Use some IPXWrapper library code for interface and registry handling
+	in ipxconfig.
+	
+	Bugfix: Don't skip interfaces immediately after disabled ones.
+
+Version 0.3.4:
+	Feature: Added workaround for games that unset SystemRoot in the environment
+	such as Carmageddon II.
+	
+	Feature: Log packets sent/receieved at the WinSock wrapper functions when
+	verbose logging is enabled.
+
+Version 0.3.3:
+	Bugfix: Added DirectPlay registry key for 64-bit systems.
+	
+	Bugfix: Makefile correctly builds packages from SVN.
+
+Version 0.3.2:
+	Cleanup: Cleaned up Send/SendEx functions in DirectPlay service provider.
+	
+	Bugfix: Added workaround for Hamachi bug.
+	
+	Bugfix: Correctly return single interfaces from get_interfaces when some
+	are disabled in ipxconfig.
+	
+	Bugfix: Properly test for broadcast packets and set sa_flags when dealing
+	with extended addresses.
+	
+	Bugfix: Don't choke on rpacket_header in ioctlsocket/FIONREAD.
+	
+	Feature: Log sent/received/relayed packets when call logging is enabled.
+	
+	Feature: Log version/revision number and compile time during ipxwrapper.dll
+	initialisation.
+	
+	Cleanup: Cleaned up error handling in SPInit.
+	
+	Cleanup: Updated logging API.
+	
+	Bugfix: Log stub DLL name rather than target DLL when logging calls.
+
+Version 0.3.1:
+	Bugfix: Fixed deadlock in DirectPlay service provider.
+	
+	Bugfix: Properly release event and lock objects when destroying a service
+	provider instance.
+	
+	Update: Open logfile with FILE_FLAG_WRITE_THROUGH instead of calling
+	FlushFileBuffers after every write for performance.
+	
+	Update: Include thread ID with every log message.
+	
+	Feature: Implemented IPX_EXTENDED_ADDRESS socket option.
+	
+	Bugfix: Deallocate hosts list in DLL cleanup.
+
+Version 0.3:
+	Cleanup: Moved certain library functions out of ipxwrapper.c and tidied up.
+	
+	Cleanup: Removed winstuff.h, added wsnwlink.h from Wine.
+	
+	Cleanup: Merged EnumProtocolsA and EnumProtocolsW into a single function.
+	
+	Cleanup: Locking code partially cleaned up.
+	
+	Feature: Support separate router process to allow for multiple processes
+	using IPX sockets.
+	
+	Bugfix: Return correct value when SO_BROADCAST is requested from getsockopt.
+	
+	Feature: Support address reuse with SO_REUSEADDR.
+	
+	Bugfix: Properly terminate worker threads.
+	
+	Bugfix: Load symbols from correct DLL on first try to prevent corruption of
+	system error code.
+	
+	Feature: New DirectPlay service provider for IPX.
+	
+	Bugfix: Correctly initialise common controls in ipxconfig.
+	
+	Feature: Load interfaces on each bind/getsockopt call to allow configuration
+	changes without restarting.
+	
+	Bugfix: Load EnumProtocolsA/EnumProtocolsW directly from mswsock.dll to avoid
+	stack overflow under certain conditions.
+	
+	Bugfix: Correctly store protocol names at end of EnumProtocols buffer.
+	
+	Feature: Implemented windows 95/98 WSHEnumProtocols function.
+	
+	Feature: Implemented connect, send and getpeername functions.
+	
+	Update: Max packet (data) size reduced to 8KiB.
+	
+	Feature: Implemented IPX_RECEIVE_BROADCAST option.
+	
+	Update: Added ipxconfig icon.
+
+Version 0.2.2:
+	Feature: Redesigned ipxconfig UI.
+	
+	Cleanup: Use wrapper function to read registry values in ipxconfig.
+	
+	Bugfix: Only create registry key when saving configuration.
+	
+	Bugfix: Correctly order interfaces when first interface has the force
+	primary flag set.
+	
+	Bugfix: Added missing exports to wsock32.dll and mswsock.dll.
+	
+	Update: Log DLL and function names in ipxwrapper.log when call logging
+	is enabled.
+	
+	Bugfix: Correctly terminate stub DLL names.
+
+Version 0.2.1:
+	Bugfix: Delay stub DLL LoadLibrary calls until first API call as using
+	LoadLibrary in DllMain crashes under some conditions.
+	
+	Bugfix: Updated recv, recvfrom and WSARecvEx functions to release mutex
+	before calling recv to avoid deadlocks in multithreaded applications.
+	
+	Bugfix: Correctly terminate symbol names used within stub DLLs.
+	
+	Cleanup: Combined common code between recv, recvfrom and WSARecvEx.
+	
+	Feature: Optionally log names of all WinSock calls.
+	
+	Bugfix: Store correct DLL name in stub DLLs.
+	
+	Cleanup: Replace assert calls with proper error checks in ipxconfig.
+	
+	Cleanup: Cleaned up logging code and added timestamps using GetTickCount.
+	
+	Cleanup: Call r_ winsock calls directly in router code to prevent it from
+	generating extra log messages.
+	
+	Bugfix: Fixed buffer overflow when converting certain addresses to text.
+
+Version 0.2:
+	Implemented ioctlsocket() function with support for FIONREAD.
+	
+	Load interface settings from the registry.
+	
+	Wrote graphical configuration program.
+	
+	Store IPX network/node number in the NIC structure and a pointer to the
+	bound interface in the socket structure.
+	
+	Host addresses referenced by IPX network AND node numbers, expire 60
+	seconds after the last recieved packet.
+	
+	Updated winsock wrapper functions to behave closer to the original
+	winsock implementation.
+	
+	Only require SO_BROADCAST for receiving broadcast packets if the win95
+	SO_BROADCAST bug is enabled, which it is by default.
+	
+	Restrict UDP broadcasts and receives to selected interfaces by default.
+	
+	Allow UDP port to be changed in configuration program.
+	
+	Store router buffer globally so it can be free'd rather than leaking
+	64KiB every time the IPXWrapper DLL is unloaded.
+	
+	Changed Makefile to build stripped binaries.
+
+Version 0.1:
+	Initial release
