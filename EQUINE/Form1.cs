@@ -33,7 +33,7 @@ namespace EQUINE
 {
     public partial class Form1 : Form
     {
-        RootObject ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"));
+        RootObject ModInfos;
         private const bool _DEBUG = false;
 
         public Form1()
@@ -171,7 +171,10 @@ namespace EQUINE
         private void initModList()
         {
             // add to list
-            for(int i = 0; i < ModInfos.ModInfo.Count; i++)
+            ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"));
+
+
+            for (int i = 0; i < ModInfos.ModInfo.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem();
                 lvi.Text = ModInfos.ModInfo[i].ModName;
