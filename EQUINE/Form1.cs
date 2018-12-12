@@ -171,7 +171,10 @@ namespace EQUINE
         private void initModList()
         {
             // add to list
-            ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"));
+            var jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
+
+            ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"), jsonSerializerSettings);
 
 
             for (int i = 0; i < ModInfos.ModInfo.Count; i++)
@@ -192,11 +195,11 @@ namespace EQUINE
         }
 
         private void getModNamesforDiabloClicker()
-        {
+        {/*
             for(int i = 0; i < listView1.Items.Count; i++)
             {
                 comboBox1.Items.Add(listView1.Items[i].Text);
-            }
+            }*/
         }
 
         private void menuItem10_Click(object sender, EventArgs e)

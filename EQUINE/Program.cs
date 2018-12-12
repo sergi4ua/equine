@@ -152,5 +152,10 @@ namespace EQUINE
             else
                 Application.Run(new frmSetupWizard());
         }
+
+        private static void createConfig()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
