@@ -44,6 +44,9 @@ namespace EQUINE
             set { linkLabel1.Text = value; }
         }
 
+        public string ModVersion { get { return label8.Text;} set { label8.Text = value; } }
+        public string Description { get { return textBox1.Text; } set { textBox1.Text = value; } }
+
         public frmProperties()
         {
             InitializeComponent();

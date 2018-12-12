@@ -75,6 +75,18 @@ namespace EQUINE
                 }
             }
 
+            if(!File.Exists(Application.StartupPath + "\\EquineData\\modlist.json"))
+            {
+                if (noInit == false)
+                {
+                    if (File.Exists(Application.StartupPath + "\\EquineData\\modlist.xml"))
+                        File.Delete(Application.StartupPath + "\\EquineData\\modlist.xml");
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new frmUpdateEquineData());
+                    return;
+                }
+            }
+
             if(CheckForInternetConnection() == true)
             {
                 if (Directory.Exists(Application.StartupPath + "\\EquineData"))

@@ -27,12 +27,13 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace EQUINE
 {
     public partial class Form1 : Form
     {
-        private List<ModInfo> ModInfos = new List<ModInfo>();
+        RootObject ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"));
         private const bool _DEBUG = false;
 
         public Form1()
@@ -132,7 +133,7 @@ namespace EQUINE
                 {
                     WebClient modInfo = new WebClient();
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    modInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/modlist.xml", Application.StartupPath + "\\EquineData\\modlist.xml");
+                    modInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/modlist.json", Application.StartupPath + "\\EquineData\\modlist.json");
                 }
                 catch
                 {
@@ -169,66 +170,17 @@ namespace EQUINE
 
         private void initModList()
         {
-            // read modlist.xml and add modinfos to list
-
-            XmlDocument xmlModList = new XmlDocument();
-            xmlModList.Load("EquineData\\modlist.xml");
-            XmlElement xmlRoot = xmlModList.DocumentElement;
-
-            // read modlist.xml data
-
-            foreach (XmlNode xmlNode in xmlRoot)
-            {
-                ModInfo mi = new ModInfo();
-                foreach (XmlNode xmlChildNode in xmlNode.ChildNodes)
-                {
-                    if (xmlChildNode.Name == "ModId")
-                        mi._modID = Convert.ToInt32(xmlChildNode.InnerText);
-                    if (xmlChildNode.Name == "ModName")
-                        mi._modName = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "Game")
-                        mi._game = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "Description")
-                        mi._description = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "Author")
-                        mi._author = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "ModVersion")
-                        mi._modVersion = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "WebSite")
-                        mi._website = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "DL")
-                        mi._DL1 = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "DL2")
-                        mi._DL2 = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "md5")
-                        mi._md5 = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "RunExeAfterInstall")
-                        mi._startExe0 = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "RunExeAfterInstall2")
-                        mi._startExe1 = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "BeforeInstallMessage")
-                        mi._beforeInstallMessage = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "AfterInstallMessage")
-                        mi._afterInstallMessage = xmlChildNode.InnerText;
-                    if (xmlChildNode.Name == "DiabdatRequired")
-                        mi._diabdatRequired = Convert.ToBoolean(xmlChildNode.InnerText);
-                    if (xmlChildNode.Name == "Executable")
-                        mi._modExecutable = xmlChildNode.InnerText;
-                }
-                ModInfos.Add(mi);
-            }
-
             // add to list
-            for(int i = 0; i < ModInfos.Count; i++)
+            for(int i = 0; i < ModInfos.ModInfo.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem();
-                lvi.Text = ModInfos[i]._modName;
-                lvi.SubItems.Add(ModInfos[i]._game);
-                lvi.SubItems.Add(ModInfos[i]._description);
-                lvi.SubItems.Add(ModInfos[i]._author);
-                lvi.SubItems.Add(ModInfos[i]._modVersion);
-                lvi.SubItems.Add(ModInfos[i]._website);
-                if (!System.IO.File.Exists(ModInfos[i]._modExecutable))
+                lvi.Text = ModInfos.ModInfo[i].ModName;
+                lvi.SubItems.Add(ModInfos.ModInfo[i].Game);
+                lvi.SubItems.Add(ModInfos.ModInfo[i].Description);
+                lvi.SubItems.Add(ModInfos.ModInfo[i].Author);
+                lvi.SubItems.Add(ModInfos.ModInfo[i].ModVersion);
+                lvi.SubItems.Add(ModInfos.ModInfo[i].WebSite);
+                if (!System.IO.File.Exists(ModInfos.ModInfo[i].Executable))
                     lvi.SubItems.Add("No");
                 else
                     lvi.SubItems.Add("Yes");
@@ -283,9 +235,9 @@ namespace EQUINE
                 }
                 try
                 {
-                    if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
+                    if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                     {
-                        System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
+                        System.Diagnostics.Process.Start(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable);
                     }
                     else
                     {
@@ -295,18 +247,18 @@ namespace EQUINE
                             {
 
                                 frmModDownloader modDL = new frmModDownloader();
-                                modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
-                                modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
-                                modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
-                                modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
-                                modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
-                                modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
-                                modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
+                                modDL.beforeDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].BeforeInstallMessage;
+                                modDL.afterDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].AfterInstallMessage;
+                                modDL.dlLink0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL;
+                                modDL.dlLink1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL2;
+                                modDL.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
+                                modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
+                                modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
                                 modDL.ShowDialog();
                             }
                             else
                             {
-                                if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
+                                if (ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DiabdatRequired == "true")
                                 {
                                     MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                     return;
@@ -337,7 +289,7 @@ namespace EQUINE
                     }
                     else
                     {
-                        if (!System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
+                        if (!System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                         {
                             button1.Text = "Install";
                             button1.Enabled = true;
@@ -418,6 +370,8 @@ namespace EQUINE
                 props.ModName = listView1.SelectedItems[0].Text;
                 props.ModAuthor = listView1.SelectedItems[0].SubItems[3].Text;
                 props.ModWebsite = listView1.SelectedItems[0].SubItems[5].Text;
+                props.ModVersion = listView1.SelectedItems[0].SubItems[4].Text;
+                props.Description = listView1.SelectedItems[0].SubItems[2].Text;
                 props.ShowDialog();
             }
         }
@@ -458,11 +412,11 @@ namespace EQUINE
                 }
                 else
                 {
-                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
-                        frmUninstall.modExe = ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable;
-                        frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                        frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        frmUninstall.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
                         frmUninstall.ShowDialog();
                     }
                 }
@@ -483,11 +437,11 @@ namespace EQUINE
                 }
                 else
                 {
-                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos[listView1.SelectedIndices[0] - 1]._modName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
-                        frmUninstall.modExe = ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable;
-                        frmUninstall.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
+                        frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        frmUninstall.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
                         frmUninstall.ShowDialog();
                     }
                 }
@@ -519,9 +473,9 @@ namespace EQUINE
                     return;
                 }
 
-                if (System.IO.File.Exists(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable))
+                if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                 {
-                    System.Diagnostics.Process.Start(ModInfos[listView1.SelectedIndices[0] - 1]._modExecutable);
+                    System.Diagnostics.Process.Start(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable);
                 }
                 else
                 {
@@ -530,18 +484,18 @@ namespace EQUINE
                         if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
                         {
                             frmModDownloader modDL = new frmModDownloader();
-                            modDL.beforeDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._beforeInstallMessage;
-                            modDL.afterDownloadMsg = ModInfos[listView1.SelectedIndices[0] - 1]._afterInstallMessage;
-                            modDL.dlLink0 = ModInfos[listView1.SelectedIndices[0] - 1]._DL1;
-                            modDL.dlLink1 = ModInfos[listView1.SelectedIndices[0] - 1]._DL2;
-                            modDL.modName = ModInfos[listView1.SelectedIndices[0] - 1]._modName;
-                            modDL.startExe0 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe0;
-                            modDL.startExe1 = ModInfos[listView1.SelectedIndices[0] - 1]._startExe1;
+                            modDL.beforeDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].BeforeInstallMessage;
+                            modDL.afterDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].AfterInstallMessage;
+                            modDL.dlLink0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL;
+                            modDL.dlLink1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL2;
+                            modDL.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
+                            modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
+                            modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
                             modDL.ShowDialog();
                         }
                         else
                         {
-                            if (ModInfos[listView1.SelectedIndices[0] - 1]._diabdatRequired == true)
+                            if (ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DiabdatRequired == "true")
                             {
                                 MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                                 return;
