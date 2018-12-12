@@ -1,5 +1,113 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ModList>
+   <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
     <Mod>
         <ModId>0</ModId>
         <ModName>Infernity</ModName>
