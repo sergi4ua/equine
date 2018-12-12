@@ -66,6 +66,7 @@ namespace EQUINE
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem14 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
@@ -105,16 +106,15 @@ namespace EQUINE
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.menuItem14 = new System.Windows.Forms.MenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -126,9 +126,9 @@ namespace EQUINE
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage6.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -221,6 +221,12 @@ namespace EQUINE
             this.menuItem7.Index = 0;
             this.menuItem7.Text = "Force Update";
             this.menuItem7.Click += new System.EventHandler(this.menuItem7_Click);
+            // 
+            // menuItem14
+            // 
+            this.menuItem14.Index = 1;
+            this.menuItem14.Text = "Force Update (1.09b)";
+            this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
             // 
             // menuItem8
             // 
@@ -582,6 +588,46 @@ namespace EQUINE
             this.tabPage6.Text = "IPXWrapper";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button7);
+            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(769, 404);
+            this.panel2.TabIndex = 2;
+            this.panel2.Visible = false;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(570, 12);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(196, 23);
+            this.button7.TabIndex = 1;
+            this.button7.Text = "Launch IPX Wrapper Config";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(559, 398);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "IPXWrapper Log";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(547, 373);
+            this.textBox1.TabIndex = 0;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.button6);
@@ -621,55 +667,10 @@ namespace EQUINE
             this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // menuItem14
-            // 
-            this.menuItem14.Index = 1;
-            this.menuItem14.Text = "Force Update (1.09b)";
-            this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(769, 404);
-            this.panel2.TabIndex = 2;
-            this.panel2.Visible = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(559, 398);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "IPXWrapper Log";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(570, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(196, 23);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "Launch IPX Wrapper Config";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(547, 373);
-            this.textBox1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -700,11 +701,11 @@ namespace EQUINE
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
