@@ -215,6 +215,24 @@
         "AfterInstallMessage": "null",
         "DiabdatRequired": "false",
         "Executable": "DiabloPatchLoader.exe"
+      },
+      {
+        "ModId": "12",
+        "ModName": "Psycho Mod",
+        "Game": "Diablo",
+        "Description": "Unknown",
+        "Author": "Unknown",
+        "ModVersion": "N/A",
+        "WebSite": "N/A",
+        "DL": "https://sergi4ua.pp.ua/equine/psychomod.zip",
+        "DL2": "null",
+        "md5": "null",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "You must patch Diablo to 1.07. Use Game > Downgrade... to downgrade your game.",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "false",
+        "Executable": "PsychoMod v103.exe"
       }
     ]
   }
