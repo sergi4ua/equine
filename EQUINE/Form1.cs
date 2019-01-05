@@ -186,7 +186,7 @@ namespace EQUINE
                 lvi.SubItems.Add(ModInfos.ModInfo[i].Author);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].ModVersion);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].WebSite);
-                if (!System.IO.File.Exists(ModInfos.ModInfo[i].Executable))
+                if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
                     lvi.SubItems.Add("No");
                 else
                     lvi.SubItems.Add("Yes");
@@ -221,12 +221,18 @@ namespace EQUINE
 
         private void button1_Click(object sender, EventArgs e)
         {
+            installPlayMod();
+        }
+
+        private void installPlayMod()
+        {
             if (listView1.SelectedItems.Count > 0)
             {
                 if (listView1.SelectedItems[0].Text == "Vanilla Game")
                 {
                     try
                     {
+                        Directory.SetCurrentDirectory(Application.StartupPath);
                         System.Diagnostics.Process.Start("Diablo.exe");
                     }
                     catch
@@ -241,8 +247,9 @@ namespace EQUINE
                 }
                 try
                 {
-                    if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
+                    if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                     {
+                        Directory.SetCurrentDirectory(Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
                         System.Diagnostics.Process.Start(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable);
                     }
                     else
@@ -251,7 +258,7 @@ namespace EQUINE
                         {
                             if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
                             {
-
+                                Directory.SetCurrentDirectory(Application.StartupPath);
                                 frmModDownloader modDL = new frmModDownloader();
                                 modDL.beforeDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].BeforeInstallMessage;
                                 modDL.afterDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].AfterInstallMessage;
@@ -277,9 +284,9 @@ namespace EQUINE
                         }
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Failed to launch mod.", "EQUINE", MessageBoxButtons.OK);
+                    MessageBox.Show("Failed to launch mod. " + ex.Message + "\nCurWorkDir: " + Directory.GetCurrentDirectory(), "EQUINE", MessageBoxButtons.OK);
                 }
             }
         }
@@ -295,7 +302,7 @@ namespace EQUINE
                     }
                     else
                     {
-                        if (!System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
+                        if (!System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                         {
                             button1.Text = "Install";
                             button1.Enabled = true;
@@ -327,7 +334,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.6\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.7\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
@@ -337,6 +344,7 @@ namespace EQUINE
 
         private void menuItem11_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("backup/restore feature is broken for mods", "Note");
             BackupSave saves = new BackupSave();
             saves.ShowDialog();
         }

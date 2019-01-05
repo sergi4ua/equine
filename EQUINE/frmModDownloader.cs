@@ -21,6 +21,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -39,6 +40,16 @@ namespace EQUINE
         private Downloader dl;
         private List<string> extractedFileList = new List<string>();
         private string fileName;
+
+        [DllImport("kernel32.dll")]
+        static extern bool CreateSymbolicLink(
+        string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
+
+        enum SymbolicLink
+        {
+            File = 0,
+            Directory = 1
+        }
 
         public frmModDownloader()
         {
@@ -96,8 +107,8 @@ namespace EQUINE
 
                 foreach (ZipStorer.ZipFileEntry entry in dir)
                 {
-                    extractedFileList.Add(Application.StartupPath + "\\" + entry.FilenameInZip);
-                    zip.ExtractFile(entry, Application.StartupPath + "\\" + entry.FilenameInZip);
+                    extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                    zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
                 }
                 zip.Close();
                 System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
@@ -114,6 +125,25 @@ namespace EQUINE
                     var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\"+startExe0);
                     exe.WaitForExit();
                     this.WindowState = FormWindowState.Normal;
+                }
+
+                List<string> fileNames = new List<string>{ "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq" };
+
+                try
+                {
+
+                    for (short i = 0; i < fileNames.Count; i++)
+                    {
+                        if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
+                        {
+                            CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
+                            Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
 
                 MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart (if the program didn't restart automatically, please do it manually).", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);

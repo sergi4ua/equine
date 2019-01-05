@@ -54,6 +54,7 @@ namespace EQUINE
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(387, 23);
             this.progressBar1.TabIndex = 0;
+            this.progressBar1.Visible = false;
             // 
             // label1
             // 
@@ -73,7 +74,7 @@ namespace EQUINE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 67);
+            this.ClientSize = new System.Drawing.Size(407, 63);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
