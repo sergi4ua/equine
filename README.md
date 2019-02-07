@@ -14,10 +14,10 @@ Currently EQUINE has the following features:
 - Game version downgrader
 - Force Update to 1.09
 - IPX Wrapper support
+- Mod folders!
 
 
 Currenly in development:
-- Mod folders!
 
 Currently in planning:
 - P2P Communication
