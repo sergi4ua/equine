@@ -107,6 +107,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.menuItem15 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -135,6 +136,7 @@ namespace EQUINE
             this.menuItem11,
             this.menuItem12,
             this.menuItem18,
+            this.menuItem15,
             this.menuItem19});
             this.menuItem1.Text = "EQUINE";
             // 
@@ -163,7 +165,7 @@ namespace EQUINE
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 4;
+            this.menuItem19.Index = 5;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -574,6 +576,12 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // menuItem15
+            // 
+            this.menuItem15.Index = 4;
+            this.menuItem15.Text = "Report Bug...";
+            this.menuItem15.Click += new System.EventHandler(this.menuItem15_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,6 +675,7 @@ namespace EQUINE
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MenuItem menuItem15;
     }
 }
 
