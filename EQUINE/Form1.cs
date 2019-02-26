@@ -188,7 +188,7 @@ namespace EQUINE
                 lvi.SubItems.Add(ModInfos.ModInfo[i].Author);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].ModVersion);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].WebSite);
-                if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
+                if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "/" + ModInfos.ModInfo[i].Executable))
                     lvi.SubItems.Add("No");
                 else
                     lvi.SubItems.Add("Yes");
@@ -253,6 +253,7 @@ namespace EQUINE
                     {
                         Directory.SetCurrentDirectory(Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
                         System.Diagnostics.Process.Start(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable);
+                        Directory.SetCurrentDirectory(Application.StartupPath);
                     }
                     else
                     {
@@ -480,49 +481,11 @@ namespace EQUINE
                     }
                     catch
                     {
-                        if (listView1.SelectedItems.Count == 0)
-                        {
-                            launchToolStripMenuItem.Text = "Install";
-                            launchToolStripMenuItem.Enabled = false;
-                        }
+                        MessageBox.Show("Unable to start game.");
                     }
-                    return;
-                }
-
-                if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
-                {
-                    System.Diagnostics.Process.Start(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable);
                 }
                 else
-                {
-                    if (CheckForInternetConnection() == true)
-                    {
-                        if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
-                        {
-                            frmModDownloader modDL = new frmModDownloader();
-                            modDL.beforeDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].BeforeInstallMessage;
-                            modDL.afterDownloadMsg = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].AfterInstallMessage;
-                            modDL.dlLink0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL;
-                            modDL.dlLink1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL2;
-                            modDL.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
-                            modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
-                            modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
-                            modDL.ShowDialog();
-                        }
-                        else
-                        {
-                            if (ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DiabdatRequired == "true")
-                            {
-                                MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                return;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    }
-                }
+                    installPlayMod();
             }
         }
 

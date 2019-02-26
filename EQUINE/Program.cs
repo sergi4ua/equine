@@ -50,8 +50,11 @@ namespace EQUINE
 
             if(!File.Exists("Diablo.exe"))
             {
-                MessageBox.Show("Unable to locate Diablo.exe!\nYou must put EQUINE.exe into your Diablo installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Environment.Exit(1);
+                if (!File.Exists("Hellfire.exe"))
+                {
+                    MessageBox.Show("Unable to locate Diablo.exe/Hellfire.exe!\nYou must put EQUINE.exe into your Diablo/Hellfire installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    Environment.Exit(1);
+                }
             }
 
             if(!Directory.Exists("EquineData"))
