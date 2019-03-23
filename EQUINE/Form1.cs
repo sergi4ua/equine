@@ -168,6 +168,11 @@ namespace EQUINE
 
             if (File.Exists(Application.StartupPath + "\\ipxwrapper.log"))
                 textBox1.Text = File.ReadAllText(Application.StartupPath + "\\ipxwrapper.log");
+
+            if(File.Exists(Application.StartupPath + "\\hellfire.exe"))
+            {
+
+            }
         }
 
         private void initModList()
