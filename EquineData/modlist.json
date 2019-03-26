@@ -234,5 +234,23 @@
         "DiabdatRequired": "false",
         "Executable": "PsychoMod v103.exe"
       }
+      {
+        "ModId": "13",
+        "ModName": "DevilutionX",
+        "Game": "Diablo",
+        "Description": "Making Diablo Cross-Platform. Check GitHub for details and source code.",
+        "Author": "diasurgical, and GitHub contributors",
+        "ModVersion": "0.3.1",
+        "WebSite": "https://github.com/diasurgical/devilutionX/",
+        "DL": "https://github.com/diasurgical/devilutionX/releases/download/0.3.1/devilutionx-win32.zip",
+        "DL2": "null",
+        "md5": "null",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "devilutionX is still in development. Please check GitHub for more information.",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "devilutionx.exe"
+      }
     ]
   }
