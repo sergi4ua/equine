@@ -63,6 +63,8 @@ namespace EQUINE
             initModList();
             checkGameBackup();
             getModNamesforDiabloClicker();
+            Random r = new Random();
+            label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length - 1)];
         }
 
         private void checkGameBackup()
@@ -127,7 +129,7 @@ namespace EQUINE
 
         void Preloader()
         {
-            MessageBox.Show("NOTE! This version uses mod folders instead of the previous version where all mod files are downloaded and extracted to Diablo root directory.\nIf you have used EQUINE before you will notice that all your mods are no longer available. Don't worry all your saves are not deleted.\nYou will need to redownload your mod and copy your save games to the mod folder.\nFor instance, for The Hell you will copy your save files to the The Hell folder (for TH the save filenames are hellsp_x.hsv where x is a number.)\n\nBackup and Restore are currently Vanilla Only but will be fixed soon :)\nPlease report any bugs you found to the GitHub issue tracker (available from EQUINE > Report Bug).", "Sergi4UA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("NOTE! This version uses mod folders instead of the previous version where all mod files are downloaded and extracted to Diablo root directory.\nIf you have used EQUINE before you will notice that all your mods are no longer available. Don't worry all your saves are not deleted.\nYou will need to redownload your mod and copy your save games to the mod folder.\nFor instance, for The Hell you will copy your save files to the The Hell folder (for TH the save filenames are hellsp_x.hsv where x is a number.)\n\nBackup and Restore are currently Vanilla Only but will be fixed soon :)\nPlease report any bugs you found to the GitHub issue tracker (available from EQUINE > Report Bug).", "Sergi4UA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (CheckForInternetConnection() == true && _DEBUG == false)
             {
