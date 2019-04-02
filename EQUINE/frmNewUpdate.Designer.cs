@@ -64,6 +64,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(571, 225);
             this.textBox1.TabIndex = 2;
+            this.textBox1.TabStop = false;
             // 
             // label3
             // 

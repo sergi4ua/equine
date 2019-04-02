@@ -100,7 +100,7 @@ namespace EQUINE
                     frmNewUpdate u = new frmNewUpdate();
                     u.modName = modName;
                     u.DL = DL;
-                    u.DL2 = DL;
+                    u.DL2 = DL2;
                     u.ShowDialog();
                 }
             }

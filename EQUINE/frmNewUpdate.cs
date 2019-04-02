@@ -37,6 +37,7 @@ namespace EQUINE
                 {
                     var strContent = reader.ReadToEnd();
                     textBox1.Text = strContent;
+                    textBox1.Text = strContent.Replace("\n", Environment.NewLine);
                 }
             }
             catch
