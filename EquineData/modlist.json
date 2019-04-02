@@ -155,7 +155,7 @@
         "DL": "https://sergi4ua.pp.ua/equine/Tchernobog_013.zip",
         "DL2": "https://sergi4ua.pp.ua/equine/Tlog.txt",
         "md5": "C23B13CE9C56B45E12AA07774482B657FAB78F0C",
-        "RunExeAfterInstall": "vcredist_x86.exe",
+        "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
         "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
