@@ -1,8 +1,7 @@
 0.7.2 changelog:
 - Added support for mod folders in DDraw Wrapper Setup
 - Make uninstall message less scary
-- Create Shortcut added
+- Create Shortcut feature planned
 - Removed unused/unfinished things (EQUINE Trading is not dead... probably... if someone will document the save formats for Diablo 1 and/or Tchernobog)
 - Added randomly chosen text at the bottom :)
 - TextBox is no longer editable when pinging
-

@@ -375,7 +375,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2018 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.7\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("EQUINE © 2019 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.7\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
@@ -463,12 +463,13 @@ namespace EQUINE
             if (listView1.SelectedItems.Count > 0)
             {
                 if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
                 {
                     return;
                 }
                 else
                 {
-                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("You about to uninstall " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nAfter Uninstallation is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nContinue?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
                         frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
@@ -493,7 +494,7 @@ namespace EQUINE
                 }
                 else
                 {
-                    if (MessageBox.Show("WARNING: you about to remove " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nDoing this can lead to unpredictable results!\n\nAfter Uninstall is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nDO YOU WANT TO CONTINUE?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("You are about to uninstall " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\n\nAfter Uninstallation is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nContinue?", "Uninstall", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         frmUninstall frmUninstall = new frmUninstall();
                         frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
@@ -673,6 +674,13 @@ namespace EQUINE
         private void menuItem25_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/sergi4ua/equine/issues");
+        }
+
+        // create shortcut
+
+        private void createShortcutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
