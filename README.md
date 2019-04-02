@@ -1,6 +1,8 @@
 [![Downloads](https://img.shields.io/github/downloads/sergi4ua/equine/total.svg)](https://github.com/sergi4ua/equine/releases)
 [![Downloads](https://img.shields.io/github/license/sergi4ua/equine.svg)](https://github.com/sergi4ua/equine/releases)
 
+[Discord Server](https://discord.gg/ymqHuWE)
+
 EQUINE (or Easy & Quick Installation Environment) is a mod manager for the first Diablo game. EQUINE can download/uninstall mods created for the game, along with choosing a DDraw wrapper that best suit your system.
 
 
