@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModList>
+   <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+       <Mod>
+        <ModId>0</ModId>
+        <ModName>UPDATE EQUINE TO 0.6.4!</ModName>
+        <Game></Game>
+        <Description>PLEASE UPDATE EQUINE TO 0.6.4, BECAUSE THIS VERSION WILL SOON BE UNSUPPORTED!</Description>
+        <Author></Author>
+        <ModVersion></ModVersion>
+        <WebSite>https://github.com/sergi4ua/equine/releases</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable></Executable>
+    </Mod>
+    <Mod>
+        <ModId>0</ModId>
+        <ModName>Infernity</ModName>
+        <Game>Diablo</Game>
+        <Description>A mod that aims to improve Diablo 1 gameplay.</Description>
+        <Author>Qndel</Author>
+        <ModVersion>1.21</ModVersion>
+        <WebSite>https://github.com/qndel/infernity</WebSite>
+        <DL>https://github.com/qndel/Infernity/raw/master/Infernity.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Infernity.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>1</ModId>
+        <ModName>The Hell</ModName>
+        <Game>Diablo</Game>
+        <Description>The most hardest mod for Diablo. Adds a lot of new quests, items, rares, etc.</Description>
+        <Author>Mordor and The Hell Team</Author>
+        <ModVersion>1233</ModVersion>
+        <WebSite>http://www.diablothehell.narod.ru/</WebSite>
+        <DL>https://www.dropbox.com/s/5fxcgntfv9mtrv0/D1_TheHell1233.zip?dl=1</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>TheHell.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>2</ModId>
+        <ModName>Purgatory</ModName>
+        <Game>Hellfire</Game>
+        <Description>Purgatory mod for Hellfire 1.01</Description>
+        <Author>J.M. Hoefelein</Author>
+        <ModVersion>0.40</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/D1_Purgatory.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed and then install 1.01 patch to play this mod!</BeforeInstallMessage>
+        <AfterInstallMessage>Please goto Game > DDraw Wrapper Setup to choose a compatible ddraw.dll wrapper for your system.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Purgatory.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>3</ModId>
+        <ModName>The Dark</ModName>
+        <Game>Hellfire</Game>
+        <Description>The Dark mod for Hellfire 1.01</Description>
+        <Author>Zamal and Zenda</Author>
+        <ModVersion>5.4 Revision A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/HLFDRK54.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>NOTE: You must have Hellfire expansion pack installed to play this mod!</BeforeInstallMessage>
+        <AfterInstallMessage>Please goto Game > DDraw Wrapper Setup to choose a compatible ddraw.dll wrapper for your system.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>HLFDRK54A.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>4</ModId>
+        <ModName>Belzebub (HD Mod)</ModName>
+        <Game>Diablo</Game>
+        <Description>Makes Diablo 1 HD and more Diablo II.</Description>
+        <Author>Noktis and BrightLord</Author>
+        <ModVersion>1.045</ModVersion>
+        <WebSite>https://mod.diablo.noktis.pl/</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/DiabloBelzebub.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vcredist_x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Belzebub.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>5</ModId>
+        <ModName>VandK Middle Earth Mod</ModName>
+        <Game>Diablo</Game>
+        <Description>Mod based on Tolkien.</Description>
+        <Author>Varaya and Khan</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/MiddleEarth.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>VH.EXE</Executable>
+    </Mod>
+    <Mod>
+        <ModId>6</ModId>
+        <ModName>Sinwar</ModName>
+        <Game>Diablo</Game>
+        <Description>N/A</Description>
+        <Author>Civerb[HKW]</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/sinwar.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.\nRead sinwar.txt for more information.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Sinwar.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>7</ModId>
+        <ModName>Abysmal Mod</ModName>
+        <Game>Diablo</Game>
+        <Description>N/A</Description>
+        <Author>Tommi Helminen</Author>
+        <ModVersion>N/A</ModVersion>
+        <WebSite>N/A</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/Abysmal.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>Abysmal_V2+.txt</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod requires 1.07 patch. If for some reason the mod doesn't work downgrade to 1.07 and reinstall the mod.\nRead sinwar.txt for more information.</BeforeInstallMessage>
+        <AfterInstallMessage>To avoid crashes, please use StrangeBytes' or DDrawCompat.</AfterInstallMessage>
+        <DiabdatRequired>false</DiabdatRequired>
+        <Executable>abysmal.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>8</ModId>
+        <ModName>Tchernobog (64 BIT ONLY)</ModName>
+        <Game>Diablo</Game>
+        <Description>Multiplayer version of Belzebub.</Description>
+        <Author>BrightLord</Author>
+        <ModVersion>0.1.0</ModVersion>
+        <WebSite>https://mod.diablo.noktis.pl/</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/Tchernobog_010.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vcredist_x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>null</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>Tchernobog.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>9</ModId>
+        <ModName>Crucible</ModName>
+        <Game>Diablo</Game>
+        <Description>A gruelling, deadly struggle through Hell itself. The feel of the vanilla game with a whole new level of challenge.</Description>
+        <Author>OverUsedChewToy</Author>
+        <ModVersion>1.18</ModVersion>
+        <WebSite>https://discord.gg/VVmfWjG</WebSite>
+        <DL>https://tinyurl.com/y8bhskat</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>Please make sure your game is patched to v1.08 and NOT v1.09 as the mod may not work properly with the latter.</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>false</DiabdatRequired>
+        <Executable>Crucible.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>10</ModId>
+        <ModName>The Awakening</ModName>
+        <Game>Diablo</Game>
+        <Description>After Diablo was defeated, the Hero embedded the Soulstone of the Lord of Terror into his forehead, hoping he will be able to master the daemon. The body of prince Albrecht retrieved its natural look and was buried in vault near the Cathedral. As the time goes, the Hero stared to feel that he is loosing the fight with the overtaking demonic force, which started to gradually forcing an entrance into his soul. Through the possessed body of the Hero, Diablo, The Lord of Terror, went east throughout the mighty deserts of Aranoch, surrounding ancient city of Lut Gholein, to get to the found of hell at the end, his domain, where the frightening army starts to gather.</Description>
+        <Author>Noktis</Author>
+        <ModVersion>6.9</ModVersion>
+        <WebSite>https://diablo.noktis.pl/awake/</WebSite>
+        <DL>https://www.dropbox.com/s/i19rc6acy4tkyxv/TheAwakening.zip?dl=1</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>null</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>This mod required 1.09 patch. Please run 'TheAwakening_BattleNet.reg' if you want to play on The Awakening PvPGN. Enjoy and thanks for playing!</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>true</DiabdatRequired>
+        <Executable>AwakeEN.exe</Executable>
+    </Mod>
+    <Mod>
+        <ModId>11</ModId>
+        <ModName>DiabloPatch</ModName>
+        <Game>Diablo</Game>
+        <Description>A 'must-have' patch for Diablo 1</Description>
+        <Author>diablopat.ch</Author>
+        <ModVersion>2.10</ModVersion>
+        <WebSite>https://diablopat.ch/</WebSite>
+        <DL>https://sergi4ua.pp.ua/equine/DiabloPatch210.zip</DL>
+        <DL2>null</DL2>
+        <md5>null</md5>
+        <RunExeAfterInstall>vc_redist.x86.exe</RunExeAfterInstall>
+        <RunExeAfterInstall2>null</RunExeAfterInstall2>
+        <BeforeInstallMessage>You must patch Diablo to 1.09. Use 'Game > Force Update' to do this!</BeforeInstallMessage>
+        <AfterInstallMessage>null</AfterInstallMessage>
+        <DiabdatRequired>false</DiabdatRequired>
+        <Executable>DiabloPatchLoader.exe</Executable>
+    </Mod>
+</ModList>
