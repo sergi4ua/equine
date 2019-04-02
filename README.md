@@ -20,6 +20,7 @@ Currently EQUINE has the following features:
 - Force Update to 1.09
 - IPX Wrapper support
 - Mod folders!
+- Mod updater
 
 
 Currenly in development:
@@ -27,7 +28,6 @@ Currenly in development:
 Currently in planning:
 - P2P Communication
 - Mod config editor?
-- Mod updater
 
 # Submit your mod
 
