@@ -98,6 +98,12 @@
     <Compile Include="frmModDownloader.Designer.cs">
       <DependentUpon>frmModDownloader.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNewUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewUpdate.Designer.cs">
+      <DependentUpon>frmNewUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModDownloader.resx">
       <DependentUpon>frmModDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewUpdate.resx">
+      <DependentUpon>frmNewUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPing.resx">
       <DependentUpon>frmPing.cs</DependentUpon>

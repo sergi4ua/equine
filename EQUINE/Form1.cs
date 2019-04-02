@@ -35,22 +35,11 @@ namespace EQUINE
     {
         RootObject ModInfos;
         private const bool _DEBUG = false;
+        private List<string> installedMods = new List<string>();
 
         public Form1()
         {
             InitializeComponent();
-        }
-
-        [DllImport("user32")]
-        public static extern UInt32 SendMessage(IntPtr hWnd, UInt32 msg, UInt32 wParam, UInt32 lParam);
-
-        internal const int BCM_FIRST = 0x1600; //Normal button
-        internal const int BCM_SETSHIELD = (BCM_FIRST + 0x000C); //Elevated button
-
-        static internal void AddShieldToButton(Button b)
-        {
-            b.FlatStyle = FlatStyle.System;
-            SendMessage(b.Handle, BCM_SETSHIELD, 0, 0xFFFFFFFF);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,9 +51,57 @@ namespace EQUINE
 
             initModList();
             checkGameBackup();
-            getModNamesforDiabloClicker();
             Random r = new Random();
-            label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length - 1)];
+            label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
+            checkModUpdates();
+        }
+
+        private void checkModUpdates()
+        {
+            // check for internet connection
+
+            if(CheckForInternetConnection())
+            {
+                string modName = "", DL = "", EXE = "";
+
+                // if network connected check if mods needs updating
+                for (int i = 0; i < ModInfos.ModInfo.Count; i++)
+                {  
+                    // check if mod installed
+                    if(installedMods.Contains(ModInfos.ModInfo[i].ModName))
+                    {
+                        // check for sha1 match
+                        string modHash = "";
+                        string jsonModHash = "";
+                        sha1 hash = new sha1();
+
+                        jsonModHash = ModInfos.ModInfo[i].md5;
+                        modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
+
+                        if(jsonModHash != "null")
+                        {
+                            if (modHash == jsonModHash)
+                                continue;
+                            else
+                            {
+                                // mod needs updating
+                                modName = ModInfos.ModInfo[i].ModName;
+                                DL = ModInfos.ModInfo[i].DL;
+                                EXE = ModInfos.ModInfo[i].Executable;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (modName != "" && DL != "")
+                {
+                    frmNewUpdate u = new frmNewUpdate();
+                    u.modName = modName;
+                    u.DL = DL;
+                    u.ShowDialog();
+                }
+            }
         }
 
         private void checkGameBackup()
@@ -141,15 +178,12 @@ namespace EQUINE
                 }
                 catch
                 {
-                    label1.Text = "Error updating ModInfo :(";
+                    MessageBox.Show("Error updating ModInfo :(");
                 }
             }
 
             if (!Directory.Exists(Application.StartupPath + "\\EquineData\\ipx"))
                 button6.Enabled = false;
-
-            if(!IsAdministrator())
-                AddShieldToButton(button6);
 
             List<string> ipxWrapperFiles = new List<string> { "directplay-win32.reg", "directplay-win64.reg", "dpwsockx.dll", "ipxconfig.exe", "ipxwrapper.dll", "license.txt", "mswsock.dll", "readme.txt", "wsock32.dll" };
             int checkedfiles = 0;
@@ -198,17 +232,12 @@ namespace EQUINE
                 if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "/" + ModInfos.ModInfo[i].Executable))
                     lvi.SubItems.Add("No");
                 else
+                {
                     lvi.SubItems.Add("Yes");
+                    installedMods.Add(ModInfos.ModInfo[i].ModName);
+                }
                 listView1.Items.Add(lvi);
             }
-        }
-
-        private void getModNamesforDiabloClicker()
-        {/*
-            for(int i = 0; i < listView1.Items.Count; i++)
-            {
-                comboBox1.Items.Add(listView1.Items[i].Text);
-            }*/
         }
 
         private void menuItem10_Click(object sender, EventArgs e)
@@ -412,6 +441,7 @@ namespace EQUINE
         private void menuItem9_Click(object sender, EventArgs e)
         {
             frmDDrawWrapper dwrap = new frmDDrawWrapper();
+            dwrap.installedMods = this.installedMods;
             dwrap.ShowDialog();
         }
 
@@ -601,6 +631,46 @@ namespace EQUINE
         private void menuItem15_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/sergi4ua/equine");
+        }
+
+        private void menuItem4_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/yyFc3Db");
+        }
+
+        private void menuItem5_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/ZdbRTb9");
+        }
+
+        private void menuItem16_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/UxKrvQu");
+        }
+
+        private void menuItem17_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/UeMGY4D");
+        }
+
+        private void menuItem21_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://d1legit.com/");
+        }
+
+        private void menuItem22_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://freshmeat-blog.de.tl/");
+        }
+
+        private void menuItem23_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://diablo1.96.lt/");
+        }
+
+        private void menuItem25_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/sergi4ua/equine/issues");
         }
     }
 }

@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -59,11 +59,8 @@ namespace EQUINE
             this.menuItem11 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem18 = new System.Windows.Forms.MenuItem();
+            this.menuItem15 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.menuItem3 = new System.Windows.Forms.MenuItem();
-            this.menuItem4 = new System.Windows.Forms.MenuItem();
-            this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem14 = new System.Windows.Forms.MenuItem();
@@ -71,6 +68,17 @@ namespace EQUINE
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
             this.menuItem13 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.menuItem16 = new System.Windows.Forms.MenuItem();
+            this.menuItem17 = new System.Windows.Forms.MenuItem();
+            this.menuItem21 = new System.Windows.Forms.MenuItem();
+            this.menuItem22 = new System.Windows.Forms.MenuItem();
+            this.menuItem23 = new System.Windows.Forms.MenuItem();
+            this.menuItem24 = new System.Windows.Forms.MenuItem();
+            this.menuItem25 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -89,14 +97,8 @@ namespace EQUINE
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
@@ -107,14 +109,10 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem15 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -125,8 +123,8 @@ namespace EQUINE
             // 
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem1,
-            this.menuItem2,
-            this.menuItem6});
+            this.menuItem6,
+            this.menuItem2});
             // 
             // menuItem1
             // 
@@ -163,40 +161,21 @@ namespace EQUINE
             this.menuItem18.Text = "About...";
             this.menuItem18.Click += new System.EventHandler(this.menuItem18_Click);
             // 
+            // menuItem15
+            // 
+            this.menuItem15.Index = 4;
+            this.menuItem15.Text = "Report Bug...";
+            this.menuItem15.Click += new System.EventHandler(this.menuItem15_Click);
+            // 
             // menuItem19
             // 
             this.menuItem19.Index = 5;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
-            // menuItem2
-            // 
-            this.menuItem2.Enabled = false;
-            this.menuItem2.Index = 1;
-            this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem3,
-            this.menuItem4,
-            this.menuItem5});
-            this.menuItem2.Text = "MPQ";
-            // 
-            // menuItem3
-            // 
-            this.menuItem3.Index = 0;
-            this.menuItem3.Text = "Verify Game Data...";
-            // 
-            // menuItem4
-            // 
-            this.menuItem4.Index = 1;
-            this.menuItem4.Text = "Extract MPQ...";
-            // 
-            // menuItem5
-            // 
-            this.menuItem5.Index = 2;
-            this.menuItem5.Text = "Re-create MPQ...";
-            // 
             // menuItem6
             // 
-            this.menuItem6.Index = 2;
+            this.menuItem6.Index = 1;
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem7,
             this.menuItem14,
@@ -244,13 +223,85 @@ namespace EQUINE
             this.menuItem13.Text = "Restore game data...";
             this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
             // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 2;
+            this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem3,
+            this.menuItem21,
+            this.menuItem22,
+            this.menuItem23,
+            this.menuItem24,
+            this.menuItem25});
+            this.menuItem2.Text = "Community";
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 0;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem4,
+            this.menuItem5,
+            this.menuItem16,
+            this.menuItem17});
+            this.menuItem3.Text = "Join Discord Channel...";
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 0;
+            this.menuItem4.Text = "D1Legit";
+            this.menuItem4.Click += new System.EventHandler(this.menuItem4_Click);
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 1;
+            this.menuItem5.Text = "Infernity";
+            this.menuItem5.Click += new System.EventHandler(this.menuItem5_Click);
+            // 
+            // menuItem16
+            // 
+            this.menuItem16.Index = 2;
+            this.menuItem16.Text = "Devilution";
+            this.menuItem16.Click += new System.EventHandler(this.menuItem16_Click_1);
+            // 
+            // menuItem17
+            // 
+            this.menuItem17.Index = 3;
+            this.menuItem17.Text = "Tchernobog";
+            this.menuItem17.Click += new System.EventHandler(this.menuItem17_Click);
+            // 
+            // menuItem21
+            // 
+            this.menuItem21.Index = 1;
+            this.menuItem21.Text = "D1Legit.com";
+            this.menuItem21.Click += new System.EventHandler(this.menuItem21_Click);
+            // 
+            // menuItem22
+            // 
+            this.menuItem22.Index = 2;
+            this.menuItem22.Text = "Fresh Meat Blog";
+            this.menuItem22.Click += new System.EventHandler(this.menuItem22_Click);
+            // 
+            // menuItem23
+            // 
+            this.menuItem23.Index = 3;
+            this.menuItem23.Text = "Diablo 196";
+            this.menuItem23.Click += new System.EventHandler(this.menuItem23_Click);
+            // 
+            // menuItem24
+            // 
+            this.menuItem24.Index = 4;
+            this.menuItem24.Text = "-";
+            // 
+            // menuItem25
+            // 
+            this.menuItem25.Index = 5;
+            this.menuItem25.Text = "Submit Community/Website";
+            this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(7, 3);
             this.tabControl1.Name = "tabControl1";
@@ -318,9 +369,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem1.UseItemStyleForSubItems = false;
+            listViewItem2.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -403,26 +454,6 @@ namespace EQUINE
             this.propertiesToolStripMenuItem.Text = "Properties...";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(781, 416);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Tools";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Coming soon...";
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label4);
@@ -441,44 +472,6 @@ namespace EQUINE
             this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Coming soon";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(781, 416);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "P2P Communication";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Coming soon...";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.label5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(781, 416);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Goodies";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Coming soon";
             // 
             // tabPage6
             // 
@@ -576,12 +569,6 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem15
-            // 
-            this.menuItem15.Index = 4;
-            this.menuItem15.Text = "Report Bug...";
-            this.menuItem15.Click += new System.EventHandler(this.menuItem15_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,14 +587,8 @@ namespace EQUINE
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -623,16 +604,9 @@ namespace EQUINE
 
         private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.MenuItem menuItem2;
-        private System.Windows.Forms.MenuItem menuItem3;
-        private System.Windows.Forms.MenuItem menuItem4;
-        private System.Windows.Forms.MenuItem menuItem5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.MenuItem menuItem6;
         private System.Windows.Forms.MenuItem menuItem7;
         private System.Windows.Forms.MenuItem menuItem8;
@@ -660,8 +634,6 @@ namespace EQUINE
         private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
         private System.Windows.Forms.MenuItem menuItem20;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuItem menuItem13;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Panel panel1;
@@ -674,8 +646,18 @@ namespace EQUINE
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.MenuItem menuItem15;
+        private System.Windows.Forms.MenuItem menuItem2;
+        private System.Windows.Forms.MenuItem menuItem3;
+        private System.Windows.Forms.MenuItem menuItem4;
+        private System.Windows.Forms.MenuItem menuItem5;
+        private System.Windows.Forms.MenuItem menuItem16;
+        private System.Windows.Forms.MenuItem menuItem17;
+        private System.Windows.Forms.MenuItem menuItem21;
+        private System.Windows.Forms.MenuItem menuItem22;
+        private System.Windows.Forms.MenuItem menuItem23;
+        private System.Windows.Forms.MenuItem menuItem24;
+        private System.Windows.Forms.MenuItem menuItem25;
     }
 }
 

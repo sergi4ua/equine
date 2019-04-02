@@ -65,6 +65,7 @@ namespace EQUINE
             }
             ((AutoResetEvent)e.UserState).Set();
             DisablePingButton(true);
+            DisableTextInput(true);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,6 +90,7 @@ namespace EQUINE
 
         delegate void SetTextCallback(string text);
         delegate void DisableButton(bool dis);
+        delegate void iDisableTextInput(bool dis);
 
         private void SetText(string text)
         {
@@ -116,9 +118,23 @@ namespace EQUINE
             }
         }
 
+        private void DisableTextInput(bool ornot)
+        {
+            if (button1.InvokeRequired)
+            {
+                iDisableTextInput d = new iDisableTextInput(DisableTextInput);
+                Invoke(d, new object[] { ornot });
+            }
+            else
+            {
+                textBox1.Enabled = ornot;
+            }
+        }
+
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             DisablePingButton(false);
+            DisableTextInput(false);
             pingSender.PingCompleted += new PingCompletedEventHandler(PingCompletedCallback);
             waiter = new AutoResetEvent(false);
 

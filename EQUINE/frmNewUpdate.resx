@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>The most popular ddraw.dll wrapper for Diablo 1. 
-Fixes colors and makes the game run in windowed mode. 
-But you cannot play on offical Battle.Net servers and sometimes graphics glitches can occur at the main menu. 
-Compatible with PvPGN servers, but buttons may become invisible.</value>
-  </data>
 </root>
