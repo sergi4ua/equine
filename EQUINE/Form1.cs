@@ -62,7 +62,7 @@ namespace EQUINE
 
             if(CheckForInternetConnection())
             {
-                string modName = "", DL = "", EXE = "";
+                string modName = "", DL = "", EXE = "", DL2 = "";
 
                 // if network connected check if mods needs updating
                 for (int i = 0; i < ModInfos.ModInfo.Count; i++)
@@ -88,6 +88,7 @@ namespace EQUINE
                                 modName = ModInfos.ModInfo[i].ModName;
                                 DL = ModInfos.ModInfo[i].DL;
                                 EXE = ModInfos.ModInfo[i].Executable;
+                                DL2 = ModInfos.ModInfo[i].DL2;
                                 break;
                             }
                         }
@@ -99,6 +100,7 @@ namespace EQUINE
                     frmNewUpdate u = new frmNewUpdate();
                     u.modName = modName;
                     u.DL = DL;
+                    u.DL2 = DL;
                     u.ShowDialog();
                 }
             }

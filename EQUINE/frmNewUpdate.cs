@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace EQUINE
     {
         public string modName { get; set; }
         public string DL { get; set; }
+        public string DL2 { get; set; }
 
         public frmNewUpdate()
         {
@@ -23,7 +25,24 @@ namespace EQUINE
 
         private void frmNewUpdate_Load(object sender, EventArgs e)
         {
-            label1.Text = modName + " new update available!";
+            label1.Text = modName + ": new update available!";
+
+            try
+            {
+                var webRequest = WebRequest.Create(this.DL2);
+
+                using (var response = webRequest.GetResponse())
+                using (var content = response.GetResponseStream())
+                using (var reader = new StreamReader(content))
+                {
+                    var strContent = reader.ReadToEnd();
+                    textBox1.Text = strContent;
+                }
+            }
+            catch
+            {
+                textBox1.Text = "Failed to retrieve ChangeLog";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
