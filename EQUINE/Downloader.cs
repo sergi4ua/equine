@@ -59,13 +59,13 @@ namespace EQUINE
             {
                 index++;
                 secondFileDownload = true;
-                BeginDownload();
+              //  BeginDownload();
             }
-            this.downloadProgress = 0;
+            //this.downloadProgress = 0;
 
             if(secondFileDownload == true && Urls.Count == 2)
             {
-                return;
+                IsDone = true;
             }
             else
             {
