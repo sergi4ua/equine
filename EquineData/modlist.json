@@ -157,7 +157,7 @@
         "md5": "25992CA119C212189AE716E64368F5BE1A4ECF65",
         "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
-        "BeforeInstallMessage": "null",
+        "BeforeInstallMessage": "",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
         "Executable": "Tchernobog.exe"
@@ -251,6 +251,42 @@
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
         "Executable": "devilutionx.exe"
+      },
+      {
+        "ModId": "14",
+        "ModName": "Retribution",
+        "Game": "Diablo",
+        "Description": "N/A",
+        "Author": "Charlie",
+        "ModVersion": "N/A",
+        "WebSite": "N/A",
+        "DL": "https://sergi4ua.pp.ua/equine/retribution.zip",
+        "DL2": "null",
+        "md5": "null",
+        "RunExeAfterInstall": "readme.txt",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "null",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "Retribution.exe"
+      }
+      {
+        "ModId": "15",
+        "ModName": "Ultra Mod",
+        "Game": "Diablo",
+        "Description": "N/A",
+        "Author": "Rincewind[GdL]",
+        "ModVersion": "N/A",
+        "WebSite": "N/A",
+        "DL": "https://sergi4ua.pp.ua/equine/ultra.zip",
+        "DL2": "null",
+        "md5": "null",
+        "RunExeAfterInstall": "readme_e.txt",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "null",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "UItra_V1-7.exe"
       }
     ]
   }
