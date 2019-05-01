@@ -36,6 +36,7 @@ namespace EQUINE
         RootObject ModInfos;
         private const bool _DEBUG = false;
         private List<string> installedMods = new List<string>();
+        public static Config config { get;  set; }
 
         public Form1()
         {
@@ -53,7 +54,14 @@ namespace EQUINE
             checkGameBackup();
             Random r = new Random();
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
-            checkModUpdates();
+            readConfig();
+            if(config.autoUpdate)
+                checkModUpdates();
+        }
+
+        private void readConfig()
+        {
+            checkBox1.Checked = config.autoUpdate;
         }
 
         private void checkModUpdates()
@@ -681,6 +689,25 @@ namespace EQUINE
         private void createShortcutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                File.Delete(Application.StartupPath + "\\EquineData\\config.json");
+                File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(config));
+                MessageBox.Show("Settings saved!", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Unable to save options... for some reason\nReport this to Sergi:\n" + ex.ToString());
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            config.autoUpdate = checkBox1.Checked;
         }
     }
 }

@@ -14,16 +14,18 @@ This program is free software: you can redistribute it and/or modify
     along with this program.If not, see<https://www.gnu.org/licenses/>.*/
 
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace EQUINE
 {
     static class Program
     {
+        static Config config;
+
         public static bool CheckForInternetConnection()
         {
             try
@@ -148,6 +150,15 @@ namespace EQUINE
                 }
             }
 
+            if(!File.Exists(Application.StartupPath + "\\EquineData\\config.json"))
+            {
+                Config defaultConfigFile = new Config();
+                defaultConfigFile.autoUpdate = true;
+                File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
+            }
+
+            readJsonConfig();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (noInit == false)
@@ -156,9 +167,17 @@ namespace EQUINE
                 Application.Run(new frmSetupWizard());
         }
 
-        private static void createConfig()
+        private static void readJsonConfig()
         {
-            throw new NotImplementedException();
+            try
+            {
+                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Application.StartupPath + "/EquineData/config.json"));
+                Form1.config = config;
+            }
+            catch
+           {
+                MessageBox.Show("Unable to read config file.");
+            }
         }
     }
 }
