@@ -58,7 +58,7 @@ namespace EQUINE
 
         private void frmModDownloader_Load(object sender, EventArgs e)
         {
-            label1.Text = "Please wait, while EQUINE installs " + modName + " to your Diablo installation. This may take a few moments.\nThe program may hang due to files being extracted from the ZIP archive.\nDo not kill EQUINE process when the program is not responding.";
+            label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
 
             if (beforeDownloadMsg != "null")
                 MessageBox.Show(beforeDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,8 +90,8 @@ namespace EQUINE
                 timer1.Enabled = false;
                 progressBar1.Style = ProgressBarStyle.Marquee;
                 progressBar1.MarqueeAnimationSpeed = 30;
-                status.Text = "Extracting file...";
-                ExtractFile();
+                status.Text = "Extracting mod ZIP-archive...";
+                backgroundWorker1.RunWorkerAsync();
             }
         }
 
@@ -114,8 +114,8 @@ namespace EQUINE
                 System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
                 if (afterDownloadMsg != "null")
                     MessageBox.Show(afterDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                progressBar1.Style = ProgressBarStyle.Continuous;
-                progressBar1.MarqueeAnimationSpeed = 0;
+                progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.Style = ProgressBarStyle.Continuous; });
+                progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.MarqueeAnimationSpeed = 0; });
 
                 CreateUninstallFile();
 
@@ -152,8 +152,8 @@ namespace EQUINE
             catch(Exception ex)
             {
                 MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
-                this.Hide();
-                this.Close();
+                this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
+                this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
             }
         }
 
@@ -222,6 +222,11 @@ namespace EQUINE
             }
             this.Hide();
             this.Close();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ExtractFile();
         }
     }
 }

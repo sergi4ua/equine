@@ -157,7 +157,7 @@
         "md5": "CE1CE8355CD7DA8311316D528E444B3445952436",
         "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
-        "BeforeInstallMessage": "",
+        "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
         "Executable": "Tchernobog.exe"

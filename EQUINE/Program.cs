@@ -152,9 +152,12 @@ namespace EQUINE
 
             if(!File.Exists(Application.StartupPath + "\\EquineData\\config.json"))
             {
-                Config defaultConfigFile = new Config();
-                defaultConfigFile.autoUpdate = true;
-                File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
+                if (noInit == false)
+                {
+                    Config defaultConfigFile = new Config();
+                    defaultConfigFile.autoUpdate = true;
+                    File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
+                }
             }
 
             readJsonConfig();
@@ -171,8 +174,11 @@ namespace EQUINE
         {
             try
             {
-                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Application.StartupPath + "/EquineData/config.json"));
-                Form1.config = config;
+                if (File.Exists(Application.StartupPath + "/EquineData/config.json"))
+                {
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Application.StartupPath + "/EquineData/config.json"));
+                    Form1.config = config;
+                }
             }
             catch
            {

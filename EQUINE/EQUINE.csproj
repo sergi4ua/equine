@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAMod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAMod.Designer.cs">
+      <DependentUpon>AddAMod.cs</DependentUpon>
+    </Compile>
     <Compile Include="BackupSave.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,7 @@
       <DependentUpon>BackupSave.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="CustomModInfo.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="FileRoutines.cs" />
     <Compile Include="Form1.cs">
@@ -117,6 +124,12 @@
     <Compile Include="frmProperties.Designer.cs">
       <DependentUpon>frmProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRemoveAMod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRemoveAMod.Designer.cs">
+      <DependentUpon>frmRemoveAMod.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSetupWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +154,9 @@
     </Compile>
     <Compile Include="sha1.cs" />
     <Compile Include="ZipStorer.cs" />
+    <EmbeddedResource Include="AddAMod.resx">
+      <DependentUpon>AddAMod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BackupSave.resx">
       <DependentUpon>BackupSave.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProperties.resx">
       <DependentUpon>frmProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRemoveAMod.resx">
+      <DependentUpon>frmRemoveAMod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSetupWizard.resx">
       <DependentUpon>frmSetupWizard.cs</DependentUpon>

@@ -46,10 +46,11 @@ namespace EQUINE
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.status = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label2 = new System.Windows.Forms.Label();
-            this.status = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,24 @@ namespace EQUINE
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Progress";
             // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(21, 63);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(125, 13);
+            this.status.TabIndex = 4;
+            this.status.Text = "Downloading mod data...";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Status:";
+            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(24, 92);
@@ -86,23 +105,9 @@ namespace EQUINE
             this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label2
+            // backgroundWorker1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Status:";
-            // 
-            // status
-            // 
-            this.status.AutoSize = true;
-            this.status.Location = new System.Drawing.Point(21, 63);
-            this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(125, 13);
-            this.status.TabIndex = 4;
-            this.status.Text = "Downloading mod data...";
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // frmModDownloader
             // 
@@ -134,5 +139,6 @@ namespace EQUINE
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

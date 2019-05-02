@@ -1,3 +1,11 @@
+0.8 changelog:
+- You can now disable automatic mod updates
+- Bug with the Uninstall button fixed
+- 'Open Mod Folder' added to the mod menu
+- 'Force update' added to the mod menu
+- EQUINE no longer become unresponsive when extracting mods
+- Some small fixes
+
 0.7.2 changelog:
 - Added support for mod folders in DDraw Wrapper Setup
 - Make uninstall message less scary

@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -95,10 +95,13 @@ namespace EQUINE
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.launchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openModFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forceUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createShortcutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -110,7 +113,8 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button4 = new System.Windows.Forms.Button();
+            this.menuItem26 = new System.Windows.Forms.MenuItem();
+            this.menuItem27 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -134,6 +138,8 @@ namespace EQUINE
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem10,
             this.menuItem11,
+            this.menuItem26,
+            this.menuItem27,
             this.menuItem12,
             this.menuItem18,
             this.menuItem15,
@@ -154,24 +160,24 @@ namespace EQUINE
             // 
             // menuItem12
             // 
-            this.menuItem12.Index = 2;
+            this.menuItem12.Index = 4;
             this.menuItem12.Text = "-";
             // 
             // menuItem18
             // 
-            this.menuItem18.Index = 3;
+            this.menuItem18.Index = 5;
             this.menuItem18.Text = "About...";
             this.menuItem18.Click += new System.EventHandler(this.menuItem18_Click);
             // 
             // menuItem15
             // 
-            this.menuItem15.Index = 4;
+            this.menuItem15.Index = 6;
             this.menuItem15.Text = "Report Bug...";
             this.menuItem15.Click += new System.EventHandler(this.menuItem15_Click);
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 5;
+            this.menuItem19.Index = 7;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -371,9 +377,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -423,44 +429,60 @@ namespace EQUINE
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.launchToolStripMenuItem,
             this.uninstallToolStripMenuItem,
+            this.openModFolderToolStripMenuItem,
+            this.forceUpdateToolStripMenuItem,
             this.createShortcutToolStripMenuItem,
             this.toolStripSeparator1,
             this.propertiesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 98);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(168, 142);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // launchToolStripMenuItem
             // 
             this.launchToolStripMenuItem.Name = "launchToolStripMenuItem";
-            this.launchToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.launchToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.launchToolStripMenuItem.Text = "Launch...";
             this.launchToolStripMenuItem.Click += new System.EventHandler(this.launchToolStripMenuItem_Click);
             // 
             // uninstallToolStripMenuItem
             // 
             this.uninstallToolStripMenuItem.Name = "uninstallToolStripMenuItem";
-            this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.uninstallToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.uninstallToolStripMenuItem.Text = "Uninstall";
             this.uninstallToolStripMenuItem.Click += new System.EventHandler(this.uninstallToolStripMenuItem_Click);
+            // 
+            // openModFolderToolStripMenuItem
+            // 
+            this.openModFolderToolStripMenuItem.Name = "openModFolderToolStripMenuItem";
+            this.openModFolderToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.openModFolderToolStripMenuItem.Text = "Open Mod Folder";
+            this.openModFolderToolStripMenuItem.Click += new System.EventHandler(this.openModFolderToolStripMenuItem_Click);
+            // 
+            // forceUpdateToolStripMenuItem
+            // 
+            this.forceUpdateToolStripMenuItem.Name = "forceUpdateToolStripMenuItem";
+            this.forceUpdateToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.forceUpdateToolStripMenuItem.Text = "Force Update";
+            this.forceUpdateToolStripMenuItem.Click += new System.EventHandler(this.forceUpdateToolStripMenuItem_Click);
             // 
             // createShortcutToolStripMenuItem
             // 
             this.createShortcutToolStripMenuItem.Name = "createShortcutToolStripMenuItem";
-            this.createShortcutToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.createShortcutToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.createShortcutToolStripMenuItem.Text = "Create Shortcut...";
             this.createShortcutToolStripMenuItem.Click += new System.EventHandler(this.createShortcutToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.propertiesToolStripMenuItem.Text = "Properties...";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
@@ -474,6 +496,16 @@ namespace EQUINE
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(702, 390);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Save";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // checkBox1
             // 
@@ -584,15 +616,17 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // button4
+            // menuItem26
             // 
-            this.button4.Location = new System.Drawing.Point(702, 390);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.menuItem26.Index = 2;
+            this.menuItem26.Text = "Add mod to list...";
+            this.menuItem26.Click += new System.EventHandler(this.menuItem26_Click);
+            // 
+            // menuItem27
+            // 
+            this.menuItem27.Index = 3;
+            this.menuItem27.Text = "Remove custom mod from list...";
+            this.menuItem27.Click += new System.EventHandler(this.menuItem27_Click);
             // 
             // Form1
             // 
@@ -685,6 +719,10 @@ namespace EQUINE
         private System.Windows.Forms.ToolStripMenuItem createShortcutToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ToolStripMenuItem openModFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forceUpdateToolStripMenuItem;
+        private System.Windows.Forms.MenuItem menuItem26;
+        private System.Windows.Forms.MenuItem menuItem27;
     }
 }
 

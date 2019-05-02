@@ -37,6 +37,7 @@ namespace EQUINE
         private const bool _DEBUG = false;
         private List<string> installedMods = new List<string>();
         public static Config config { get;  set; }
+        List<CustomModInfo> customModInfos;
 
         public Form1()
         {
@@ -51,12 +52,33 @@ namespace EQUINE
                 menuItem2.Enabled = false;
 
             initModList();
+            initCustomModList();
             checkGameBackup();
             Random r = new Random();
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
             readConfig();
             if(config.autoUpdate)
                 checkModUpdates();
+        }
+
+        private void initCustomModList()
+        {
+            if (File.Exists(Application.StartupPath + "/EquineData/customModList.json"))
+            {
+                customModInfos = JsonConvert.DeserializeObject<List<CustomModInfo>>(File.ReadAllText(Application.StartupPath + "/EquineData/customModList.json"));
+
+                for (int i = 0; i < customModInfos.Count; i++)
+                {
+                    ListViewItem mi = new ListViewItem(customModInfos[i].Name);
+                    mi.SubItems.Add("Diablo");
+                    mi.SubItems.Add(customModInfos[i].Description);
+                    mi.SubItems.Add(customModInfos[i].Author);
+                    mi.SubItems.Add(customModInfos[i].Version);
+                    mi.SubItems.Add(customModInfos[i].Website);
+                    mi.SubItems.Add("Custom");
+                    listView1.Items.Add(mi);
+                }
+            }
         }
 
         private void readConfig()
@@ -269,7 +291,31 @@ namespace EQUINE
 
         private void button1_Click(object sender, EventArgs e)
         {
-            installPlayMod();
+            if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                installPlayMod();
+            else
+                installPlayCustomMod();
+        }
+
+        private void installPlayCustomMod()
+        {
+            int index = listView1.SelectedIndices[0] + 1;
+            int it = (index - listView1.Items.Count  ) + customModInfos.Count - 1;
+
+            if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable)) {
+                try
+                {
+                    Process.Start(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable);
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to launch custom mod.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Mod exectuable file doesn't exist.", "EQUINE Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void installPlayMod()
@@ -295,6 +341,7 @@ namespace EQUINE
                 }
                 try
                 {
+
                     if (System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                     {
                         Directory.SetCurrentDirectory(Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
@@ -342,15 +389,19 @@ namespace EQUINE
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count > 0)
             {
-                if(listView1.SelectedItems[0].Text == "Vanilla Game")
+                if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                {
+                    button1.Text = "Play";
+                    button1.Enabled = true;
+                }
+                else
+                {
+                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
                     {
-                        button1.Text = "Play";
-                        button1.Enabled = true;
-                    }
-                    else
-                    {
+                        forceUpdateToolStripMenuItem.Enabled = true;
+
                         if (!System.IO.File.Exists(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable))
                         {
                             button1.Text = "Install";
@@ -368,13 +419,23 @@ namespace EQUINE
                             uninstallToolStripMenuItem.Enabled = true;
                         }
                     }
+                    else
+                    {
+                        // custom mod list
+                        button1.Text = "Play";
+                        button1.Enabled = true;
+                        button2.Enabled = false;
+                        uninstallToolStripMenuItem.Enabled = false;
+                        forceUpdateToolStripMenuItem.Enabled = false;
+                    }
+                }
             }
             else
             {
                 button1.Text = "Install";
                 button1.Enabled = false;
             }
-        }
+            }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -471,19 +532,22 @@ namespace EQUINE
             if (listView1.SelectedItems.Count > 0)
             {
                 if (listView1.SelectedItems[0].Text == "Vanilla Game")
-                if (listView1.SelectedItems[0].Text == "Vanilla Game")
                 {
                     return;
                 }
                 else
                 {
-                    if (MessageBox.Show("You about to uninstall " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nAfter Uninstallation is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nContinue?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    try
                     {
-                        frmUninstall frmUninstall = new frmUninstall();
-                        frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
-                        frmUninstall.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
-                        frmUninstall.ShowDialog();
+                        if (MessageBox.Show("You about to uninstall " + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "!\nAfter Uninstallation is complete:\nDo not load any saves created in this mod.\nDelete the mod saves\n\nContinue?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            frmUninstall frmUninstall = new frmUninstall();
+                            frmUninstall.modExe = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                            frmUninstall.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
+                            frmUninstall.ShowDialog();
+                        }
                     }
+                    catch { }
                 }
             }
             else
@@ -533,7 +597,12 @@ namespace EQUINE
                     }
                 }
                 else
-                    installPlayMod();
+                {
+                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                        installPlayMod();
+                    else
+                        installPlayCustomMod();
+                }
             }
         }
 
@@ -708,6 +777,81 @@ namespace EQUINE
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             config.autoUpdate = checkBox1.Checked;
+        }
+
+        private void openModFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    int index = listView1.SelectedIndices[0] + 1;
+                    int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
+
+                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                        Process.Start(Application.StartupPath + "/" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
+                    else
+                        Process.Start(Application.StartupPath + "/" + customModInfos[it].Name);
+                }
+                catch { }
+            }
+            else
+                openModFolderToolStripMenuItem.Enabled = false;
+        }
+
+        private void forceUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                    {
+                        forceUpdateToolStripMenuItem.Enabled = false;
+                        return;
+                    }
+
+                    if(MessageBox.Show("OK to force update?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
+                        {
+                            Directory.SetCurrentDirectory(Application.StartupPath);
+                            frmModDownloader modDL = new frmModDownloader();
+                            modDL.beforeDownloadMsg = "null";
+                            modDL.afterDownloadMsg = "null";
+                            modDL.dlLink0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL;
+                            modDL.dlLink1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL2;
+                            modDL.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
+                            modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
+                            modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
+                            modDL.ShowDialog();
+                        }
+                        else
+                        {
+                            if (ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DiabdatRequired == "true")
+                            {
+                                MessageBox.Show("DIABDAT.MPQ is required for this mod.\nYou can use 'Copy DIABDAT.MPQ from Diablo CD' to copy the requested file from your Diablo CD.\nIf you have the file somewhere on your HDD, copy it to the root of your Diablo installation directory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                return;
+                            }
+                        }
+                    }
+                }
+                catch { }
+            }
+            else
+                openModFolderToolStripMenuItem.Enabled = false;
+        }
+
+        private void menuItem26_Click(object sender, EventArgs e)
+        {
+            AddAMod addAMod = new AddAMod();
+            addAMod.ShowDialog();
+        }
+
+        private void menuItem27_Click(object sender, EventArgs e)
+        {
+            frmRemoveAMod gdbye = new frmRemoveAMod();
+            gdbye.ShowDialog();
         }
     }
 }
