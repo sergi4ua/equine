@@ -57,6 +57,8 @@ namespace EQUINE
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem10 = new System.Windows.Forms.MenuItem();
             this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.menuItem26 = new System.Windows.Forms.MenuItem();
+            this.menuItem27 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem18 = new System.Windows.Forms.MenuItem();
             this.menuItem15 = new System.Windows.Forms.MenuItem();
@@ -113,8 +115,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem26 = new System.Windows.Forms.MenuItem();
-            this.menuItem27 = new System.Windows.Forms.MenuItem();
+            this.menuItem28 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -143,6 +144,7 @@ namespace EQUINE
             this.menuItem12,
             this.menuItem18,
             this.menuItem15,
+            this.menuItem28,
             this.menuItem19});
             this.menuItem1.Text = "EQUINE";
             // 
@@ -157,6 +159,18 @@ namespace EQUINE
             this.menuItem11.Index = 1;
             this.menuItem11.Text = "Backup Save Games...";
             this.menuItem11.Click += new System.EventHandler(this.menuItem11_Click);
+            // 
+            // menuItem26
+            // 
+            this.menuItem26.Index = 2;
+            this.menuItem26.Text = "Add mod to list...";
+            this.menuItem26.Click += new System.EventHandler(this.menuItem26_Click);
+            // 
+            // menuItem27
+            // 
+            this.menuItem27.Index = 3;
+            this.menuItem27.Text = "Remove custom mod from list...";
+            this.menuItem27.Click += new System.EventHandler(this.menuItem27_Click);
             // 
             // menuItem12
             // 
@@ -177,7 +191,7 @@ namespace EQUINE
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 7;
+            this.menuItem19.Index = 8;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -616,17 +630,11 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem26
+            // menuItem28
             // 
-            this.menuItem26.Index = 2;
-            this.menuItem26.Text = "Add mod to list...";
-            this.menuItem26.Click += new System.EventHandler(this.menuItem26_Click);
-            // 
-            // menuItem27
-            // 
-            this.menuItem27.Index = 3;
-            this.menuItem27.Text = "Remove custom mod from list...";
-            this.menuItem27.Click += new System.EventHandler(this.menuItem27_Click);
+            this.menuItem28.Index = 7;
+            this.menuItem28.Text = "Join EQUINE Discord Channel...";
+            this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
             // 
             // Form1
             // 
@@ -723,6 +731,7 @@ namespace EQUINE
         private System.Windows.Forms.ToolStripMenuItem forceUpdateToolStripMenuItem;
         private System.Windows.Forms.MenuItem menuItem26;
         private System.Windows.Forms.MenuItem menuItem27;
+        private System.Windows.Forms.MenuItem menuItem28;
     }
 }
 

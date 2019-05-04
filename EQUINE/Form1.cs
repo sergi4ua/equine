@@ -853,5 +853,7 @@ namespace EQUINE
             frmRemoveAMod gdbye = new frmRemoveAMod();
             gdbye.ShowDialog();
         }
+
+        private void menuItem28_Click(object sender, EventArgs e) => Process.Start("https://discord.gg/ymqHuWE");
     }
 }

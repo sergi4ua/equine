@@ -162,6 +162,11 @@ namespace EQUINE
 
             readJsonConfig();
 
+            if(Directory.Exists(Application.StartupPath + "/Tchernobog (64 BIT ONLY)"))
+            {
+                Directory.Move(Application.StartupPath + "/Tchernobog (64 BIT ONLY)", Application.StartupPath + "/Tchernobog");
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (noInit == false)
