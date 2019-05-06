@@ -23,7 +23,7 @@ namespace EQUINE
     public class GlobalVariableContainer
     {
         public static string Version = Application.ProductVersion.ToString();
-        public static string AppName = "EQUINE for Diablo 1 - Version 0.8b";
+        public static string AppName = "EQUINE for Diablo 1 - Version 0.8c";
         public static bool DIABDATPresent = false;
 
         public static string[] Messages =

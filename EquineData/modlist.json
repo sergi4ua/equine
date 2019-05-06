@@ -150,17 +150,17 @@
         "Game": "Diablo",
         "Description": "Multiplayer version of Belzebub.",
         "Author": "BrightLord/Qndel/Ogodei",
-        "ModVersion": "0.1.5c",
+        "ModVersion": "0.1.5d",
         "WebSite": "https://mod.diablo.noktis.pl/",
         "DL": "https://sergi4ua.pp.ua/equine/Tchernobog.zip",
         "DL2": "https://sergi4ua.pp.ua/equine/Tlog.txt",
-        "md5": "7C639E49F0E6C7CA3FF40FDBBA5A92A41466CE61",
+        "md5": "BCA2DAEED5F4FB7080EF3446326CC1DA71E062C5",
         "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
         "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
-        "Executable": "Tchernobog0.1.5c.exe"
+        "Executable": "Tchernobog0.1.5d.exe"
       },
       {
         "ModId": "9",

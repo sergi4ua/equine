@@ -106,9 +106,30 @@ namespace EQUINE
                         sha1 hash = new sha1();
 
                         jsonModHash = ModInfos.ModInfo[i].md5;
-                        modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
+                        if (ModInfos.ModInfo[i].ModName == "Tchernobog")
+                        {
+                            if(Directory.Exists(Application.StartupPath + "/Tchernobog"))
+                            {
+                                if(!File.Exists(Application.StartupPath + "/Tchernobog/Tchernobog"+ModInfos.ModInfo[i].ModVersion+".exe"))
+                                {
+                                    modName = ModInfos.ModInfo[i].ModName;
+                                    DL = ModInfos.ModInfo[i].DL;
+                                    EXE = ModInfos.ModInfo[i].Executable;
+                                    DL2 = ModInfos.ModInfo[i].DL2;
+                                    break;
+                                }
+                                else
+                                    if(File.Exists(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
+                                        modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
+                            }
+                        }
+                        else
+                        {
+                            if (File.Exists(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
+                                modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
+                        }
 
-                        if(jsonModHash != "null")
+                        if (jsonModHash != "null")
                         {
                             if (modHash == jsonModHash)
                                 continue;
@@ -262,7 +283,15 @@ namespace EQUINE
                 lvi.SubItems.Add(ModInfos.ModInfo[i].ModVersion);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].WebSite);
                 if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "/" + ModInfos.ModInfo[i].Executable))
-                    lvi.SubItems.Add("No");
+                {
+                    if (Directory.Exists(Application.StartupPath + "/Tchernobog") && lvi.Text == "Tchernobog")
+                    {
+                        lvi.SubItems.Add("Yes");
+                        installedMods.Add(ModInfos.ModInfo[i].ModName);
+                    }
+                    else
+                        lvi.SubItems.Add("No");
+                }
                 else
                 {
                     lvi.SubItems.Add("Yes");
@@ -444,7 +473,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2019 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.7\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("EQUINE © 2019 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.8\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
