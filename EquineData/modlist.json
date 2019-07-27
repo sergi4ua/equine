@@ -36,6 +36,24 @@
         "DiabdatRequired": "true",
         "Executable": "equineLauncher.bat"
       },
+	  {
+        "ModId": "17",
+        "ModName": "The Hell 2",
+        "Game": "Diablo",
+        "Description": "The Hell 2 finally out of Beta!",
+        "Author": "Mordor and The Hell Team",
+        "ModVersion": "1235",
+        "WebSite": "https://www.patreon.com/thmod",
+        "DL": "https://www.dropbox.com/s/55qt9px7b4d65i1/TH2.zip?dl=1",
+        "DL2": "https://sergi4ua.pp.ua/equine/TH2.txt",
+        "md5": "7BB349024B4D990376D5B6CCEC9C125680F8CBE2",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "Please download the music pack, for more information visit the mod Patreon page.",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "TH2.exe"
+      },
       {
         "ModId": "2",
         "ModName": "Purgatory",

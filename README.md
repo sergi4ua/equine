@@ -3,11 +3,10 @@
 
 [Discord Server](https://discord.gg/ymqHuWE)
 
-EQUINE (or Easy & Quick Installation Environment) is a mod manager for the first Diablo game. EQUINE can download/uninstall mods created for the game, along with choosing a DDraw wrapper that best suit your system.
+EQUINE (or Easy & Quick Installation Environment) is a mod manager for the first Diablo game. EQUINE can download, update and uninstall mods created for the game. You can select a ddraw.dll wrapper that works best for your system for each individual mod.
 
 
-EQUINE uses XML for the mod database and it updates the file on every launch, keeping you fresh at any new mod that was submitted to EQUINE.
-
+EQUINE uses JSON as the mod database and it updates the file on every launch, keeping you fresh at any new mod that was submitted to EQUINE.
 
 Currently EQUINE has the following features:
 - Copy DIABDAT.MPQ from game CD
@@ -21,21 +20,19 @@ Currently EQUINE has the following features:
 - IPX Wrapper support
 - Mod folders!
 - Mod updater
-
+- GOG version support
 
 Currenly in development:
 
 Currently in planning:
 - P2P Communication
 - Mod config editor?
+- Battle.Net Gateway Editor (Diablo 1 ONLY)
+- Launcher for Tchernobog mod
 
 # Submit your mod
 
 You can submit your mod by filling out this form: https://goo.gl/forms/wYbW4DUqoB7IHCsF2
-
-# 'EQUINE won't restart automatically' bug
-
-Sometimes EQUINE will fail to restart automatically. To fix it, right click on EQUINE.exe, goto 'Properties' and hit 'Unblock/Unlock' check mark/button.
 
 # Credits
 
