@@ -23,7 +23,7 @@ namespace EQUINE
     public class GlobalVariableContainer
     {
         public static string Version = Application.ProductVersion.ToString();
-        public static string AppName = "EQUINE for Diablo 1 - Version 0.8c";
+        public static string AppName = "EQUINE for Diablo 1 - Version 0.8.1";
         public static bool DIABDATPresent = false;
 
         public static string[] Messages =
@@ -34,9 +34,26 @@ namespace EQUINE
                "Tiny pancakes are evil.",
                "Make Diablo great again!",
                "And remember - no duping!",
-               "Thinking have no cap",
+               "Thinking has no cap",
                "Have any good items, m8?",
-               "Made with ♥"
+               "Made with ♥",
+               "*mage death sound*",
+               "Abandon your foolish quest and download some mods!",
+               "Mods. Mods never changing.",
+               "The Phrozen Keep is Phrozen.",
+               "Hey! Look out for that yellow zombie thing.",
+               "If you like Diablo 1, buy it on GOG!",
+               "If you like Hellfire, buy it on GOG!",
+               "The Hell is hellish enough.",
+               "EQUINE 1.0! Coming soon",
+               "0.8.1: Codename: Pegasus",
+               "Stop reading this and download some mods already!", // was Ha-ha! The items have been doubled!, may add it in the future.
+               "*rogue death sound*",
+               "*warrior death sound*",
+               "*potion sound*",
+               "Arcane knowledge gained!",
+               "Made with ♥ and sausage",
+               "Your rectum has been slain."
         };
     }
 }

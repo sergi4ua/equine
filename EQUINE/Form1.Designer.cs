@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -60,8 +60,8 @@ namespace EQUINE
             this.menuItem26 = new System.Windows.Forms.MenuItem();
             this.menuItem27 = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
-            this.menuItem18 = new System.Windows.Forms.MenuItem();
             this.menuItem15 = new System.Windows.Forms.MenuItem();
+            this.menuItem28 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
@@ -81,6 +81,10 @@ namespace EQUINE
             this.menuItem23 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
             this.menuItem25 = new System.Windows.Forms.MenuItem();
+            this.menuItem29 = new System.Windows.Forms.MenuItem();
+            this.menuItem30 = new System.Windows.Forms.MenuItem();
+            this.menuItem31 = new System.Windows.Forms.MenuItem();
+            this.menuItem32 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -115,7 +119,12 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem28 = new System.Windows.Forms.MenuItem();
+            this.menuItem18 = new System.Windows.Forms.MenuItem();
+            this.menuItem33 = new System.Windows.Forms.MenuItem();
+            this.menuItem34 = new System.Windows.Forms.MenuItem();
+            this.menuItem35 = new System.Windows.Forms.MenuItem();
+            this.menuItem36 = new System.Windows.Forms.MenuItem();
+            this.menuItem37 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -131,7 +140,8 @@ namespace EQUINE
             this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem1,
             this.menuItem6,
-            this.menuItem2});
+            this.menuItem2,
+            this.menuItem29});
             // 
             // menuItem1
             // 
@@ -142,7 +152,6 @@ namespace EQUINE
             this.menuItem26,
             this.menuItem27,
             this.menuItem12,
-            this.menuItem18,
             this.menuItem15,
             this.menuItem28,
             this.menuItem19});
@@ -177,21 +186,21 @@ namespace EQUINE
             this.menuItem12.Index = 4;
             this.menuItem12.Text = "-";
             // 
-            // menuItem18
-            // 
-            this.menuItem18.Index = 5;
-            this.menuItem18.Text = "About...";
-            this.menuItem18.Click += new System.EventHandler(this.menuItem18_Click);
-            // 
             // menuItem15
             // 
-            this.menuItem15.Index = 6;
+            this.menuItem15.Index = 5;
             this.menuItem15.Text = "Report Bug...";
             this.menuItem15.Click += new System.EventHandler(this.menuItem15_Click);
             // 
+            // menuItem28
+            // 
+            this.menuItem28.Index = 6;
+            this.menuItem28.Text = "Join EQUINE Discord Channel...";
+            this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
+            // 
             // menuItem19
             // 
-            this.menuItem19.Index = 8;
+            this.menuItem19.Index = 7;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -253,6 +262,10 @@ namespace EQUINE
             this.menuItem21,
             this.menuItem22,
             this.menuItem23,
+            this.menuItem18,
+            this.menuItem33,
+            this.menuItem34,
+            this.menuItem35,
             this.menuItem24,
             this.menuItem25});
             this.menuItem2.Text = "Community";
@@ -311,14 +324,43 @@ namespace EQUINE
             // 
             // menuItem24
             // 
-            this.menuItem24.Index = 4;
+            this.menuItem24.Index = 8;
             this.menuItem24.Text = "-";
             // 
             // menuItem25
             // 
-            this.menuItem25.Index = 5;
+            this.menuItem25.Index = 9;
             this.menuItem25.Text = "Submit Community/Website";
             this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
+            // 
+            // menuItem29
+            // 
+            this.menuItem29.Index = 3;
+            this.menuItem29.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem30,
+            this.menuItem31,
+            this.menuItem36,
+            this.menuItem37,
+            this.menuItem32});
+            this.menuItem29.Text = "Help";
+            // 
+            // menuItem30
+            // 
+            this.menuItem30.Index = 0;
+            this.menuItem30.Shortcut = System.Windows.Forms.Shortcut.F1;
+            this.menuItem30.Text = "Jarulf\'s Guide";
+            this.menuItem30.Click += new System.EventHandler(this.MenuItem30_Click);
+            // 
+            // menuItem31
+            // 
+            this.menuItem31.Index = 1;
+            this.menuItem31.Text = "-";
+            // 
+            // menuItem32
+            // 
+            this.menuItem32.Index = 4;
+            this.menuItem32.Text = "About EQUINE...";
+            this.menuItem32.Click += new System.EventHandler(this.MenuItem32_Click);
             // 
             // tabControl1
             // 
@@ -391,9 +433,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem1.UseItemStyleForSubItems = false;
+            listViewItem2.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -403,6 +445,7 @@ namespace EQUINE
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.DoubleClick += new System.EventHandler(this.ListView1_DoubleClick);
             this.listView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDown);
             // 
             // columnHeader1
@@ -630,11 +673,41 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem28
+            // menuItem18
             // 
-            this.menuItem28.Index = 7;
-            this.menuItem28.Text = "Join EQUINE Discord Channel...";
-            this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
+            this.menuItem18.Index = 4;
+            this.menuItem18.Text = "Lurker Lounge";
+            this.menuItem18.Click += new System.EventHandler(this.MenuItem18_Click_1);
+            // 
+            // menuItem33
+            // 
+            this.menuItem33.Index = 5;
+            this.menuItem33.Text = "Phrozen Keep";
+            this.menuItem33.Click += new System.EventHandler(this.MenuItem33_Click);
+            // 
+            // menuItem34
+            // 
+            this.menuItem34.Index = 6;
+            this.menuItem34.Text = "Diablo Subreddit";
+            this.menuItem34.Click += new System.EventHandler(this.MenuItem34_Click);
+            // 
+            // menuItem35
+            // 
+            this.menuItem35.Index = 7;
+            this.menuItem35.Text = "Diablo 1 Subreddit";
+            this.menuItem35.Click += new System.EventHandler(this.MenuItem35_Click);
+            // 
+            // menuItem36
+            // 
+            this.menuItem36.Index = 2;
+            this.menuItem36.Text = "EQUINE Official GitHub Repository";
+            this.menuItem36.Click += new System.EventHandler(this.MenuItem36_Click);
+            // 
+            // menuItem37
+            // 
+            this.menuItem37.Index = 3;
+            this.menuItem37.Text = "Official Website";
+            this.menuItem37.Click += new System.EventHandler(this.MenuItem37_Click);
             // 
             // Form1
             // 
@@ -681,7 +754,6 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem10;
         private System.Windows.Forms.MenuItem menuItem11;
         private System.Windows.Forms.MenuItem menuItem12;
-        private System.Windows.Forms.MenuItem menuItem18;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
@@ -732,6 +804,16 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem26;
         private System.Windows.Forms.MenuItem menuItem27;
         private System.Windows.Forms.MenuItem menuItem28;
+        private System.Windows.Forms.MenuItem menuItem29;
+        private System.Windows.Forms.MenuItem menuItem30;
+        private System.Windows.Forms.MenuItem menuItem31;
+        private System.Windows.Forms.MenuItem menuItem32;
+        private System.Windows.Forms.MenuItem menuItem18;
+        private System.Windows.Forms.MenuItem menuItem33;
+        private System.Windows.Forms.MenuItem menuItem34;
+        private System.Windows.Forms.MenuItem menuItem35;
+        private System.Windows.Forms.MenuItem menuItem36;
+        private System.Windows.Forms.MenuItem menuItem37;
     }
 }
 

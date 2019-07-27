@@ -1,15 +1,66 @@
-0.8 changelog:
+0.8.1 Codename: Pegasus
+Last Early Access version until release.
+
+Added:
+	- Jarulf's Guide (either Online or Offline)
+	- You can now run/install mods by double clicking on them
+	- Added new *funny* messages that appear in left-bottom corner of the window
+	- Added Lurker Lounge to Community tab
+	- Added Phrozen Keep to Community tab
+	- Added Diablo sub-reddit to Community tab
+	- Added Diablo 1 sub-reddit to Community tab
+	- GOG support
+
+Fixed:
+	- Fixed a bug with Hellfire mods not working due to missing hellfire.mpq
+
+Changed:
+	- 'About' moved to the new 'Help' tab
+
+0.8-a/b/c:
+- Fixes Tchernobog updates
+
+0.8:
 - You can now disable automatic mod updates
 - Bug with the Uninstall button fixed
 - 'Open Mod Folder' added to the mod menu
 - 'Force update' added to the mod menu
 - EQUINE no longer become unresponsive when extracting mods
 - Some small fixes
+- Add-a-Mod feature added
 
-0.7.2 changelog:
+0.7.2:
 - Added support for mod folders in DDraw Wrapper Setup
 - Make uninstall message less scary
 - Create Shortcut feature planned
 - Removed unused/unfinished things (EQUINE Trading is not dead... probably... if someone will document the save formats for Diablo 1 and/or Tchernobog)
 - Added randomly chosen text at the bottom :)
 - TextBox is no longer editable when pinging
+
+0.7:
+- Mod folders!
+- Breaks save backup for mods
+
+0.6.4:
+- JSON instead of XML
+- Mod version in Properties
+- Full mod description in Properties
+
+0.6.3:
+- Auto updates for EQUINE
+- IPX Wrapper Setup
+- 1.09b Force Update
+
+0.6:
+- Downgrader feature added
+- Force update feature added
+
+0.5:
+First public release of EQUINE posted 2 of December, 2018 on Reddit.
+
+- Download mods
+- Uninstall mods
+- DDraw Wrapper Setup
+- Backup/Restore saves
+- Ping IP/Host
+- Copy DIABDAT.MPQ from Game CD
