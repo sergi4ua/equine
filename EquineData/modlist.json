@@ -18,6 +18,24 @@
         "DiabdatRequired": "true",
         "Executable": "Infernity.exe"
       },
+	  {
+        "ModId": "18",
+        "ModName": "Infernity Classic",
+        "Game": "Diablo",
+        "Description": "Old version of Infernity with multiplayer support.",
+        "Author": "Qndel",
+        "ModVersion": "1.13",
+        "WebSite": "https://github.com/qndel/infernity",
+        "DL": "https://sergi4ua.pp.ua/equine/InfernityClassic.zip",
+        "DL2": "null",
+        "md5": "null",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "null",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "Infernity.exe"
+      },
       {
         "ModId": "1",
         "ModName": "The Hell",
