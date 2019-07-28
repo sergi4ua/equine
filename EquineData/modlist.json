@@ -34,7 +34,7 @@
         "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
-        "Executable": "Infernity.exe"
+        "Executable": "InfernityClassic.exe"
       },
       {
         "ModId": "1",
