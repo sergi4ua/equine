@@ -28,6 +28,8 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using IWshRuntimeLibrary;
+using File = System.IO.File;
 
 namespace EQUINE
 {
@@ -314,8 +316,9 @@ namespace EQUINE
 
         private void label1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("No clicky!");
-            label1.Hide();
+            Random r = new Random();
+            label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
+            r = null;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -473,7 +476,7 @@ namespace EQUINE
 
         private void menuItem18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2019 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.8\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void menuItem19_Click(object sender, EventArgs e)
@@ -498,6 +501,8 @@ namespace EQUINE
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
+            createShortcutToolStripMenuItem.Enabled = false;
+
             if (listView1.SelectedItems.Count == 0)
             {
                 e.Cancel = true;
@@ -509,7 +514,10 @@ namespace EQUINE
                     uninstallToolStripMenuItem.Enabled = false;
                 }
 
-
+                if(listView1.SelectedItems[0].SubItems[6].Text == "Yes" || listView1.SelectedItems[0].SubItems[6].Text == "Custom")
+                {
+                    createShortcutToolStripMenuItem.Enabled = true;
+                }
             }
 
             
@@ -786,7 +794,38 @@ namespace EQUINE
 
         private void createShortcutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text != "Vanilla Game")
+                {
+                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                    {
+                        // Process.Start(Application.StartupPath + "\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
+                        object shDesktop = (object)"Desktop";
+                        WshShell shell = new WshShell();
+                        string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + ".lnk";
+                        IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                        shortcut.TargetPath = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" +
+                            ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        shortcut.Save();
+                    }
+                    else
+                    {
+                        // Process.Start(Application.StartupPath + "/" + customModInfos[it].Name);
+                        int index = listView1.SelectedIndices[0] + 1;
+                        int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
+
+                        object shDesktop = (object)"Desktop";
+                        WshShell shell = new WshShell();
+                        string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + customModInfos[it].Name + ".lnk";
+                        IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                        shortcut.TargetPath = Application.StartupPath + "\\" + customModInfos[it].Name + "\\" + customModInfos[it].Executable;
+                        shortcut.Save();
+                    }
+
+                    MessageBox.Show("Shortcut created.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -884,5 +923,80 @@ namespace EQUINE
         }
 
         private void menuItem28_Click(object sender, EventArgs e) => Process.Start("https://discord.gg/ymqHuWE");
+
+        private void ListView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                installPlayMod();
+            else
+                installPlayCustomMod();
+        }
+
+        private void MenuItem32_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ModsCounter = ModInfos.ModInfo.Count;
+            about.ShowDialog();
+        }
+
+        private void MenuItem30_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Click 'Yes' to open it online using your default web browser. Click 'No' to display the PDF using your default PDF viewer (PDF viewer must be installed beforehand)", "EQUINE", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+
+            switch(result)
+            {
+                case DialogResult.Yes:
+                    Process.Start("http://www.lurkerlounge.com/diablo/jarulf/jarulf162.pdf");
+                    break;
+
+                case DialogResult.No:
+                    try
+                    {
+                        Process.Start(Application.StartupPath + "/EquineData/JarulfGuide.pdf");
+                    }
+                    catch (Exception) { MessageBox.Show("Unable to launch your default PDF viewer. Make sure that PDF viewer is installed and try again.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Warning);  } 
+                    break;
+                default:
+                    
+                    break;
+            }
+                
+            
+        }
+
+        private void MenuItem18_Click_1(object sender, EventArgs e)
+        {
+            Process.Start("http://www.lurkerlounge.com/forums/portal.php");
+        }
+
+        private void MenuItem33_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://d2mods.info/home.php");
+        }
+
+        private void MenuItem34_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.reddit.com/r/diablo");
+        }
+
+        private void MenuItem35_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.reddit.com/r/diablo1");
+        }
+
+        private void MenuItem36_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.github.com/sergi4ua/equine");
+        }
+
+        private void MenuItem37_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://sergi4ua.pp.ua/equine");
+        }
+
+        private void MenuItem38_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/gMJN8Dm");
+        }
     }
 }
