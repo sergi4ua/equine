@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -79,11 +79,17 @@ namespace EQUINE
             this.menuItem21 = new System.Windows.Forms.MenuItem();
             this.menuItem22 = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
+            this.menuItem18 = new System.Windows.Forms.MenuItem();
+            this.menuItem33 = new System.Windows.Forms.MenuItem();
+            this.menuItem34 = new System.Windows.Forms.MenuItem();
+            this.menuItem35 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
             this.menuItem25 = new System.Windows.Forms.MenuItem();
             this.menuItem29 = new System.Windows.Forms.MenuItem();
             this.menuItem30 = new System.Windows.Forms.MenuItem();
             this.menuItem31 = new System.Windows.Forms.MenuItem();
+            this.menuItem36 = new System.Windows.Forms.MenuItem();
+            this.menuItem37 = new System.Windows.Forms.MenuItem();
             this.menuItem32 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -119,12 +125,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem18 = new System.Windows.Forms.MenuItem();
-            this.menuItem33 = new System.Windows.Forms.MenuItem();
-            this.menuItem34 = new System.Windows.Forms.MenuItem();
-            this.menuItem35 = new System.Windows.Forms.MenuItem();
-            this.menuItem36 = new System.Windows.Forms.MenuItem();
-            this.menuItem37 = new System.Windows.Forms.MenuItem();
+            this.menuItem38 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -277,7 +278,8 @@ namespace EQUINE
             this.menuItem4,
             this.menuItem5,
             this.menuItem16,
-            this.menuItem17});
+            this.menuItem17,
+            this.menuItem38});
             this.menuItem3.Text = "Join Discord Channel...";
             // 
             // menuItem4
@@ -322,6 +324,30 @@ namespace EQUINE
             this.menuItem23.Text = "Diablo 196";
             this.menuItem23.Click += new System.EventHandler(this.menuItem23_Click);
             // 
+            // menuItem18
+            // 
+            this.menuItem18.Index = 4;
+            this.menuItem18.Text = "Lurker Lounge";
+            this.menuItem18.Click += new System.EventHandler(this.MenuItem18_Click_1);
+            // 
+            // menuItem33
+            // 
+            this.menuItem33.Index = 5;
+            this.menuItem33.Text = "Phrozen Keep";
+            this.menuItem33.Click += new System.EventHandler(this.MenuItem33_Click);
+            // 
+            // menuItem34
+            // 
+            this.menuItem34.Index = 6;
+            this.menuItem34.Text = "Diablo Subreddit";
+            this.menuItem34.Click += new System.EventHandler(this.MenuItem34_Click);
+            // 
+            // menuItem35
+            // 
+            this.menuItem35.Index = 7;
+            this.menuItem35.Text = "Diablo 1 Subreddit";
+            this.menuItem35.Click += new System.EventHandler(this.MenuItem35_Click);
+            // 
             // menuItem24
             // 
             this.menuItem24.Index = 8;
@@ -355,6 +381,18 @@ namespace EQUINE
             // 
             this.menuItem31.Index = 1;
             this.menuItem31.Text = "-";
+            // 
+            // menuItem36
+            // 
+            this.menuItem36.Index = 2;
+            this.menuItem36.Text = "EQUINE Official GitHub Repository";
+            this.menuItem36.Click += new System.EventHandler(this.MenuItem36_Click);
+            // 
+            // menuItem37
+            // 
+            this.menuItem37.Index = 3;
+            this.menuItem37.Text = "Official Website";
+            this.menuItem37.Click += new System.EventHandler(this.MenuItem37_Click);
             // 
             // menuItem32
             // 
@@ -433,9 +471,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -673,41 +711,11 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem18
+            // menuItem38
             // 
-            this.menuItem18.Index = 4;
-            this.menuItem18.Text = "Lurker Lounge";
-            this.menuItem18.Click += new System.EventHandler(this.MenuItem18_Click_1);
-            // 
-            // menuItem33
-            // 
-            this.menuItem33.Index = 5;
-            this.menuItem33.Text = "Phrozen Keep";
-            this.menuItem33.Click += new System.EventHandler(this.MenuItem33_Click);
-            // 
-            // menuItem34
-            // 
-            this.menuItem34.Index = 6;
-            this.menuItem34.Text = "Diablo Subreddit";
-            this.menuItem34.Click += new System.EventHandler(this.MenuItem34_Click);
-            // 
-            // menuItem35
-            // 
-            this.menuItem35.Index = 7;
-            this.menuItem35.Text = "Diablo 1 Subreddit";
-            this.menuItem35.Click += new System.EventHandler(this.MenuItem35_Click);
-            // 
-            // menuItem36
-            // 
-            this.menuItem36.Index = 2;
-            this.menuItem36.Text = "EQUINE Official GitHub Repository";
-            this.menuItem36.Click += new System.EventHandler(this.MenuItem36_Click);
-            // 
-            // menuItem37
-            // 
-            this.menuItem37.Index = 3;
-            this.menuItem37.Text = "Official Website";
-            this.menuItem37.Click += new System.EventHandler(this.MenuItem37_Click);
+            this.menuItem38.Index = 4;
+            this.menuItem38.Text = "Crucible";
+            this.menuItem38.Click += new System.EventHandler(this.MenuItem38_Click);
             // 
             // Form1
             // 
@@ -814,6 +822,7 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem35;
         private System.Windows.Forms.MenuItem menuItem36;
         private System.Windows.Forms.MenuItem menuItem37;
+        private System.Windows.Forms.MenuItem menuItem38;
     }
 }
 

@@ -28,6 +28,8 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using IWshRuntimeLibrary;
+using File = System.IO.File;
 
 namespace EQUINE
 {
@@ -499,6 +501,8 @@ namespace EQUINE
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
+            createShortcutToolStripMenuItem.Enabled = false;
+
             if (listView1.SelectedItems.Count == 0)
             {
                 e.Cancel = true;
@@ -510,7 +514,10 @@ namespace EQUINE
                     uninstallToolStripMenuItem.Enabled = false;
                 }
 
-
+                if(listView1.SelectedItems[0].SubItems[6].Text == "Yes" || listView1.SelectedItems[0].SubItems[6].Text == "Custom")
+                {
+                    createShortcutToolStripMenuItem.Enabled = true;
+                }
             }
 
             
@@ -787,7 +794,38 @@ namespace EQUINE
 
         private void createShortcutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (listView1.SelectedItems.Count > 0)
+            {
+                if (listView1.SelectedItems[0].Text != "Vanilla Game")
+                {
+                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                    {
+                        // Process.Start(Application.StartupPath + "\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
+                        object shDesktop = (object)"Desktop";
+                        WshShell shell = new WshShell();
+                        string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + ".lnk";
+                        IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                        shortcut.TargetPath = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" +
+                            ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        shortcut.Save();
+                    }
+                    else
+                    {
+                        // Process.Start(Application.StartupPath + "/" + customModInfos[it].Name);
+                        int index = listView1.SelectedIndices[0] + 1;
+                        int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
+
+                        object shDesktop = (object)"Desktop";
+                        WshShell shell = new WshShell();
+                        string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + customModInfos[it].Name + ".lnk";
+                        IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                        shortcut.TargetPath = Application.StartupPath + "\\" + customModInfos[it].Name + "\\" + customModInfos[it].Executable;
+                        shortcut.Save();
+                    }
+
+                    MessageBox.Show("Shortcut created.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -896,7 +934,9 @@ namespace EQUINE
 
         private void MenuItem32_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("EQUINE © 2019 Sergi4UA.\nThis software is in no way associated with or endorsed by Blizzard Entertainment®.\n\nVersion 0.8\nhttps://sergi4ua.pp.ua/equine\nFor any questions please contact me at: https://sergi4ua.pp.ua/contact.html or visit the GitHub: http://github.com/sergi4ua/equine \n\nBeta-testers:\nOgodei\nRadTang\nfearedbliss\nDavias\nQndel \n\nHave an awesome day! :)", "About EQUINE...", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frmAbout about = new frmAbout();
+            about.ModsCounter = ModInfos.ModInfo.Count;
+            about.ShowDialog();
         }
 
         private void MenuItem30_Click(object sender, EventArgs e)
@@ -952,6 +992,11 @@ namespace EQUINE
         private void MenuItem37_Click(object sender, EventArgs e)
         {
             Process.Start("https://sergi4ua.pp.ua/equine");
+        }
+
+        private void MenuItem38_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://discord.gg/gMJN8Dm");
         }
     }
 }

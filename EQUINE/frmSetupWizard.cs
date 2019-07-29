@@ -146,5 +146,10 @@ namespace EQUINE
         {
             Application.Exit();
         }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            button1.PerformClick();
+        }
     }
 }
