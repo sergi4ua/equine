@@ -54,9 +54,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 33);
+            this.label1.Size = new System.Drawing.Size(214, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EQUINE 0.8.1";
+            this.label1.Text = "EQUINE 0.8.1a";
             // 
             // label2
             // 

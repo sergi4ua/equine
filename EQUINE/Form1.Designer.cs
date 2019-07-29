@@ -76,6 +76,7 @@ namespace EQUINE
             this.menuItem5 = new System.Windows.Forms.MenuItem();
             this.menuItem16 = new System.Windows.Forms.MenuItem();
             this.menuItem17 = new System.Windows.Forms.MenuItem();
+            this.menuItem38 = new System.Windows.Forms.MenuItem();
             this.menuItem21 = new System.Windows.Forms.MenuItem();
             this.menuItem22 = new System.Windows.Forms.MenuItem();
             this.menuItem23 = new System.Windows.Forms.MenuItem();
@@ -125,7 +126,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem38 = new System.Windows.Forms.MenuItem();
+            this.menuItem39 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -155,6 +156,7 @@ namespace EQUINE
             this.menuItem12,
             this.menuItem15,
             this.menuItem28,
+            this.menuItem39,
             this.menuItem19});
             this.menuItem1.Text = "EQUINE";
             // 
@@ -201,7 +203,7 @@ namespace EQUINE
             // 
             // menuItem19
             // 
-            this.menuItem19.Index = 7;
+            this.menuItem19.Index = 8;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -306,6 +308,12 @@ namespace EQUINE
             this.menuItem17.Text = "Tchernobog";
             this.menuItem17.Click += new System.EventHandler(this.menuItem17_Click);
             // 
+            // menuItem38
+            // 
+            this.menuItem38.Index = 4;
+            this.menuItem38.Text = "Crucible";
+            this.menuItem38.Click += new System.EventHandler(this.MenuItem38_Click);
+            // 
             // menuItem21
             // 
             this.menuItem21.Index = 1;
@@ -402,6 +410,9 @@ namespace EQUINE
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage6);
@@ -428,6 +439,7 @@ namespace EQUINE
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.Location = new System.Drawing.Point(9, 387);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 23);
@@ -438,6 +450,7 @@ namespace EQUINE
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(619, 387);
             this.button2.Name = "button2";
@@ -449,6 +462,7 @@ namespace EQUINE
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(700, 387);
             this.button1.Name = "button1";
@@ -460,6 +474,9 @@ namespace EQUINE
             // 
             // listView1
             // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -697,6 +714,7 @@ namespace EQUINE
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(8, 448);
@@ -711,11 +729,12 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem38
+            // menuItem39
             // 
-            this.menuItem38.Index = 4;
-            this.menuItem38.Text = "Crucible";
-            this.menuItem38.Click += new System.EventHandler(this.MenuItem38_Click);
+            this.menuItem39.Index = 7;
+            this.menuItem39.Shortcut = System.Windows.Forms.Shortcut.ShiftF1;
+            this.menuItem39.Text = "Reset Size and Position";
+            this.menuItem39.Click += new System.EventHandler(this.MenuItem39_Click);
             // 
             // Form1
             // 
@@ -724,9 +743,7 @@ namespace EQUINE
             this.ClientSize = new System.Drawing.Size(800, 468);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Menu = this.mainMenu1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -823,6 +840,7 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem36;
         private System.Windows.Forms.MenuItem menuItem37;
         private System.Windows.Forms.MenuItem menuItem38;
+        private System.Windows.Forms.MenuItem menuItem39;
     }
 }
 

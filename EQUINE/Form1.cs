@@ -998,5 +998,12 @@ namespace EQUINE
         {
             Process.Start("https://discord.gg/gMJN8Dm");
         }
+
+        private void MenuItem39_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.Width = 816;
+            this.Height = 528;
+        }
     }
 }
