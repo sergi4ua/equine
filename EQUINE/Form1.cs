@@ -805,8 +805,8 @@ namespace EQUINE
                         WshShell shell = new WshShell();
                         string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + ".lnk";
                         IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
-                        shortcut.TargetPath = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" +
-                            ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        shortcut.TargetPath = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
+                        shortcut.WorkingDirectory = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\";  
                         shortcut.Save();
                     }
                     else
@@ -820,6 +820,7 @@ namespace EQUINE
                         string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + customModInfos[it].Name + ".lnk";
                         IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
                         shortcut.TargetPath = Application.StartupPath + "\\" + customModInfos[it].Name + "\\" + customModInfos[it].Executable;
+                        shortcut.WorkingDirectory = shortcut.WorkingDirectory = Application.StartupPath + "\\";
                         shortcut.Save();
                     }
 

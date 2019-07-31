@@ -62,6 +62,7 @@ namespace EQUINE
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.menuItem15 = new System.Windows.Forms.MenuItem();
             this.menuItem28 = new System.Windows.Forms.MenuItem();
+            this.menuItem39 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
@@ -126,7 +127,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem39 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -200,6 +200,13 @@ namespace EQUINE
             this.menuItem28.Index = 6;
             this.menuItem28.Text = "Join EQUINE Discord Channel...";
             this.menuItem28.Click += new System.EventHandler(this.menuItem28_Click);
+            // 
+            // menuItem39
+            // 
+            this.menuItem39.Index = 7;
+            this.menuItem39.Shortcut = System.Windows.Forms.Shortcut.ShiftF1;
+            this.menuItem39.Text = "Reset Size and Position";
+            this.menuItem39.Click += new System.EventHandler(this.MenuItem39_Click);
             // 
             // menuItem19
             // 
@@ -728,13 +735,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // menuItem39
-            // 
-            this.menuItem39.Index = 7;
-            this.menuItem39.Shortcut = System.Windows.Forms.Shortcut.ShiftF1;
-            this.menuItem39.Text = "Reset Size and Position";
-            this.menuItem39.Click += new System.EventHandler(this.MenuItem39_Click);
             // 
             // Form1
             // 

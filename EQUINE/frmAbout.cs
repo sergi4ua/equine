@@ -54,5 +54,10 @@ namespace EQUINE
         {
             System.Diagnostics.Process.Start("https://sergi4ua.pp.ua/equine");
         }
+
+        private void LinkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/sergi4ua/equine");
+        }
     }
 }

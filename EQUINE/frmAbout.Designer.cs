@@ -213,6 +213,7 @@
             this.linkLabel6.TabIndex = 15;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "EQUINE GitHub Repository";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel6_LinkClicked);
             // 
             // label10
             // 
