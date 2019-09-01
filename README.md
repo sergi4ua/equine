@@ -14,7 +14,7 @@ Currently EQUINE has the following features:
 - Ping IP/Host (useful for programs like ZeroTier, plus it always stays at the top, which will be much convienent when copying IPs/Hostnames)
 - EQUINE will backup important game DLL/SNP files and restore them when uninstalling a mod
 - Save game backup (along with mod/multiplayer support)
-- Downloading/uninstlling mods
+- Downloading/uninstalling mods
 - Game version downgrader
 - Force Update to 1.09
 - IPX Wrapper support
