@@ -61,6 +61,9 @@ namespace EQUINE
             readConfig();
             if(config.autoUpdate)
                 checkModUpdates();
+
+           
+
         }
 
         private void initCustomModList()
@@ -1005,6 +1008,19 @@ namespace EQUINE
             this.WindowState = FormWindowState.Normal;
             this.Width = 816;
             this.Height = 528;
+        }
+
+        private void MenuItem41_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+                eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
+                mpqEditForm.ShowDialog();
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message, "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //}
         }
     }
 }

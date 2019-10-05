@@ -87,6 +87,10 @@ namespace EQUINE
             this.menuItem35 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
             this.menuItem25 = new System.Windows.Forms.MenuItem();
+            this.menuItem40 = new System.Windows.Forms.MenuItem();
+            this.menuItem41 = new System.Windows.Forms.MenuItem();
+            this.menuItem42 = new System.Windows.Forms.MenuItem();
+            this.menuItem43 = new System.Windows.Forms.MenuItem();
             this.menuItem29 = new System.Windows.Forms.MenuItem();
             this.menuItem30 = new System.Windows.Forms.MenuItem();
             this.menuItem31 = new System.Windows.Forms.MenuItem();
@@ -143,6 +147,7 @@ namespace EQUINE
             this.menuItem1,
             this.menuItem6,
             this.menuItem2,
+            this.menuItem40,
             this.menuItem29});
             // 
             // menuItem1
@@ -374,9 +379,34 @@ namespace EQUINE
             this.menuItem25.Text = "Submit Community/Website";
             this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
             // 
+            // menuItem40
+            // 
+            this.menuItem40.Index = 3;
+            this.menuItem40.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem41,
+            this.menuItem42,
+            this.menuItem43});
+            this.menuItem40.Text = "MPQ";
+            // 
+            // menuItem41
+            // 
+            this.menuItem41.Index = 0;
+            this.menuItem41.Text = "EQUINE MPQEdit";
+            this.menuItem41.Click += new System.EventHandler(this.MenuItem41_Click);
+            // 
+            // menuItem42
+            // 
+            this.menuItem42.Index = 1;
+            this.menuItem42.Text = "Extract DIABDAT.MPQ";
+            // 
+            // menuItem43
+            // 
+            this.menuItem43.Index = 2;
+            this.menuItem43.Text = "Recreate DIABDAT.MPQ";
+            // 
             // menuItem29
             // 
-            this.menuItem29.Index = 3;
+            this.menuItem29.Index = 4;
             this.menuItem29.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem30,
             this.menuItem31,
@@ -841,6 +871,10 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem37;
         private System.Windows.Forms.MenuItem menuItem38;
         private System.Windows.Forms.MenuItem menuItem39;
+        private System.Windows.Forms.MenuItem menuItem40;
+        private System.Windows.Forms.MenuItem menuItem41;
+        private System.Windows.Forms.MenuItem menuItem42;
+        private System.Windows.Forms.MenuItem menuItem43;
     }
 }
 
