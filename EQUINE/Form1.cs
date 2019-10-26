@@ -1022,5 +1022,15 @@ namespace EQUINE
             //    MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message, "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             //}
         }
+
+        private void MenuItem44_Click(object sender, EventArgs e)
+        {
+            Process.Start(Application.StartupPath);
+        }
+
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://goo.gl/forms/wYbW4DUqoB7IHCsF2");
+        }
     }
 }

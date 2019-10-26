@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="equine.ico" />
+    <None Include="Resources\lpopup.png" />
     <None Include="Resources\Discord-Logo-Color.png" />
   </ItemGroup>
   <ItemGroup>

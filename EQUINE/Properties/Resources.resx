@@ -121,4 +121,7 @@
   <data name="Discord-Logo-Color" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Discord-Logo-Color.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="lpopup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lpopup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
