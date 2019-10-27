@@ -123,6 +123,12 @@
     <Compile Include="frmDowngrader.Designer.cs">
       <DependentUpon>frmDowngrader.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmExtractMPQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExtractMPQ.Designer.cs">
+      <DependentUpon>frmExtractMPQ.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmForceUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDowngrader.resx">
       <DependentUpon>frmDowngrader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtractMPQ.resx">
+      <DependentUpon>frmExtractMPQ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmForceUpdate.resx">
       <DependentUpon>frmForceUpdate.cs</DependentUpon>

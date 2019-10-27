@@ -71,6 +71,7 @@ namespace EQUINE
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
             this.menuItem13 = new System.Windows.Forms.MenuItem();
+            this.menuItem44 = new System.Windows.Forms.MenuItem();
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.menuItem3 = new System.Windows.Forms.MenuItem();
             this.menuItem4 = new System.Windows.Forms.MenuItem();
@@ -99,6 +100,9 @@ namespace EQUINE
             this.menuItem32 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -132,10 +136,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem44 = new System.Windows.Forms.MenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -276,6 +276,12 @@ namespace EQUINE
             this.menuItem13.Text = "Restore game data...";
             this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
             // 
+            // menuItem44
+            // 
+            this.menuItem44.Index = 6;
+            this.menuItem44.Text = "Open game directory";
+            this.menuItem44.Click += new System.EventHandler(this.MenuItem44_Click);
+            // 
             // menuItem2
             // 
             this.menuItem2.Index = 2;
@@ -405,6 +411,7 @@ namespace EQUINE
             // 
             this.menuItem42.Index = 1;
             this.menuItem42.Text = "Extract DIABDAT.MPQ";
+            this.menuItem42.Click += new System.EventHandler(this.MenuItem42_Click);
             // 
             // menuItem43
             // 
@@ -483,6 +490,36 @@ namespace EQUINE
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(525, 445);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "to submit your mod.";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(483, 445);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(46, 13);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "this form";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 445);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(481, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "If you want to see your mod here - please contact me on Discord: Sergi4UA#0551. Y" +
+    "ou can also use";
             // 
             // button2
             // 
@@ -640,7 +677,7 @@ namespace EQUINE
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(836, 437);
+            this.tabPage2.Size = new System.Drawing.Size(895, 469);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "Tools";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -660,7 +697,7 @@ namespace EQUINE
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(836, 437);
+            this.tabPage3.Size = new System.Drawing.Size(895, 469);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -695,7 +732,7 @@ namespace EQUINE
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(836, 437);
+            this.tabPage6.Size = new System.Drawing.Size(895, 469);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "IPXWrapper";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -784,42 +821,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // menuItem44
-            // 
-            this.menuItem44.Index = 6;
-            this.menuItem44.Text = "Open game directory";
-            this.menuItem44.Click += new System.EventHandler(this.MenuItem44_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 445);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(481, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "If you want to see your mod here - please contact me on Discord: Sergi4UA#0551. Y" +
-    "ou can also use";
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(483, 445);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(46, 13);
-            this.linkLabel1.TabIndex = 4;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "this form";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(525, 445);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "to submit your mod.";
             // 
             // Form1
             // 

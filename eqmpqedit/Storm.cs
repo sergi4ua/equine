@@ -29,5 +29,14 @@ namespace eqmpqedit
 
         [DllImport(STORMDLL, EntryPoint = "SFileCloseArchive")]
         public static extern bool SFileCloseArchive(uint hMPQ);
+
+        [DllImport(STORMDLL, EntryPoint = "SFileGetFileSize")]
+        public static extern uint SFileGetFileSize(int hFile, ref uint highPartOfFileSize);
+
+        [DllImport(STORMDLL, EntryPoint = "SFileReadFile")]
+        public static extern bool SFileReadFile(int hFile, byte[] buffer, uint numberOfBytesToRead, ref uint numberOfBytesRead, int overlapped);
+
+        [DllImport(STORMDLL, EntryPoint = "SFileOpenFile")]
+        public static extern bool SFileOpenFile(string fileName, ref int hFile);
     }
 }

@@ -1032,5 +1032,11 @@ namespace EQUINE
         {
             Process.Start("https://goo.gl/forms/wYbW4DUqoB7IHCsF2");
         }
+
+        private void MenuItem42_Click(object sender, EventArgs e)
+        {
+            frmExtractMPQ extractor = new frmExtractMPQ();
+            extractor.ShowDialog();
+        }
     }
 }
