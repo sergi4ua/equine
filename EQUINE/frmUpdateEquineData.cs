@@ -38,6 +38,8 @@ namespace EQUINE
 
         private void frmUpdateEquineData_Load(object sender, EventArgs e)
         {
+            label1.Parent = pictureBox1;
+            this.Cursor = Cursors.WaitCursor;
             backgroundWorker1.RunWorkerAsync();
         }
 
@@ -70,7 +72,6 @@ namespace EQUINE
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            progressBar1.Value = 100;
             var SelfProc = new ProcessStartInfo
             {
                 UseShellExecute = true,

@@ -24,37 +24,25 @@ namespace EQUINE
 {
     static class Program
     {
-        static Config config;
-
-        public static bool CheckForInternetConnection()
-        {
-            try
-            {
-                using (var client = new WebClient())
-                using (client.OpenRead("http://clients3.google.com/generate_204"))
-                {
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            /* Check for JSON dll */
+            if(!File.Exists("NewtonSoft.Json.dll"))
+            {
+                MessageBox.Show("Unable to find NewtonSoft.Json.dll.\nYou probably forgot to extract it from the archive.");
+                Environment.Exit(1);
+            }
             bool noInit = false;
 
             if(!File.Exists("Diablo.exe"))
             {
                 if (!File.Exists("Hellfire.exe"))
                 {
-                    MessageBox.Show("Unable to locate Diablo.exe/Hellfire.exe!\nYou must put EQUINE.exe into your Diablo/Hellfire installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("Unable to find Diablo.exe/Hellfire.exe!\nYou must put EQUINE.exe into your Diablo/Hellfire installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Environment.Exit(1);
                 }
             }
@@ -69,7 +57,7 @@ namespace EQUINE
             }
             else
                 GlobalVariableContainer.DIABDATPresent = true;
-
+            
             if(!Directory.Exists(Application.StartupPath + "\\EquineData\\ipx"))
             {
                 if (noInit == false)
@@ -92,103 +80,14 @@ namespace EQUINE
                 }
             }
 
-            if(CheckForInternetConnection() == true)
-            {
-                if (Directory.Exists(Application.StartupPath + "\\EquineData"))
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://sergi4ua.pp.ua/equine/EQUINE_hash.sha", Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
-                }
-            }
-
-#if RELEASE
-            if(File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
-            {
-                if (noInit == false)
-                {
-                    try
-                    {
-                        File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
-
-                        sha1 hash = new sha1();
-                        string fromfilehash = "";
-                        string apphash = "";
-
-                        fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
-                        apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
-
-                        if (fromfilehash != apphash)
-                        {
-                            var SelfProc = new ProcessStartInfo
-                            {
-                                UseShellExecute = true,
-                                WorkingDirectory = Environment.CurrentDirectory,
-                                FileName = Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe",
-                                Arguments = "-update",
-                            };
-                            File.Delete(Application.StartupPath + "\\EQUINE.hash");
-                            Process.Start(SelfProc);
-                            Environment.Exit(0);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to check for updates!\n" + ex.Message);
-                    }
-                }
-            }
-#endif
             
-            if(!File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
-            {
-                if (noInit == false)
-                {
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new frmUpdateEquineData());
-                    return;
-                }
-            }
-
-            if(!File.Exists(Application.StartupPath + "\\EquineData\\config.json"))
-            {
-                if (noInit == false)
-                {
-                    Config defaultConfigFile = new Config();
-                    defaultConfigFile.autoUpdate = true;
-                    File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
-                }
-            }
-
-            readJsonConfig();
-
-            if(Directory.Exists(Application.StartupPath + "/Tchernobog (64 BIT ONLY)"))
-            {
-                Directory.Move(Application.StartupPath + "/Tchernobog (64 BIT ONLY)", Application.StartupPath + "/Tchernobog");
-            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (noInit == false)
-                Application.Run(new Form1());
+                Application.Run(new frmSplash());
             else
                 Application.Run(new frmSetupWizard());
-        }
-
-        private static void readJsonConfig()
-        {
-            try
-            {
-                if (File.Exists(Application.StartupPath + "/EquineData/config.json"))
-                {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(Application.StartupPath + "/EquineData/config.json"));
-                    Form1.config = config;
-                }
-            }
-            catch
-           {
-                MessageBox.Show("Unable to read config file.");
-            }
         }
     }
 }

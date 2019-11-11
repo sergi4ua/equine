@@ -65,7 +65,7 @@ namespace EQUINE.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Discord_Logo_Color {
             get {
-                object obj = ResourceManager.GetObject("Discord-Logo-Color", resourceCulture);
+                object obj = ResourceManager.GetObject("Discord_Logo_Color", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EQUINE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lpopup {
+        internal static System.Drawing.Bitmap equine_loading {
             get {
-                object obj = ResourceManager.GetObject("lpopup", resourceCulture);
+                object obj = ResourceManager.GetObject("equine-loading", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
