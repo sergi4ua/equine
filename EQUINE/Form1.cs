@@ -855,17 +855,25 @@ namespace EQUINE
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                try
+                int it = 0;
+
+                if (customModInfos != null)
                 {
                     int index = listView1.SelectedIndices[0] + 1;
-                    int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
-
-                    if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
-                        Process.Start(Application.StartupPath + "/" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
-                    else
-                        Process.Start(Application.StartupPath + "/" + customModInfos[it].Name);
+                    it = (index - listView1.Items.Count) + customModInfos.Count - 1;
                 }
-                catch { }
+
+                if (listView1.SelectedItems[0].SubItems[6].Text != "Custom")
+                {
+                    if (listView1.SelectedItems[0].Text == "Vanilla Game")
+                    {
+                        Process.Start(Application.StartupPath);
+                        return;
+                    }
+                    Process.Start(Application.StartupPath + "/" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName);
+                }
+                else
+                    Process.Start(Application.StartupPath + "/" + customModInfos[it].Name);
             }
             else
                 openModFolderToolStripMenuItem.Enabled = false;
