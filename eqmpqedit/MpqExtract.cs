@@ -53,6 +53,11 @@ namespace eqmpqedit
             set;
         }
 
+        public bool cancel
+        {
+            get; set;
+        }
+
         public void ExtractMPQ(string fileName, string listFile)
         {
             Progress_MaxFiles = 1;
@@ -127,33 +132,42 @@ namespace eqmpqedit
                         int _hFile = -1;
                         progressString = "Extracting file:\n" + validMPQFiles[i];
 
-                        if (Storm.SFileOpenFile(validMPQFiles[i], ref _hFile))
+                        if (!cancel)
                         {
-                            uint fileSizeHigh = 0;
-                            uint fileSize = Storm.SFileGetFileSize(_hFile, ref fileSizeHigh);
-                            if ((fileSizeHigh == 0) && (fileSize > 0))
+                            if (Storm.SFileOpenFile(validMPQFiles[i], ref _hFile))
                             {
-                                byte[] bs = new byte[fileSize];
-                                uint countRead = 0;
-                                Storm.SFileReadFile(_hFile, bs, fileSize, ref countRead, 0);
-
-                                if (!Directory.Exists(Path.GetDirectoryName("EquineData/DIABDAT/" + validMPQFiles[i])))
+                                uint fileSizeHigh = 0;
+                                uint fileSize = Storm.SFileGetFileSize(_hFile, ref fileSizeHigh);
+                                if ((fileSizeHigh == 0) && (fileSize > 0))
                                 {
-                                    Directory.CreateDirectory(Path.GetDirectoryName("EquineData/DIABDAT/" + validMPQFiles[i]));
-                                }
+                                    byte[] bs = new byte[fileSize];
+                                    uint countRead = 0;
 
-                                FileStream F = new FileStream("EquineData/DIABDAT/" + validMPQFiles[i], FileMode.Create, FileAccess.ReadWrite);
-                                F.Write(bs, 0, bs.Length);
-                                F.Close();
-                                Storm.SFileCloseFile(hFile);
+                                    Storm.SFileReadFile(_hFile, bs, fileSize, ref countRead, 0);
+
+                                    if (!Directory.Exists(Path.GetDirectoryName("EquineData/DIABDAT/" + validMPQFiles[i])))
+                                    {
+                                        Directory.CreateDirectory(Path.GetDirectoryName("EquineData/DIABDAT/" + validMPQFiles[i]));
+                                    }
+
+                                    FileStream F = new FileStream("EquineData/DIABDAT/" + validMPQFiles[i], FileMode.Create, FileAccess.ReadWrite);
+                                    F.Write(bs, 0, bs.Length);
+                                    F.Close();
+                                    Storm.SFileCloseFile(hFile);
+                                }
                             }
+                            Progress_File = i;
                         }
-                        Progress_File = i;
+
+                        if (cancel)
+                            break;
                     }
 
                     // we done :)
                     done = true;
                     Success = true;
+
+                    Storm.SFileCloseArchive(hMpq);
                 }
                 else
                 {
@@ -166,10 +180,11 @@ namespace eqmpqedit
             // close the file
             if (hFile != 0)
                 Storm.SFileCloseFile(hFile);
+        }
 
-            // close the archive
-            if (hMpq != 0)
-                Storm.SFileCloseArchive(hMpq);
+        public void closeMPQ()
+        {
+            Storm.SFileCloseArchive(hMpq);
         }
     }
 }

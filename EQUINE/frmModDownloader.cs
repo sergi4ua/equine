@@ -84,7 +84,9 @@ namespace EQUINE
         private void timer1_Tick(object sender, EventArgs e)
         {
             progressBar1.Value = (int)dl.downloadProgress;
-            if(dl.IsDone == true)
+            status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+
+            if (dl.IsDone == true)
             {
                 timer1.Stop();
                 timer1.Enabled = false;
@@ -146,12 +148,12 @@ namespace EQUINE
                     MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
 
-                MessageBox.Show("Mod " + modName + " installed!\nApplication will now restart (if the program didn't restart automatically, please do it manually).", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Restart();
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
                 this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
                 this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
             }
@@ -159,26 +161,7 @@ namespace EQUINE
 
         private void CreateUninstallFile()
         {
-            try
-            {
-                if (!Directory.Exists(Application.StartupPath + "\\EquineData\\moduninstall\\"))
-                    Directory.CreateDirectory(Application.StartupPath + "\\EquineData\\moduninstall\\");
-
-                //if (!File.Exists(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall"))
-                //   File.Create(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall");
-
-                TextWriter textWriter = new StreamWriter(Application.StartupPath + "\\EquineData\\moduninstall\\" + modName + ".uninstall");
-                textWriter.Flush();
-                for (int i = 0; i < extractedFileList.Count; i++)
-                {
-                    textWriter.WriteLine(extractedFileList[i]);
-                }
-                textWriter.Close();
-            }
-            catch
-            {
-                MessageBox.Show("Failed to create .uninstall file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            // do nothing
         }
 
         private void button1_Click(object sender, EventArgs e)

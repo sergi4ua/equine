@@ -23,20 +23,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace EQUINE
 {
     public partial class frmUninstall : Form
     {
-        private List<string> files;
         public string modExe { get; set; }
 
         public string modName { get; set; }
 
+        private bool error = false;
         public frmUninstall()
         {
             InitializeComponent();
         }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool DeleteFileW([MarshalAs(UnmanagedType.LPWStr)]string lpFileName);
 
         private void frmUninstall_Load(object sender, EventArgs e)
         {
@@ -45,70 +50,60 @@ namespace EQUINE
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            try
-            {
-                files = new List<string>(File.ReadAllLines(Application.StartupPath + "\\EquineData\\moduninstall\\"+modName+".uninstall"));
+            //try
+            //{
+                List<string> fileNames = new List<string> { "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq", "hellfire.mpq" };
 
-                for (int i = 0; i < files.Count; i++)
+                // delete symbolic links, because the Directory.Delete function will obliterate end-user's Diablo directory
+                // and we don't want that.
+
+                foreach (var item in fileNames)
                 {
-                    FileAttributes attr = File.GetAttributes(files[i]);
+                    FileInfo fileAttr = new FileInfo(Application.StartupPath + "/" + modName + "/" + item);
 
-                    if (attr.HasFlag(FileAttributes.Directory))
-                    {
-                       
-                            System.IO.DirectoryInfo di = new DirectoryInfo(files[i]);
-                            foreach (FileInfo file in di.GetFiles())
-                            {
-                                file.Delete();
+                    if (File.Exists(Application.StartupPath + "/" + modName + "/" + item))
+                    { 
+                        if (!fileAttr.Attributes.HasFlag(FileAttributes.ReadOnly))
+                           {
+                              if (!DeleteFileW(Application.StartupPath + "/" + modName + "/" + item))
+                                {
+                                    throw new Win32Exception("code returned: " + Marshal.GetLastWin32Error());
+                                }
                             }
-                            foreach (DirectoryInfo dir in di.GetDirectories())
+                            else
                             {
-                                dir.Delete(true);
+                                MessageBox.Show("File " + item + " in modfolder " + modName + " is read only!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                       
-                    }
-                    else
-                    {
-                        if (File.Exists(files[i]))
-                            File.Delete(files[i]);
                     }
                 }
-            }
-            catch
-            {
-                /* if (!ignoreerr) { }
-                 MessageBox.Show("Uninstallation failed.\nWindows reported the error:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                 this.Invoke(new Action(() => Hide()));
-                 this.Invoke(new Action(() => Close()));*/
-                try
-                {
-                    if (File.Exists(Application.StartupPath + "\\" + modExe))
-                        File.Delete(Application.StartupPath + "\\" + modExe);
-                }
-                catch { }
-            }
 
-            try
-            {
-                List<string> files = new List<string>{ "diabloui.dll", "Diablo.exe", "SMACKW32.DLL", "storm.dll", "battle.snp", "standard.snp" };
-                for (int i = 0; i < files.Count; i++) {
-                    if (File.Exists(Application.StartupPath + "\\" + files[i]))
-                        File.Delete(Application.StartupPath + "\\" + files[i]);
+                // delete the mod folder
 
-                    File.Copy(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i], Application.StartupPath + "\\"+files[i]);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Warning: can't restore game files from backup. Windows reported the error:\n"+ex.Message, "Uninstallation finished with warnings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                Directory.Delete(Application.StartupPath + "/" + modName, true);
+
+           // } 
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show("Unable to uninstall the following mod: " + modName + 
+            //        "\nWindows reported the error: " + ex.Message, 
+            //        "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    error = true;
+            //}
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Uninstallation complete. EQUINE will now restart (if it didn't, please restart it manually)", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Directory.SetCurrentDirectory(Application.StartupPath);
-            Application.Restart();
+            if (!error)
+            {
+                MessageBox.Show("Uninstallation complete. EQUINE will now restart (if it didn't, please restart the application manually)", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Directory.SetCurrentDirectory(Application.StartupPath);
+                Application.Restart();
+            }
+            else
+            {
+                this.Close();
+                this.Hide();
+            }
         }
     }
 }

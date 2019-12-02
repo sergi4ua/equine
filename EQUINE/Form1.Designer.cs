@@ -589,7 +589,7 @@ namespace EQUINE
             // columnHeader3
             // 
             this.columnHeader3.Text = "Description";
-            this.columnHeader3.Width = 194;
+            this.columnHeader3.Width = 305;
             // 
             // columnHeader4
             // 

@@ -30,7 +30,8 @@ namespace EQUINE
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = extractor.GetProgressString;
+            label1.Text = extractor.GetProgressString + "\nFile : " + 
+                extractor.Progress_File + " of " + extractor.Progress_MaxFiles;
 
             if (extractor.IsDone && !stopTimer)
             {
@@ -58,8 +59,11 @@ namespace EQUINE
             {
                 if (MessageBox.Show("Cancel operation?", "EQUINE MPQEdit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    // memory leak fix
+                    extractor.cancel = true;
                     extractor.IsDone = true;
-                    this.Close();                   
+                    extractor.closeMPQ();
+                    this.Hide();
                 }
                 else
                 {

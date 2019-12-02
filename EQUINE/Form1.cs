@@ -1020,15 +1020,18 @@ namespace EQUINE
 
         private void MenuItem41_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-                eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
+#if RELEASE
+       try
+          {
+#endif
+            eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
                 mpqEditForm.ShowDialog();
-            //}
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message, "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //}
+#if RELEASE
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message, "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+#endif
         }
 
         private void MenuItem44_Click(object sender, EventArgs e)
@@ -1043,8 +1046,16 @@ namespace EQUINE
 
         private void MenuItem42_Click(object sender, EventArgs e)
         {
-            frmExtractMPQ extractor = new frmExtractMPQ();
-            extractor.ShowDialog();
+            try
+            {
+                frmExtractMPQ extractor = new frmExtractMPQ();
+                extractor.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message,
+                    "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
