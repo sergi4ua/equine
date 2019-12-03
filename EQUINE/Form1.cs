@@ -38,7 +38,7 @@ namespace EQUINE
         RootObject ModInfos;
         private const bool _DEBUG = false;
         private List<string> installedMods = new List<string>();
-        public static Config config { get;  set; }
+        public static Config config { get; set; }
         List<CustomModInfo> customModInfos;
 
         public Form1()
@@ -59,10 +59,10 @@ namespace EQUINE
             Random r = new Random();
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
             readConfig();
-            if(config.autoUpdate)
+            if (config.autoUpdate)
                 checkModUpdates();
 
-           
+
 
         }
 
@@ -89,21 +89,22 @@ namespace EQUINE
         private void readConfig()
         {
             checkBox1.Checked = config.autoUpdate;
+            checkBox2.Checked = config.checkForUpdates;
         }
 
         private void checkModUpdates()
         {
             // check for internet connection
 
-            if(CheckForInternetConnection())
+            if (CheckForInternetConnection())
             {
                 string modName = "", DL = "", EXE = "", DL2 = "";
 
                 // if network connected check if mods needs updating
                 for (int i = 0; i < ModInfos.ModInfo.Count; i++)
-                {  
+                {
                     // check if mod installed
-                    if(installedMods.Contains(ModInfos.ModInfo[i].ModName))
+                    if (installedMods.Contains(ModInfos.ModInfo[i].ModName))
                     {
                         // check for sha1 match
                         string modHash = "";
@@ -113,9 +114,9 @@ namespace EQUINE
                         jsonModHash = ModInfos.ModInfo[i].md5;
                         if (ModInfos.ModInfo[i].ModName == "Tchernobog")
                         {
-                            if(Directory.Exists(Application.StartupPath + "/Tchernobog"))
+                            if (Directory.Exists(Application.StartupPath + "/Tchernobog"))
                             {
-                                if(!File.Exists(Application.StartupPath + "/Tchernobog/Tchernobog"+ModInfos.ModInfo[i].ModVersion+".exe"))
+                                if (!File.Exists(Application.StartupPath + "/Tchernobog/Tchernobog" + ModInfos.ModInfo[i].ModVersion + ".exe"))
                                 {
                                     modName = ModInfos.ModInfo[i].ModName;
                                     DL = ModInfos.ModInfo[i].DL;
@@ -124,8 +125,8 @@ namespace EQUINE
                                     break;
                                 }
                                 else
-                                    if(File.Exists(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
-                                        modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
+                                    if (File.Exists(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable))
+                                    modHash = hash.CheckFileHash(Application.StartupPath + "\\" + ModInfos.ModInfo[i].ModName + "\\" + ModInfos.ModInfo[i].Executable);
                             }
                         }
                         else
@@ -169,7 +170,7 @@ namespace EQUINE
 
             for (int i = 0; i < files.Count; i++)
             {
-                if(File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i]))
+                if (File.Exists(Application.StartupPath + "\\EquineData\\GameBackup\\" + files[i]))
                 {
                     filesInBackup++;
                 }
@@ -254,7 +255,7 @@ namespace EQUINE
                 }
             }
 
-            if(checkedfiles == ipxWrapperFiles.Count)
+            if (checkedfiles == ipxWrapperFiles.Count)
             {
                 panel1.Hide();
                 panel2.Show();
@@ -263,7 +264,7 @@ namespace EQUINE
             if (File.Exists(Application.StartupPath + "\\ipxwrapper.log"))
                 textBox1.Text = File.ReadAllText(Application.StartupPath + "\\ipxwrapper.log");
 
-            if(File.Exists(Application.StartupPath + "\\hellfire.exe"))
+            if (File.Exists(Application.StartupPath + "\\hellfire.exe"))
             {
 
             }
@@ -335,7 +336,7 @@ namespace EQUINE
         private void installPlayCustomMod()
         {
             int index = listView1.SelectedIndices[0] + 1;
-            int it = (index - listView1.Items.Count  ) + customModInfos.Count - 1;
+            int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
 
             if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable)) {
                 try
@@ -415,7 +416,7 @@ namespace EQUINE
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Failed to launch mod. " + ex.Message + "\nCurWorkDir: " + Directory.GetCurrentDirectory(), "EQUINE", MessageBoxButtons.OK);
                 }
@@ -470,7 +471,7 @@ namespace EQUINE
                 button1.Text = "Install";
                 button1.Enabled = false;
             }
-            }
+        }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -496,9 +497,9 @@ namespace EQUINE
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
-                
+
             }
         }
 
@@ -517,13 +518,13 @@ namespace EQUINE
                     uninstallToolStripMenuItem.Enabled = false;
                 }
 
-                if(listView1.SelectedItems[0].SubItems[6].Text == "Yes" || listView1.SelectedItems[0].SubItems[6].Text == "Custom")
+                if (listView1.SelectedItems[0].SubItems[6].Text == "Yes" || listView1.SelectedItems[0].SubItems[6].Text == "Custom")
                 {
                     createShortcutToolStripMenuItem.Enabled = true;
                 }
             }
 
-            
+
         }
 
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -542,7 +543,7 @@ namespace EQUINE
 
         private void menuItem20_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Please insert your Diablo CD in your disc drive and press OK to continue.", "Copy DIABDAT.MPQ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Please insert your Diablo CD in your disc drive and press OK to continue.", "Copy DIABDAT.MPQ", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 frmCopyDIABDAT copyDIABDAT = new frmCopyDIABDAT();
                 copyDIABDAT.ShowDialog();
@@ -680,7 +681,7 @@ namespace EQUINE
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if(!IsAdministrator())
+            if (!IsAdministrator())
             {
                 Elevate();
                 Application.Exit();
@@ -724,7 +725,7 @@ namespace EQUINE
                     regeditProcess.WaitForExit();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Operation failed.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ipxError = true;
@@ -809,7 +810,7 @@ namespace EQUINE
                         string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + ".lnk";
                         IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
                         shortcut.TargetPath = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].Executable;
-                        shortcut.WorkingDirectory = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\";  
+                        shortcut.WorkingDirectory = Application.StartupPath + "\\" + ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName + "\\";
                         shortcut.Save();
                     }
                     else
@@ -840,7 +841,7 @@ namespace EQUINE
                 File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(config));
                 MessageBox.Show("Settings saved!", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Unable to save options... for some reason\nReport this to Sergi:\n" + ex.ToString());
             }
@@ -891,7 +892,7 @@ namespace EQUINE
                         return;
                     }
 
-                    if(MessageBox.Show("OK to force update?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("OK to force update?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         if (File.Exists(Application.StartupPath + "\\DIABDAT.MPQ"))
                         {
@@ -955,7 +956,7 @@ namespace EQUINE
         {
             var result = MessageBox.Show("Click 'Yes' to open it online using your default web browser. Click 'No' to display the PDF using your default PDF viewer (PDF viewer must be installed beforehand)", "EQUINE", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
 
-            switch(result)
+            switch (result)
             {
                 case DialogResult.Yes:
                     Process.Start("http://www.lurkerlounge.com/diablo/jarulf/jarulf162.pdf");
@@ -966,14 +967,14 @@ namespace EQUINE
                     {
                         Process.Start(Application.StartupPath + "/EquineData/JarulfGuide.pdf");
                     }
-                    catch (Exception) { MessageBox.Show("Unable to launch your default PDF viewer. Make sure that PDF viewer is installed and try again.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Warning);  } 
+                    catch (Exception) { MessageBox.Show("Unable to launch your default PDF viewer. Make sure that PDF viewer is installed and try again.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                     break;
                 default:
-                    
+
                     break;
             }
-                
-            
+
+
         }
 
         private void MenuItem18_Click_1(object sender, EventArgs e)
@@ -1020,17 +1021,19 @@ namespace EQUINE
 
         private void MenuItem41_Click(object sender, EventArgs e)
         {
-#if RELEASE
-       try
-          {
-#endif
-            eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
+#if (!DEBUG)
+            try
+            {
+                eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
                 mpqEditForm.ShowDialog();
-#if RELEASE
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message, "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+#else
+            eqmpqedit.frmMain mpqEditForm = new eqmpqedit.frmMain();
+            mpqEditForm.ShowDialog();
 #endif
         }
 
@@ -1061,6 +1064,11 @@ namespace EQUINE
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            config.checkForUpdates = checkBox2.Checked;
         }
     }
 }

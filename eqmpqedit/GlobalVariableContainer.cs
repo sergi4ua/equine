@@ -13,5 +13,7 @@ namespace eqmpqedit
             Environment.CurrentDirectory + "\\EquineData\\eqmpqedit\\Diablo.txt",
             Environment.CurrentDirectory + "\\EquineData\\eqmpqedit\\Hellfire.txt"
         };
+
+        public static bool ignoreEmbedListFile = false;
     }
 }

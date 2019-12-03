@@ -18,5 +18,6 @@ namespace EQUINE
     public class Config
     {
        public bool autoUpdate { get; set; }
+       public bool checkForUpdates { get; set; }
     }
 }

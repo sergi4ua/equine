@@ -33,6 +33,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMPQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeMPQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mPQInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,11 +51,9 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.appStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.appFiles = new System.Windows.Forms.ToolStripStatusLabel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buildList = new System.ComponentModel.BackgroundWorker();
-            this.mPQInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeMPQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.appFiles = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -91,25 +91,39 @@
             // openMPQToolStripMenuItem
             // 
             this.openMPQToolStripMenuItem.Name = "openMPQToolStripMenuItem";
-            this.openMPQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openMPQToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.openMPQToolStripMenuItem.Text = "Open MPQ...";
             this.openMPQToolStripMenuItem.Click += new System.EventHandler(this.OpenMPQToolStripMenuItem_Click);
             // 
             // saveChangesToolStripMenuItem
             // 
             this.saveChangesToolStripMenuItem.Name = "saveChangesToolStripMenuItem";
-            this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveChangesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.saveChangesToolStripMenuItem.Text = "Save Changes";
+            // 
+            // closeMPQToolStripMenuItem
+            // 
+            this.closeMPQToolStripMenuItem.Name = "closeMPQToolStripMenuItem";
+            this.closeMPQToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.closeMPQToolStripMenuItem.Text = "Close MPQ";
+            this.closeMPQToolStripMenuItem.Click += new System.EventHandler(this.CloseMPQToolStripMenuItem_Click);
+            // 
+            // mPQInformationToolStripMenuItem
+            // 
+            this.mPQInformationToolStripMenuItem.Name = "mPQInformationToolStripMenuItem";
+            this.mPQInformationToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.mPQInformationToolStripMenuItem.Text = "MPQ Information...";
+            this.mPQInformationToolStripMenuItem.Click += new System.EventHandler(this.MPQInformationToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
             // 
@@ -130,42 +144,42 @@
             // extractToolStripMenuItem
             // 
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
-            this.extractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extractToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.extractToolStripMenuItem.Text = "Extract...";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.addToolStripMenuItem.Text = "Add...";
             // 
             // renameToolStripMenuItem
             // 
             this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.renameToolStripMenuItem.Text = "Rename...";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // moveToFolderToolStripMenuItem
             // 
             this.moveToFolderToolStripMenuItem.Name = "moveToFolderToolStripMenuItem";
-            this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveToFolderToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.moveToFolderToolStripMenuItem.Text = "Move to Folder...";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.settingsToolStripMenuItem.Text = "Settings...";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
@@ -221,6 +235,12 @@
             this.appStatus.Size = new System.Drawing.Size(38, 17);
             this.appStatus.Text = "Done.";
             // 
+            // appFiles
+            // 
+            this.appFiles.Name = "appFiles";
+            this.appFiles.Size = new System.Drawing.Size(42, 17);
+            this.appFiles.Text = "Files: 0";
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -232,26 +252,7 @@
             // buildList
             // 
             this.buildList.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BuildList_DoWork);
-            // 
-            // mPQInformationToolStripMenuItem
-            // 
-            this.mPQInformationToolStripMenuItem.Name = "mPQInformationToolStripMenuItem";
-            this.mPQInformationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.mPQInformationToolStripMenuItem.Text = "MPQ Information...";
-            this.mPQInformationToolStripMenuItem.Click += new System.EventHandler(this.MPQInformationToolStripMenuItem_Click);
-            // 
-            // closeMPQToolStripMenuItem
-            // 
-            this.closeMPQToolStripMenuItem.Name = "closeMPQToolStripMenuItem";
-            this.closeMPQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.closeMPQToolStripMenuItem.Text = "Close MPQ";
-            this.closeMPQToolStripMenuItem.Click += new System.EventHandler(this.CloseMPQToolStripMenuItem_Click);
-            // 
-            // appFiles
-            // 
-            this.appFiles.Name = "appFiles";
-            this.appFiles.Size = new System.Drawing.Size(42, 17);
-            this.appFiles.Text = "Files: 0";
+            this.buildList.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.buildList_RunWorkerCompleted);
             // 
             // frmMain
             // 

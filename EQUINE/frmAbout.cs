@@ -52,7 +52,7 @@ namespace EQUINE
 
         private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://sergi4ua.pp.ua/equine");
+            System.Diagnostics.Process.Start("https://sergi4ua.com/equine");
         }
 
         private void LinkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

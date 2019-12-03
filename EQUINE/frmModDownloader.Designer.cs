@@ -51,6 +51,9 @@ namespace EQUINE
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.fileSize = new System.Windows.Forms.Label();
+            this.getFileSize = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +68,8 @@ namespace EQUINE
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.fileSize);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.status);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.progressBar1);
@@ -109,6 +114,29 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "File size:";
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSize = true;
+            this.fileSize.Location = new System.Drawing.Point(74, 118);
+            this.fileSize.Name = "fileSize";
+            this.fileSize.Size = new System.Drawing.Size(53, 13);
+            this.fileSize.TabIndex = 6;
+            this.fileSize.Text = "Unknown";
+            // 
+            // getFileSize
+            // 
+            this.getFileSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.getFileSize_DoWork);
+            this.getFileSize.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.getFileSize_RunWorkerCompleted);
+            // 
             // frmModDownloader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,5 +168,8 @@ namespace EQUINE
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label fileSize;
+        private System.Windows.Forms.Label label3;
+        private System.ComponentModel.BackgroundWorker getFileSize;
     }
 }

@@ -95,8 +95,8 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(301, 39);
             this.label4.TabIndex = 4;
-            this.label4.Text = "© 2019 Sergi4UA && EQUINE Team\r\nThis software is open-source and licensed under G" +
-    "NU GPLv3.\r\nhttps://sergi4ua.pp.ua/equine";
+            this.label4.Text = "© 2018-2019 Sergi4UA && EQUINE Team\r\nThis software is open-source and licensed un" +
+    "der GNU GPLv3.\r\nhttps://sergi4ua.com/equine";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 

@@ -94,6 +94,7 @@
     <Compile Include="CustomModInfo.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="FileRoutines.cs" />
+    <Compile Include="FileSizeHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

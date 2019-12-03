@@ -45,8 +45,6 @@ namespace EQUINE
                "If you like Diablo 1, buy it on GOG!",
                "If you like Hellfire, buy it on GOG!",
                "The Hell is hellish enough.",
-               "EQUINE 1.0! Coming soon",
-               "0.8.1: Codename: Pegasus",
                "Stop reading this and download some mods already!", // was Ha-ha! The items have been doubled!, may add it in the future.
                "*rogue death sound*",
                "*warrior death sound*",
@@ -55,5 +53,7 @@ namespace EQUINE
                "Made with ♥ and sausage",
                "Your rectum has been slain."
         };
+
+        public static bool skipUpdates = false;
     }
 }

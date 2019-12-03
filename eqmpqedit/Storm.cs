@@ -65,5 +65,8 @@ namespace eqmpqedit
 
         [DllImport(STORMDLL, EntryPoint = "SFileOpenFile")]
         public static extern bool SFileOpenFile(string fileName, ref int hFile);
+
+        [DllImport(STORMDLL, EntryPoint = "SFileCloseFile")]
+        public static extern int SFileCloseFile(int hFile);
     }
 }

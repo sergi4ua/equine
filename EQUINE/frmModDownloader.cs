@@ -21,6 +21,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,8 @@ namespace EQUINE
         static extern bool CreateSymbolicLink(
         string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
 
+        Int64 fileRozmir = 0;
+
         enum SymbolicLink
         {
             File = 0,
@@ -58,7 +61,9 @@ namespace EQUINE
 
         private void frmModDownloader_Load(object sender, EventArgs e)
         {
+            // file rozmir = file size in ukrainian (translit)
             label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
+            getFileSize.RunWorkerAsync();
 
             if (beforeDownloadMsg != "null")
                 MessageBox.Show(beforeDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -210,6 +215,25 @@ namespace EQUINE
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             ExtractFile();
+        }
+
+        private void getFileSize_DoWork(object sender, DoWorkEventArgs e)
+        {
+            WebClient client = new WebClient();
+            client.OpenRead(dlLink0);
+            fileRozmir = Convert.ToInt64(client.ResponseHeaders["Content-Length"]);
+        }
+
+        private void getFileSize_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if(fileRozmir > 0)
+            {
+                fileSize.Text = FileSizeHelper.getFormattedFileSize(fileRozmir);
+            }
+            else
+            {
+                fileSize.Text = "Failed to get file size";
+            }
         }
     }
 }

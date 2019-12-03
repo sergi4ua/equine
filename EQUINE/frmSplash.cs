@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -90,44 +91,64 @@ namespace EQUINE
                 }
             }
 
-#if RELEASE
-            BeginInvoke((MethodInvoker)delegate () { label3.Text = "Checking for updates" });
-            if(File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
+            BeginInvoke((MethodInvoker)delegate () { label3.Text = "Reading config file"; });
+            if (!File.Exists(Application.StartupPath + "\\EquineData\\config.json"))
             {
                 if (noInit == false)
                 {
-                    try
+                    Config defaultConfigFile = new Config();
+                    defaultConfigFile.autoUpdate = true;
+                    defaultConfigFile.checkForUpdates = true;
+                    File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
+                }
+            }
+
+            readJsonConfig();
+
+            //#if RELEASE
+
+            if (config.checkForUpdates && !GlobalVariableContainer.skipUpdates)
+            {
+                BeginInvoke((MethodInvoker)delegate () { label3.Text = "Checking for updates"; });
+                if (File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
+                {
+                    if (noInit == false)
                     {
-                        File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
-
-                        sha1 hash = new sha1();
-                        string fromfilehash = "";
-                        string apphash = "";
-
-                        fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
-                        apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
-
-                        if (fromfilehash != apphash)
+                        try
                         {
-                            var SelfProc = new ProcessStartInfo
+                            File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
+
+                            sha1 hash = new sha1();
+                            string fromfilehash = "";
+                            string apphash = "";
+
+                            fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
+                            apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
+
+                            if (fromfilehash != apphash)
                             {
-                                UseShellExecute = true,
-                                WorkingDirectory = Environment.CurrentDirectory,
-                                FileName = Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe",
-                                Arguments = "-update",
-                            };
-                            File.Delete(Application.StartupPath + "\\EQUINE.hash");
-                            Process.Start(SelfProc);
-                            Environment.Exit(0);
+                                BeginInvoke((MethodInvoker)delegate () { label3.Text = "UPDATE FOUND !"; });
+
+                                var SelfProc = new ProcessStartInfo
+                                {
+                                    UseShellExecute = true,
+                                    WorkingDirectory = Environment.CurrentDirectory,
+                                    FileName = Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe",
+                                    Arguments = "-update",
+                                };
+                                File.Delete(Application.StartupPath + "\\EQUINE.hash");
+                                Process.Start(SelfProc);
+                                Environment.Exit(0);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Failed to check for updates!\n" + ex.Message);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Failed to check for updates!\n" + ex.Message);
+                        }
                     }
                 }
             }
-#endif
+//#endif
 
             if (!File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
             {
@@ -139,18 +160,6 @@ namespace EQUINE
                     return;
                 }
             }
-            BeginInvoke((MethodInvoker)delegate () { label3.Text = "Reading config file"; });
-            if (!File.Exists(Application.StartupPath + "\\EquineData\\config.json"))
-            {
-                if (noInit == false)
-                {
-                    Config defaultConfigFile = new Config();
-                    defaultConfigFile.autoUpdate = true;
-                    File.WriteAllText(Application.StartupPath + "\\EquineData\\config.json", JsonConvert.SerializeObject(defaultConfigFile));
-                }
-            }
-
-            readJsonConfig();
 
             if (Directory.Exists(Application.StartupPath + "/Tchernobog (64 BIT ONLY)"))
             {

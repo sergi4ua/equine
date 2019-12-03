@@ -38,43 +38,32 @@ namespace EQUINEUpdater
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            backgroundWorker1.RunWorkerAsync();
+            button1.Focus();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            System.Threading.Thread.Sleep(5000);
-            try
-            {
-                WebClient wc = new WebClient();
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                wc.DownloadFile("https://sergi4ua.pp.ua/equine/EQUINEUpdate.zip", Application.StartupPath + "\\..\\equineupdate.zip");
+            
+        }
 
-                ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\..\\equineupdate.zip", FileAccess.Read);
-                List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmUpdateProgress update = new frmUpdateProgress();
+            update.Show();
+        }
 
-                foreach (ZipStorer.ZipFileEntry entry in dir)
-                {
-                    zip.ExtractFile(entry, Application.StartupPath + "\\..\\" + entry.FilenameInZip);
-                }
-                zip.Close();
-                File.Delete(Application.StartupPath + "\\..\\equineupdate.zip");
-                System.Threading.Thread.Sleep(2000);
-                MessageBox.Show("EQUINE has been successfully updated!\nEQUINE should now restart.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                var SelfProc = new ProcessStartInfo
-                {
-                    UseShellExecute = true,
-                    WorkingDirectory = Application.StartupPath + "\\..\\",
-                    FileName = Application.StartupPath + "\\..\\EQUINE.exe",
-                };
-                Process.Start(SelfProc);
-                Application.Exit();
-            }
-            catch (Exception ex)
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var SelfProc2 = new ProcessStartInfo
             {
-                MessageBox.Show("Initalization failed!\n" + ex.Message + "\nEQUINE will now quit.", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                Application.Exit();
-            }
+                UseShellExecute = true,
+                WorkingDirectory = Application.StartupPath + "\\..\\",
+                FileName = Application.StartupPath + "\\..\\EQUINE.exe",
+                Arguments = "-skipupdate",
+            };
+            Process.Start(SelfProc2);
+            Environment.Exit(0);
         }
     }
 }

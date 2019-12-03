@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Net;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace EQUINE
@@ -30,8 +31,16 @@ namespace EQUINE
         [STAThread]
         static void Main()
         {
+            // check if EQUINE is ran with -skipupdate argument
+
+            string[] args = Environment.GetCommandLineArgs();
+            if(args.Any("-skipupdate".Contains))
+            {
+                GlobalVariableContainer.skipUpdates = true;
+            }
+
             /* Check for JSON dll */
-            if(!File.Exists("NewtonSoft.Json.dll"))
+            if (!File.Exists("NewtonSoft.Json.dll"))
             {
                 MessageBox.Show("Unable to find NewtonSoft.Json.dll.\nYou probably forgot to extract it from the archive.");
                 Environment.Exit(1);

@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -136,6 +136,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -561,9 +562,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem1.UseItemStyleForSubItems = false;
+            listViewItem2.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -693,6 +694,7 @@ namespace EQUINE
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.button4);
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -704,7 +706,7 @@ namespace EQUINE
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(702, 390);
+            this.button4.Location = new System.Drawing.Point(810, 430);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 2;
@@ -821,6 +823,19 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(12, 35);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(177, 17);
+            this.checkBox2.TabIndex = 3;
+            this.checkBox2.Text = "Check for updates automatically";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Form1
             // 
@@ -942,6 +957,7 @@ namespace EQUINE
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 
