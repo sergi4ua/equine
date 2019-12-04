@@ -1070,5 +1070,46 @@ namespace EQUINE
         {
             config.checkForUpdates = checkBox2.Checked;
         }
+
+        private void menuItem45_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
+
+                sha1 hash = new sha1();
+                string fromfilehash = "";
+                string apphash = "";
+
+                fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
+                apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
+
+                if (fromfilehash != apphash)
+                {
+                    if (MessageBox.Show("A new update is out. Run EQUINE Update Utility?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var SelfProc = new ProcessStartInfo
+                        {
+                            UseShellExecute = true,
+                            WorkingDirectory = Environment.CurrentDirectory,
+                            FileName = Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe",
+                            Arguments = "-update",
+                        };
+                        File.Delete(Application.StartupPath + "\\EQUINE.hash");
+                        Process.Start(SelfProc);
+                        Environment.Exit(0);
+                    } 
+                }
+                else
+                {
+                    MessageBox.Show("You have the latest version.",
+                        "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to check for updates.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
     }
 }

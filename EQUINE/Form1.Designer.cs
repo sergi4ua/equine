@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -63,6 +63,8 @@ namespace EQUINE
             this.menuItem15 = new System.Windows.Forms.MenuItem();
             this.menuItem28 = new System.Windows.Forms.MenuItem();
             this.menuItem39 = new System.Windows.Forms.MenuItem();
+            this.menuItem46 = new System.Windows.Forms.MenuItem();
+            this.menuItem45 = new System.Windows.Forms.MenuItem();
             this.menuItem19 = new System.Windows.Forms.MenuItem();
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
@@ -124,6 +126,7 @@ namespace EQUINE
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -136,7 +139,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -169,6 +171,8 @@ namespace EQUINE
             this.menuItem15,
             this.menuItem28,
             this.menuItem39,
+            this.menuItem46,
+            this.menuItem45,
             this.menuItem19});
             this.menuItem1.Text = "EQUINE";
             // 
@@ -220,9 +224,20 @@ namespace EQUINE
             this.menuItem39.Text = "Reset Size and Position";
             this.menuItem39.Click += new System.EventHandler(this.MenuItem39_Click);
             // 
+            // menuItem46
+            // 
+            this.menuItem46.Index = 8;
+            this.menuItem46.Text = "-";
+            // 
+            // menuItem45
+            // 
+            this.menuItem45.Index = 9;
+            this.menuItem45.Text = "Check for Updates";
+            this.menuItem45.Click += new System.EventHandler(this.menuItem45_Click);
+            // 
             // menuItem19
             // 
-            this.menuItem19.Index = 8;
+            this.menuItem19.Index = 10;
             this.menuItem19.Text = "Exit";
             this.menuItem19.Click += new System.EventHandler(this.menuItem19_Click);
             // 
@@ -562,9 +577,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -704,6 +719,19 @@ namespace EQUINE
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(12, 35);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(177, 17);
+            this.checkBox2.TabIndex = 3;
+            this.checkBox2.Text = "Check for updates automatically";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(810, 430);
@@ -823,19 +851,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(12, 35);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(177, 17);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "Check for updates automatically";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Form1
             // 
@@ -958,6 +973,8 @@ namespace EQUINE
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.MenuItem menuItem46;
+        private System.Windows.Forms.MenuItem menuItem45;
     }
 }
 

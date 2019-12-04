@@ -76,7 +76,7 @@ namespace eqmpqedit
                 {
                     if (SFileCloseArchive(mpqHandle) == true)
                     {
-                        listBox1.Items.Clear();
+                        listView1.Items.Clear();
                         mpqHandle = 0;
                         GC.Collect();
                     }
@@ -123,6 +123,7 @@ namespace eqmpqedit
             Application.UseWaitCursor = true;
             List<string> mpqFileNames = new List<string>(); // contains valid MPQ filenames
             List<string> listFileContent = new List<string>(); // contains files from listfiles
+            uint[] mpqFileSize;
 
             uint hFile = 0;
             int listFileMPQ_handle = -1;
@@ -136,6 +137,7 @@ namespace eqmpqedit
                     listFileMPQ = true;
                     uint fileSizeHigh = 0;
                     uint fileSize = Storm.SFileGetFileSize(listFileMPQ_handle, ref fileSizeHigh);
+
                     if ((fileSizeHigh == 0) && (fileSize > 0))
                     {
                         byte[] bs = new byte[fileSize];
@@ -156,9 +158,9 @@ namespace eqmpqedit
 
             if (!listFileMPQ)
             {
-                for (int i = 0; i < GlobalVariableContainer.listFiles.Count; i++)
+                for (int i3 = 0; i3 < GlobalVariableContainer.listFiles.Count; i3++)
                 {
-                    StreamReader listFile = new StreamReader(GlobalVariableContainer.listFiles[i]);
+                    StreamReader listFile = new StreamReader(GlobalVariableContainer.listFiles[i3]);
 
                     while (!listFile.EndOfStream)
                     {
@@ -184,21 +186,39 @@ namespace eqmpqedit
                 File.Delete("EquineData/eqmpqedit/listfile.tmp");
             }
 
+            // resize the mpqfilesize array
+            mpqFileSize = new uint[listFileContent.Count];
+            int i = 0;
+
             // check if all files are valid
 
             foreach (var item in listFileContent)
             {
-                if (Storm.SFileOpenFileEx(mpqHandle, item, 0x00, ref hFile))
+                uint nothing = 0;
+                int tempHFile = 0;
+
+                if (Storm.SFileOpenFile(item, ref tempHFile))
                 {
+                    mpqFileSize[i] = SFileGetFileSize(tempHFile, ref nothing);
                     mpqFileNames.Add(item);
+                    i++;
                 }
 
-                SFileCloseFile(hFile);
+                SFileCloseFile(tempHFile);
             }
 
             // display the files
 
-            this.BeginInvoke((MethodInvoker)delegate () { listBox1.Items.AddRange(mpqFileNames.ToArray()); });
+            for(int i2 = 0; i2 < mpqFileNames.Count; i2++)
+            {
+                ListViewItem tempItem = new ListViewItem();
+                tempItem.Text = mpqFileNames[i2];
+                tempItem.SubItems.Add(Convert.ToString(mpqFileSize[i2]));
+
+                this.BeginInvoke((MethodInvoker)delegate () {
+                    listView1.Items.Add(tempItem);
+                });
+            }
             this.BeginInvoke((MethodInvoker)delegate () { this.Enabled = true; });
             appStatus.Text = "Done.";
 
@@ -228,7 +248,7 @@ namespace eqmpqedit
             {
                 if (SFileCloseArchive(mpqHandle) == true)
                 {
-                    listBox1.Items.Clear();
+                    listView1.Items.Clear();
                     GC.Collect();
                 }
                 else
@@ -252,7 +272,7 @@ namespace eqmpqedit
             if(listFileMPQ)
                 appStatus.Text = "Done (internal listfile used)";
 
-            appFiles.Text = "Files: " + listBox1.Items.Count;
+            appFiles.Text = "Files: " + listView1.Items.Count;
         }
     }
 }
