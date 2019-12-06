@@ -38,6 +38,38 @@ namespace eqmpqedit
     {
         private const string STORMDLL = "eqsfmpq.dll";
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct LCID
+        {
+            [MarshalAs(UnmanagedType.LPArray, SizeConst = 4)]
+            public char[] lcLocale;
+        }
+
+        public const uint MAFA_COMPRESS_STANDARD = 0x08; //Standard PKWare DCL compression
+        public const uint MAFA_COMPRESS_DEFLATE = 0x02; //ZLib's deflate compression
+        public const uint MAFA_COMPRESS_WAVE = 0x81; //Standard wave compression
+        public const uint MAFA_COMPRESS_WAVE2 = 0x41; //Unused wave compression
+
+        const uint SFILE_INFO_BLOCK_SIZE = 0x01; //Block size in MPQ
+        const uint SFILE_INFO_HASH_TABLE_SIZE = 0x02; //Hash table size in MPQ
+        const uint SFILE_INFO_NUM_FILES = 0x03; //Number of files in MPQ
+        const uint SFILE_INFO_TYPE = 0x04; //Is int a file or an MPQ?
+        const uint SFILE_INFO_SIZE = 0x05; //Size of MPQ or uncompressed file
+        const uint SFILE_INFO_COMPRESSED_SIZE = 0x06; //Size of compressed file
+        const uint SFILE_INFO_FLAGS = 0x07; //File flags (compressed, etc.), file attributes if a file not in an archive
+        const uint SFILE_INFO_PARENT = 0x08; //int of MPQ that file is in
+        const uint SFILE_INFO_POSITION = 0x09; //Position of file pointer in files
+        const uint SFILE_INFO_LOCALEID = 0x0A; //Locale ID of file in MPQ
+        const uint SFILE_INFO_PRIORITY = 0x0B; //Priority of open MPQ
+        const uint SFILE_INFO_HASH_INDEX = 0x0C; //Hash index of file in MPQ
+
+        public const uint MOAU_CREATE_NEW = 0x00;
+        public const uint MOAU_CREATE_ALWAYS = 0x08; //Was wrongly named MOAU_CREATE_NEW
+        public const uint MOAU_OPEN_EXISTING = 0x04;
+        public const uint MOAU_OPEN_ALWAYS = 0x20;
+        public const uint MOAU_READ_ONLY = 0x10; //Must be used with MOAU_OPEN_EXISTING
+        public const uint MOAU_MAINTAIN_LISTFILE = 0x01;
+
         [DllImport(STORMDLL, CallingConvention = CallingConvention.Winapi, EntryPoint = "SFileOpenArchive")]
         public static extern bool SFileOpenArchive(
             string lpFileName, 
@@ -70,5 +102,34 @@ namespace eqmpqedit
 
         [DllImport(STORMDLL, EntryPoint = "SFileCloseFile")]
         public static extern int SFileCloseFile(int hFile);
+
+        [DllImport(STORMDLL)]
+        public static extern int MpqOpenArchiveForUpdate(String lpFileName, uint dwFlags, uint dwMaximumFilesInArchive);
+        [DllImport(STORMDLL)]
+        public static extern uint MpqCloseUpdatedArchive(int hMPQ, uint dwUnknown2);
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddFileToArchive(int hMPQ, String lpSourceFileName, String lpDestFileName, uint dwFlags);
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddWaveToArchive(int hMPQ, String lpSourceFileName, String lpDestFileName, uint dwFlags, uint dwQuality);
+        [DllImport(STORMDLL)]
+        public static extern int MpqRenameFile(int hMPQ, String lpcOldFileName, String lpcNewFileName);
+        [DllImport(STORMDLL)]
+        public static extern int MpqDeleteFile(int hMPQ, String lpFileName);
+        [DllImport(STORMDLL)]
+        public static extern int MpqCompactArchive(int hMPQ);
+
+        // Extra archive editing functions
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddFileToArchiveEx(int hMPQ, String lpSourceFileName, String lpDestFileName, uint dwFlags, uint dwCompressionType, uint dwCompressLevel);
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddFileFromBufferEx(int hMPQ, byte[] lpBuffer, uint dwLength, String lpFileName, uint dwFlags, uint dwCompressionType, uint dwCompressLevel);
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddFileFromBuffer(int hMPQ, byte[] lpBuffer, uint dwLength, String lpFileName, uint dwFlags);
+        [DllImport(STORMDLL)]
+        public static extern int MpqAddWaveFromBuffer(int hMPQ, byte[] lpBuffer, uint dwLength, String lpFileName, uint dwFlags, uint dwQuality);
+        [DllImport(STORMDLL)]
+        public static extern int MpqSetFileLocale(int hMPQ, String lpFileName, LCID nOldLocale, LCID nNewLocale);
+        [DllImport(STORMDLL)]
+        public static extern int SFileGetFileInfo(int hFile, uint dwInfoType);
     }
 }
