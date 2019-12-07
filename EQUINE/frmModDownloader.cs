@@ -13,6 +13,8 @@ This program is free software: you can redistribute it and/or modify
     You should have received a copy of the GNU General Public License
     along with this program.If not, see<https://www.gnu.org/licenses/>.*/
 
+// TODO: implement cancel button someday
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,6 +56,8 @@ namespace EQUINE
             Directory = 1
         }
 
+        bool cancelled = false;
+
         public frmModDownloader()
         {
             InitializeComponent();
@@ -88,10 +92,12 @@ namespace EQUINE
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            progressBar1.Value = (int)dl.downloadProgress;
-            status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
-
-            if (dl.IsDone == true)
+            if (dl != null)
+            {
+                progressBar1.Value = (int)dl.downloadProgress;
+                status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+            }
+            if (dl != null && dl.IsDone == true)
             {
                 timer1.Stop();
                 timer1.Enabled = false;
@@ -106,55 +112,60 @@ namespace EQUINE
         {
             try
             {
-                Uri dlUri = new Uri(dlLink0);
-                fileName = System.IO.Path.GetFileName(dlUri.LocalPath);
-
-                ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\" + fileName, System.IO.FileAccess.Read);
-                List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
-
-                foreach (ZipStorer.ZipFileEntry entry in dir)
+                if (!cancelled)
                 {
-                    extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
-                    zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
-                }
-                zip.Close();
-                System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
-                if (afterDownloadMsg != "null")
-                    MessageBox.Show(afterDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.Style = ProgressBarStyle.Continuous; });
-                progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.MarqueeAnimationSpeed = 0; });
+                    //button1.BeginInvoke((MethodInvoker)delegate () { button1.Enabled = false; });
+                    Uri dlUri = new Uri(dlLink0);
+                    fileName = System.IO.Path.GetFileName(dlUri.LocalPath);
 
-                CreateUninstallFile();
+                    ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\" + fileName, System.IO.FileAccess.Read);
+                    List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
 
-                if(File.Exists(Application.StartupPath + "\\" + startExe0))
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                    var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\"+startExe0);
-                    exe.WaitForExit();
-                    this.WindowState = FormWindowState.Normal;
-                }
-
-                List<string> fileNames = new List<string>{ "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq", "hellfire.mpq" };
-
-                try
-                {
-
-                    for (short i = 0; i < fileNames.Count; i++)
+                    foreach (ZipStorer.ZipFileEntry entry in dir)
                     {
-                        if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
+                        extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                        zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                    }
+                    zip.Close();
+                    System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
+                    if (afterDownloadMsg != "null")
+                        MessageBox.Show(afterDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.Style = ProgressBarStyle.Continuous; });
+                    progressBar1.BeginInvoke((MethodInvoker)delegate () { progressBar1.MarqueeAnimationSpeed = 0; });
+
+                    CreateUninstallFile();
+
+                    if (File.Exists(Application.StartupPath + "\\" + startExe0))
+                    {
+                        this.WindowState = FormWindowState.Minimized;
+                        var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\" + startExe0);
+                        exe.WaitForExit();
+                        this.WindowState = FormWindowState.Normal;
+                    }
+
+                    List<string> fileNames = new List<string> { "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq", "hellfire.mpq" };
+
+                    try
+                    {
+
+                        for (short i = 0; i < fileNames.Count; i++)
                         {
-                            CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
-                            Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+                            if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
+                            {
+                                CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
+                                Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+                            }
                         }
                     }
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
 
-                MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Restart();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+
+                    MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Application.Restart();
+                }
             }
             catch(Exception ex)
             {
@@ -171,45 +182,7 @@ namespace EQUINE
 
         private void button1_Click(object sender, EventArgs e)
         {
-            progressBar1.Style = ProgressBarStyle.Continuous;
-            progressBar1.MarqueeAnimationSpeed = 0;
-            status.Text = "Canceling and cleaning up...";
-            try
-            {
-                dl.Abort();
-                System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
-
-                if(extractedFileList.Count > 0)
-                {
-                    for (int i = 0; i < extractedFileList.Count; i++)
-                    {
-                        FileAttributes attr = File.GetAttributes(extractedFileList[i]);
-
-                        if (attr.HasFlag(FileAttributes.Directory))
-                        {
-                            System.IO.DirectoryInfo di = new DirectoryInfo(extractedFileList[i]);
-                            foreach (FileInfo file in di.GetFiles())
-                            {
-                                file.Delete();
-                            }
-                            foreach (DirectoryInfo dir in di.GetDirectories())
-                            {
-                                dir.Delete(true);
-                            }
-                        }
-                        else
-                        {
-                            File.Delete(extractedFileList[i]);
-                        }
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            this.Hide();
-            this.Close();
+            
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -234,6 +207,20 @@ namespace EQUINE
             {
                 fileSize.Text = "Failed to get file size";
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //cancelled = true;
+            //dl.Destroy();
+
+            //this.Close();
+            //this.Hide();
+        }
+
+        private void frmModDownloader_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            cancelled = false;
         }
     }
 }

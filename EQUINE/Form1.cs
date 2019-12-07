@@ -400,6 +400,17 @@ namespace EQUINE
                                 modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
                                 modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
                                 modDL.ShowDialog();
+
+                                Uri modDLuri = new Uri(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL);
+                                string mod_fileName = Application.StartupPath + "/" + Path.GetFileName(modDLuri.LocalPath);
+
+                                if(File.Exists(mod_fileName))
+                                {
+                                    File.Delete(mod_fileName);
+                                }
+
+                                modDL.Dispose();
+                                listView1.SelectedItems.Clear();
                             }
                             else
                             {

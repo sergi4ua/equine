@@ -33,6 +33,7 @@ namespace eqmpqedit
 
             comboBox1.SelectedIndex = 0;
             numericUpDown1.Value = GlobalVariableContainer.MAX_MPQ_FILES;
+            checkBox1.Checked = GlobalVariableContainer.ignoreEmbedListFile;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -84,7 +85,8 @@ namespace eqmpqedit
 
         private void button2_Click(object sender, EventArgs e)
         {
-           listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+           if(listBox1.SelectedIndex != -1)
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
            listFileModified = true;
         }
 

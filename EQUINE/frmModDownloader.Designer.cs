@@ -46,13 +46,13 @@ namespace EQUINE
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fileSize = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.fileSize = new System.Windows.Forms.Label();
             this.getFileSize = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,24 @@ namespace EQUINE
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Progress";
+            // 
+            // fileSize
+            // 
+            this.fileSize.AutoSize = true;
+            this.fileSize.Location = new System.Drawing.Point(74, 118);
+            this.fileSize.Name = "fileSize";
+            this.fileSize.Size = new System.Drawing.Size(53, 13);
+            this.fileSize.TabIndex = 6;
+            this.fileSize.Text = "Unknown";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 118);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "File size:";
             // 
             // status
             // 
@@ -114,24 +132,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 118);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "File size:";
-            // 
-            // fileSize
-            // 
-            this.fileSize.AutoSize = true;
-            this.fileSize.Location = new System.Drawing.Point(74, 118);
-            this.fileSize.Name = "fileSize";
-            this.fileSize.Size = new System.Drawing.Size(53, 13);
-            this.fileSize.TabIndex = 6;
-            this.fileSize.Text = "Unknown";
-            // 
             // getFileSize
             // 
             this.getFileSize.DoWork += new System.ComponentModel.DoWorkEventHandler(this.getFileSize_DoWork);
@@ -151,6 +151,7 @@ namespace EQUINE
             this.Name = "frmModDownloader";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Installing...";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmModDownloader_FormClosing);
             this.Load += new System.EventHandler(this.frmModDownloader_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

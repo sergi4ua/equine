@@ -47,14 +47,28 @@ namespace EQUINE
                 string fileName = System.IO.Path.GetFileName(dlUri.LocalPath);
                 webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
                 webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                webClient.DownloadFileAsync(dlUri, destFolder + "\\" + fileName);
+                try
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    webClient.DownloadFileTaskAsync(dlUri, destFolder + "\\" + fileName).Wait();
+                }
+                catch (System.AggregateException) { }
             });
             dlThread.Start();
         }
 
+        public void Destroy()
+        {
+            webClient.CancelAsync();
+        }
+
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            if(e.Cancelled)
+            {
+                return;
+            }
+
             if(Urls.Count == 2 && secondFileDownload == false)
             {
                 index++;
@@ -79,11 +93,6 @@ namespace EQUINE
             double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
             double percentage = bytesIn / totalBytes * 100;
             this.downloadProgress = percentage;
-        }
-
-        public void Abort()
-        {
-            webClient.Dispose();
         }
     }
 }
