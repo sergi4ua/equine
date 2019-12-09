@@ -500,8 +500,29 @@ namespace eqmpqedit
                     sw.Close();
                 }
 
-                MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                switch(GlobalVariableContainer.compressionType)
+                {
+                    case GlobalVariableContainer.CompressionType.STANDARD:
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
                     Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+
+                    case GlobalVariableContainer.CompressionType.BZIP2:
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x10, 0x00000001,
+                    Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+
+                    case GlobalVariableContainer.CompressionType.ZLIB:
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", MAFA_COMPRESS_DEFLATE, 0x00000001,
+                    Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+
+                    default:
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                    Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+                }
+                
 
                 MpqDeleteFile(_hMPQ, "(listfile)");
 

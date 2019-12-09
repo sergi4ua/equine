@@ -34,6 +34,22 @@ namespace eqmpqedit
             comboBox1.SelectedIndex = 0;
             numericUpDown1.Value = GlobalVariableContainer.MAX_MPQ_FILES;
             checkBox1.Checked = GlobalVariableContainer.ignoreEmbedListFile;
+
+            switch(GlobalVariableContainer.compressionType)
+            {
+                case GlobalVariableContainer.CompressionType.STANDARD:
+                    comboBox1.SelectedIndex = 0;
+                    break;
+                case GlobalVariableContainer.CompressionType.BZIP2:
+                    comboBox1.SelectedIndex = 1;
+                    break;
+                case GlobalVariableContainer.CompressionType.ZLIB:
+                    comboBox1.SelectedIndex = 2;
+                    break;
+                case GlobalVariableContainer.CompressionType.DEFLATE:
+                    comboBox1.SelectedIndex = 3;
+                    break;
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -70,6 +86,26 @@ namespace eqmpqedit
             foreach (var item in listBox1.Items)
             {
                 GlobalVariableContainer.listFiles.Add(item.ToString());
+            }
+
+            switch(comboBox1.SelectedIndex)
+            {
+                case -1:
+                case 0:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.STANDARD;
+                    break;
+
+                case 1:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.BZIP2;
+                    break;
+
+                case 2:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.ZLIB;
+                    break;
+
+                case 3:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.DEFLATE;
+                    break;
             }
 
             this.Hide();

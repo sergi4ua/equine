@@ -128,8 +128,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Diablo 1-compatible",
             "BZip2",
-            "ZLib",
-            "DEFLATE"});
+            "ZLib (DEFLATE)"});
             this.comboBox1.Location = new System.Drawing.Point(6, 19);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(134, 21);
