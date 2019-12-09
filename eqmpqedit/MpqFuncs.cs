@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eqmpqedit
+{
+    public class MpqFuncs
+    {
+        /// <summary>
+        /// Deletes a file from the MPQ. CALL openMPQ(); after this !!
+        /// </summary>
+        /// <param name="mpqHandle">Handle of the MPQ file.</param>
+        /// <param name="fileName">Filename to delete</param>
+        /// <param name="mpqFileName">MPQ file location (open for modification)</param>
+        /// <param name="mpqCloseFunc">Function to close the MPQ file</param>
+        /// <returns></returns>
+        public static bool deleteFile(uint mpqHandle, string fileName, string mpqFileName, Action mpqCloseFunc)
+        {
+            uint hFile = 0;
+
+            if(!Storm.SFileOpenFileEx(mpqHandle, fileName, 0, ref hFile))
+            {
+                throw new System.IO.FileNotFoundException("File not found in the MPQ: " + fileName);
+            }
+
+            if(hFile != 0)
+                Storm.SFileCloseFile(hFile);
+
+            System.Threading.Thread.Sleep(1000);
+            mpqCloseFunc();
+
+            int modMPQ = Storm.MpqOpenArchiveForUpdate(mpqFileName, Storm.MOAU_OPEN_EXISTING, uint.MaxValue);
+
+            if (modMPQ != 0)
+                Storm.MpqDeleteFile(modMPQ, fileName);
+            else
+                throw new System.IO.IOException("ErrCode: " + Convert.ToString(Marshal.GetLastWin32Error()));
+
+            Storm.MpqCloseUpdatedArchive(modMPQ, 0);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the file exists.
+        /// </summary>
+        /// <param name="mpqHandle">The handle of the MPQ file.</param>
+        /// <param name="fileName">The file to check</param>
+        /// <returns></returns>
+        public static bool fileExists(uint mpqHandle, string fileName)
+        {
+            uint hFile = 0; // unused
+
+            if (!Storm.SFileOpenFileEx(mpqHandle, fileName, 0, ref hFile))
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+}

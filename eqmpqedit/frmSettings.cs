@@ -65,9 +65,7 @@ namespace eqmpqedit
         private void button3_Click(object sender, EventArgs e)
         {
             GlobalVariableContainer.ignoreEmbedListFile = checkBox1.Checked;
-
-            if (listFileModified)
-                GlobalVariableContainer.listFiles.Clear();
+            GlobalVariableContainer.listFiles.Clear();
 
             foreach (var item in listBox1.Items)
             {
@@ -85,9 +83,15 @@ namespace eqmpqedit
 
         private void button2_Click(object sender, EventArgs e)
         {
-           if(listBox1.SelectedIndex != -1)
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
-           listFileModified = true;
+            if (!mpqOpen)
+            {
+                if (listBox1.SelectedIndex != -1)
+                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                listFileModified = true;
+            }
+            else
+                MessageBox.Show("You can't change the listfiles when a MPQ is open.\nClose the file and try again.", "EQUINE MPQEdit",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void frmSettings_FormClosing(object sender, FormClosingEventArgs e)

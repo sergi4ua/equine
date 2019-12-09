@@ -30,6 +30,7 @@ namespace eqmpqedit
 
         unsafe void openMPQ(string fileName)
         {
+            bool listFileMPQ = false;
 
             if (SFileOpenArchive(fileName, 2, 0x8000, ref mpqHandle) == true)
             {
@@ -45,6 +46,7 @@ namespace eqmpqedit
             Enabled = false;
             Application.UseWaitCursor = true;
 
+            appStatus.Text = "Opening: " + fileName;
             openMPQPath = fileName;
             buildList.RunWorkerAsync();
         }
@@ -68,13 +70,14 @@ namespace eqmpqedit
             GlobalVariableContainer.listFiles.Clear();
             GlobalVariableContainer.listFiles.Add(Application.StartupPath + "\\EquineData\\eqmpqedit\\Diablo.txt");
             GlobalVariableContainer.listFiles.Add(Application.StartupPath + "\\EquineData\\eqmpqedit\\Hellfire.txt");
+
+            listView1.AllowDrop = true;
         }
 
         private void OpenMPQToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog mpqOpenDialog = new OpenFileDialog();
             mpqOpenDialog.Title = "Open MPQ...";
-            mpqOpenDialog.InitialDirectory = Application.StartupPath;
             mpqOpenDialog.Filter = "MPQ Files (*.mpq)|*.mpq|The Hell 1/2 Archive (*.mor)|*.mor|All files (*.*)|*.*";
 
             if(mpqOpenDialog.ShowDialog() == DialogResult.OK)
@@ -115,6 +118,8 @@ namespace eqmpqedit
             frmSettings settings = new frmSettings();
             if (mpqHandle != 0)
                 settings.mpqOpen = true;
+            else
+                settings.mpqOpen = false;
             settings.ShowDialog();
         }
 
@@ -132,7 +137,6 @@ namespace eqmpqedit
             List<string> listFileContent = new List<string>(); // contains files from listfiles
             uint[] mpqFileSize;
 
-            uint hFile = 0;
             int listFileMPQ_handle = -1;
 
             // check if (listfile) exists
@@ -158,6 +162,8 @@ namespace eqmpqedit
                         F.Close();
                         Storm.SFileCloseFile(listFileMPQ_handle);
                     }
+                    else
+                        listFileMPQ = false;
                 }
                 else
                 {
@@ -170,10 +176,16 @@ namespace eqmpqedit
                 }
                 
             } else {
-                MessageBox.Show("Using internal list files disabled in settings. Please provide a list file in the settings.", "Warning",
+                if (GlobalVariableContainer.listFiles.Count == 0)
+                {
+                    MessageBox.Show("Using internal list files disabled in settings. Please provide a list file in the settings.", "Warning",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                frmSettings s = new frmSettings();
-                return;
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Using internal list files disabled.", "Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
 
             // get the files from each list file
@@ -300,6 +312,7 @@ namespace eqmpqedit
                 if (SFileCloseArchive(mpqHandle) == true)
                 {
                     listView1.Items.Clear();
+                    mpqHandle = 0;
                     GC.Collect();
                 }
                 else
@@ -383,10 +396,12 @@ namespace eqmpqedit
                 int listFileMPQ_handle = -1;
                 int _hMPQ = -1;
                 List<string> listFile = new List<string>();
+                bool fileExists = false;
 
                 if(mpqHandle == 0)
                 {
                     MessageBox.Show("MPQ is null", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 if (Storm.SFileOpenFile("(listfile)", ref listFileMPQ_handle))
@@ -426,9 +441,29 @@ namespace eqmpqedit
                     }
                 }
 
+                if (Storm.SFileOpenFile(shortFileName, ref listFileMPQ_handle))
+                {
+                    fileExists = true;
+                }
+
                 SFileCloseArchive(mpqHandle);
                 mpqHandle = 0;
                 System.Threading.Thread.Sleep(1000);
+
+                bool replaceFile = false;
+
+                if (fileExists)
+                {
+                    if (MessageBox.Show("File " + shortFileName + " already exists. The file will be replaced. Continue?", "EQUINE MPQEdit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        replaceFile = true;
+                    }
+                    else
+                    {
+                        replaceFile = false;
+                        return;
+                    }
+                }
 
                 _hMPQ = MpqOpenArchiveForUpdate(openMPQPath, Storm.MOAU_OPEN_EXISTING, GlobalVariableContainer.MAX_MPQ_FILES);
 
@@ -438,8 +473,16 @@ namespace eqmpqedit
                 }
 
                 string folderName = "";
+                string originalSFD = shortFileName;
                 ShowInputDialog(ref folderName);
-                shortFileName = folderName + "\\" + shortFileName;
+
+                if(folderName != "")
+                    shortFileName = folderName + "\\" + shortFileName;
+
+                if(replaceFile)
+                {
+                    MpqDeleteFile(_hMPQ, originalSFD);
+                }
 
                 MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
                     Storm.MAFA_COMPRESS_STANDARD);
@@ -479,7 +522,7 @@ namespace eqmpqedit
 
         private static DialogResult ShowInputDialog(ref string input)
         {
-            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            System.Drawing.Size size = new System.Drawing.Size(200, 150);
             Form inputBox = new Form();
 
             inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -519,6 +562,77 @@ namespace eqmpqedit
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             newToolStripMenuItem.PerformClick();
+        }
+
+        private void listView1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                if(files.Length > 1)
+                {
+                    if(MessageBox.Show("You have selected multiple files. Currently EQUINE MPQEdit does not support multifile drag 'n' drop.\nIf you click 'Yes' random file from your selection will be chosen.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        return;
+                }
+
+                try
+                {
+                    addFileToMpq(files[0]);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to add file via drag'n'drop.\nMessage:\t " + ex.Message);
+                    return;
+                }
+            }
+        }
+
+        private void listView1_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void closeMpq()
+        {
+            if (mpqHandle != 0)
+            {
+                if (SFileCloseArchive(mpqHandle) == true)
+                {
+                    listView1.Items.Clear();
+                    GC.Collect();
+                }
+                else
+                    MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+            {
+                if(MessageBox.Show("File " + listView1.SelectedItems[0].Text + " will be deleted.\nContinue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    MpqFuncs.deleteFile(mpqHandle, listView1.SelectedItems[0].Text, openMPQPath, closeMpq);
+                    openMPQ(openMPQPath);
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            deleteToolStripMenuItem.PerformClick();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+                e.Cancel = true;
+        }
+
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            deleteToolStripMenuItem.PerformClick();
         }
     }
 }
