@@ -46,7 +46,7 @@ namespace eqmpqedit
                 case GlobalVariableContainer.CompressionType.ZLIB:
                     comboBox1.SelectedIndex = 2;
                     break;
-                case GlobalVariableContainer.CompressionType.DEFLATE:
+                case GlobalVariableContainer.CompressionType.WAVE:
                     comboBox1.SelectedIndex = 3;
                     break;
             }
@@ -104,7 +104,7 @@ namespace eqmpqedit
                     break;
 
                 case 3:
-                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.DEFLATE;
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.WAVE;
                     break;
             }
 

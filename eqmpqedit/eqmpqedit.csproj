@@ -71,6 +71,12 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFileProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFileProperties.Designer.cs">
+      <DependentUpon>frmFileProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,7 @@
     </Compile>
     <Compile Include="GlobalVariableContainer.cs" />
     <Compile Include="MpqExtract.cs" />
+    <Compile Include="MPQFileExtensions.cs" />
     <Compile Include="MpqFuncs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +105,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFileProperties.resx">
+      <DependentUpon>frmFileProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

@@ -278,32 +278,8 @@ namespace eqmpqedit
             if(mpqHandle != 0)
                 SFileCloseArchive(mpqHandle);
 
-            saveGVC();
-        }
-
-        private void saveGVC()
-        {
-            /* temp = new ();
-            temp.ignore_embed_lfile = GlobalVariableContainer.ignoreEmbedListFile;
-            temp.lfilenames = GlobalVariableContainer.listFiles;
-            temp.maxmpqfiles = GlobalVariableContainer.MAX_MPQ_FILES;
-
-            FileStream fs = new FileStream(Application.StartupPath + "/EquineData/eqmpqedit/eqtria.bin", FileMode.Create);
-
-            BinaryFormatter formatter = new BinaryFormatter();
-            //try
-            //{
-                formatter.Serialize(fs, temp);
-           // }
-           // catch (SerializationException e)
-           // {
-           //     MessageBox.Show("Can't serialize GlobalVariableContainer", ":(");
-          //  }
-          //  finally
-           // {
-                fs.Close();
-          //  } */ 
-        }
+            
+        }        
 
         private void CloseMPQToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -361,6 +337,7 @@ namespace eqmpqedit
 
                 MpqCloseUpdatedArchive(hMPQ, 0);
                 hMPQ = 0;
+                closeMpq();
                 System.Threading.Thread.Sleep(1000);
                 openMPQ(sfd.FileName);
             }
@@ -484,8 +461,36 @@ namespace eqmpqedit
                     MpqDeleteFile(_hMPQ, originalSFD);
                 }
 
-                MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                // MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                //     Storm.MAFA_COMPRESS_STANDARD);
+
+                switch (GlobalVariableContainer.compressionType)
+                {
+                    case GlobalVariableContainer.CompressionType.STANDARD:
+                        MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
                     Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+
+                    case GlobalVariableContainer.CompressionType.BZIP2:
+                        MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x00000200, 0x10,
+                    Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+
+                    case GlobalVariableContainer.CompressionType.ZLIB:
+                        MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x00000200, MAFA_COMPRESS_DEFLATE,
+                    1);
+                        break;
+
+                    case GlobalVariableContainer.CompressionType.WAVE:
+                        MpqAddWaveToArchive(_hMPQ, fileName, shortFileName, 0x00000001, 1);
+                        MessageBox.Show("WAVE compression enabled.", "Note");
+                        break;
+
+                    default:
+                        MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
+                    Storm.MAFA_COMPRESS_STANDARD);
+                        break;
+                }
 
                 MpqDeleteFile(_hMPQ, "(listfile)");
 
@@ -503,22 +508,22 @@ namespace eqmpqedit
                 switch(GlobalVariableContainer.compressionType)
                 {
                     case GlobalVariableContainer.CompressionType.STANDARD:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
                     Storm.MAFA_COMPRESS_STANDARD);
                         break;
 
                     case GlobalVariableContainer.CompressionType.BZIP2:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x10, 0x00000001,
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, 0x10,
                     Storm.MAFA_COMPRESS_STANDARD);
                         break;
 
                     case GlobalVariableContainer.CompressionType.ZLIB:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", MAFA_COMPRESS_DEFLATE, 0x00000001,
-                    Storm.MAFA_COMPRESS_STANDARD);
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, MAFA_COMPRESS_DEFLATE,
+                    1);
                         break;
 
                     default:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
+                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
                     Storm.MAFA_COMPRESS_STANDARD);
                         break;
                 }
@@ -654,6 +659,39 @@ namespace eqmpqedit
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             deleteToolStripMenuItem.PerformClick();
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFileProperties fp = new frmFileProperties();
+            fp.fileName = listView1.SelectedItems[0].Text;
+            int hFile = -1;
+            uint fileSizeHigh = 0;
+
+            try
+            {
+                if(SFileOpenFile(listView1.SelectedItems[0].Text, ref hFile))
+                {
+                    fp.sizeUncompressed = SFileGetFileInfo(hFile, Storm.SFILE_INFO_SIZE);
+                    fp.fileFlags = SFileGetFileInfo(hFile, Storm.SFILE_INFO_FLAGS);
+                    fp.sizeCompressed2 = (int)SFileGetFileSize(hFile, ref fileSizeHigh);
+                    fp.hash = SFileGetFileInfo(hFile, Storm.SFILE_INFO_HASH_INDEX);
+                    SFileCloseFile(hFile);
+                    hFile = 0;
+                }
+                else
+                {
+                    throw new System.IO.IOException("");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("I/O error", "EQUINE MPQEdit",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            fp.ShowDialog();
         }
     }
 }

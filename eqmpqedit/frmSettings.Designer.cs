@@ -116,10 +116,10 @@
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Location = new System.Drawing.Point(385, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(146, 48);
+            this.groupBox2.Size = new System.Drawing.Size(146, 70);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Compression (advanced)";
+            this.groupBox2.Text = "Compression (advanced, will be applied when adding a file)";
             // 
             // comboBox1
             // 
@@ -128,8 +128,9 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Diablo 1-compatible",
             "BZip2",
-            "ZLib (DEFLATE)"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
+            "ZLib (DEFLATE)",
+            "WAVE"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 43);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(134, 21);
             this.comboBox1.TabIndex = 0;
@@ -137,7 +138,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Location = new System.Drawing.Point(385, 65);
+            this.groupBox3.Location = new System.Drawing.Point(385, 88);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(146, 71);
             this.groupBox3.TabIndex = 3;

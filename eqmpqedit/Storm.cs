@@ -50,18 +50,18 @@ namespace eqmpqedit
         public const uint MAFA_COMPRESS_WAVE = 0x81; //Standard wave compression
         public const uint MAFA_COMPRESS_WAVE2 = 0x41; //Unused wave compression
 
-        const uint SFILE_INFO_BLOCK_SIZE = 0x01; //Block size in MPQ
-        const uint SFILE_INFO_HASH_TABLE_SIZE = 0x02; //Hash table size in MPQ
-        const uint SFILE_INFO_NUM_FILES = 0x03; //Number of files in MPQ
-        const uint SFILE_INFO_TYPE = 0x04; //Is int a file or an MPQ?
-        const uint SFILE_INFO_SIZE = 0x05; //Size of MPQ or uncompressed file
-        const uint SFILE_INFO_COMPRESSED_SIZE = 0x06; //Size of compressed file
-        const uint SFILE_INFO_FLAGS = 0x07; //File flags (compressed, etc.), file attributes if a file not in an archive
-        const uint SFILE_INFO_PARENT = 0x08; //int of MPQ that file is in
-        const uint SFILE_INFO_POSITION = 0x09; //Position of file pointer in files
-        const uint SFILE_INFO_LOCALEID = 0x0A; //Locale ID of file in MPQ
-        const uint SFILE_INFO_PRIORITY = 0x0B; //Priority of open MPQ
-        const uint SFILE_INFO_HASH_INDEX = 0x0C; //Hash index of file in MPQ
+        public const uint SFILE_INFO_BLOCK_SIZE = 0x01; //Block size in MPQ
+        public const uint SFILE_INFO_HASH_TABLE_SIZE = 0x02; //Hash table size in MPQ
+        public const uint SFILE_INFO_NUM_FILES = 0x03; //Number of files in MPQ
+        public const uint SFILE_INFO_TYPE = 0x04; //Is int a file or an MPQ?
+        public const uint SFILE_INFO_SIZE = 0x05; //Size of MPQ or uncompressed file
+        public const uint SFILE_INFO_COMPRESSED_SIZE = 0x06; //Size of compressed file
+        public const uint SFILE_INFO_FLAGS = 0x07; //File flags (compressed, etc.), file attributes if a file not in an archive
+        public const uint SFILE_INFO_PARENT = 0x08; //int of MPQ that file is in
+        public const uint SFILE_INFO_POSITION = 0x09; //Position of file pointer in files
+        public const uint SFILE_INFO_LOCALEID = 0x0A; //Locale ID of file in MPQ
+        public const uint SFILE_INFO_PRIORITY = 0x0B; //Priority of open MPQ
+        public const uint SFILE_INFO_HASH_INDEX = 0x0C; //Hash index of file in MPQ
 
         public const uint MOAU_CREATE_NEW = 0x00;
         public const uint MOAU_CREATE_ALWAYS = 0x08; //Was wrongly named MOAU_CREATE_NEW
@@ -69,6 +69,33 @@ namespace eqmpqedit
         public const uint MOAU_OPEN_ALWAYS = 0x20;
         public const uint MOAU_READ_ONLY = 0x10; //Must be used with MOAU_OPEN_EXISTING
         public const uint MOAU_MAINTAIN_LISTFILE = 0x01;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MPQFILE
+        {
+            public IntPtr lpNextFile; // Pointer to the next FILEREC struct. Pointer to addresses of first and last files if last file
+            public IntPtr lpPrevFile; // Pointer to the previous FILEREC struct. 0xEAFC5E13 if first file
+
+            [MarshalAs(UnmanagedType.LPArray, SizeConst = 260)]
+            char[] szFileName; // Filename of the archive
+
+            public uint hPlaceHolder; // Always 0xFFFFFFFF
+            public IntPtr lpParentArc; // Pointer to the ARCHIVEREC struct of the archive in which the file is contained
+            public IntPtr lpBlockEntry; // Pointer to the file's block table entry
+            public uint dwCryptKey; // Decryption key for the file
+            public uint dwFilePointer; // Position of file pointer in the file
+            public uint dwUnk1; // Seems to always be 0
+            public uint dwBlockCount; // Number of blocks in file
+            public IntPtr lpdwBlockOffsets; // Offsets to blocks in file. There are 1 more of these than the number of blocks
+            public uint dwReadStarted; // Set to 1 after first read
+            public uint dwUnk2; // Seems to always be 0
+            public IntPtr lpLastReadBlock; // Pointer to the read buffer for file. Only used for incomplete reads of blocks
+            public uint dwBytesRead; // Total bytes read from open file
+            public uint dwBufferSize; // Size of the read buffer for file. Only used for incomplete reads of blocks
+            public uint dwConstant; // Seems to always be 1
+            public IntPtr lpHashEntry;
+            public String lpFileName;
+        }
 
         [DllImport(STORMDLL, CallingConvention = CallingConvention.Winapi, EntryPoint = "SFileOpenArchive")]
         public static extern bool SFileOpenArchive(

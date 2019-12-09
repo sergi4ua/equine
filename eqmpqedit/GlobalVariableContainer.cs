@@ -13,7 +13,7 @@ namespace eqmpqedit
             STANDARD = 0,
             BZIP2 = 1,
             ZLIB = 2,
-            DEFLATE = 3
+            WAVE = 3
         }
 
         public static List<string> listFiles = new List<string>
