@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "WinMPQ",
+    "Website": "https://sfsrealm.hopto.org/downloads/WinMPQ.html",
+    "Description": "MPQ editor. Fully compatible with Diablo 1.",
+    "Version": "1.66",
+    "Executable": "WinMPQ.exe",
+    "Author": "ShadowFlake",
+	"DL": "https://www.sergi4ua.com/equine/tools/winmpq.zip"
+  }
+]
