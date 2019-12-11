@@ -35,7 +35,6 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMPQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeMPQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mPQInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +94,6 @@
             this.newToolStripMenuItem,
             this.openMPQToolStripMenuItem,
             this.closeMPQToolStripMenuItem,
-            this.mPQInformationToolStripMenuItem,
             this.toolStripSeparator1,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -124,13 +122,6 @@
             this.closeMPQToolStripMenuItem.Text = "Close MPQ";
             this.closeMPQToolStripMenuItem.Click += new System.EventHandler(this.CloseMPQToolStripMenuItem_Click);
             // 
-            // mPQInformationToolStripMenuItem
-            // 
-            this.mPQInformationToolStripMenuItem.Name = "mPQInformationToolStripMenuItem";
-            this.mPQInformationToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.mPQInformationToolStripMenuItem.Text = "MPQ Information...";
-            this.mPQInformationToolStripMenuItem.Click += new System.EventHandler(this.MPQInformationToolStripMenuItem_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -156,6 +147,7 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // extractToolStripMenuItem
             // 
@@ -437,7 +429,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel appStatus;
         private System.ComponentModel.BackgroundWorker buildList;
-        private System.Windows.Forms.ToolStripMenuItem mPQInformationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeMPQToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel appFiles;
         private System.Windows.Forms.ListView listView1;

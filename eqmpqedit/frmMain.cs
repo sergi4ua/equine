@@ -264,12 +264,6 @@ namespace eqmpqedit
 
         private void MPQInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(mpqHandle == 0)
-            {
-                MessageBox.Show("MPQ not opened or invalid.");
-                return;
-            }
-
             
         }
 
@@ -290,6 +284,7 @@ namespace eqmpqedit
                     listView1.Items.Clear();
                     mpqHandle = 0;
                     GC.Collect();
+                    this.Text = "EQUINE MPQEdit";
                 }
                 else
                     MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -627,6 +622,7 @@ namespace eqmpqedit
                 {
                     listView1.Items.Clear();
                     GC.Collect();
+                    this.Text = "EQUINE MPQEdit";
                 }
                 else
                     MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -696,12 +692,34 @@ namespace eqmpqedit
 
         private void extractToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string mpqFileName = listView1.SelectedItems[0].Text;
-            if (!MpqFuncs.fileExtact(mpqFileName))
+            if (listView1.SelectedItems.Count > 0)
             {
-                if(Marshal.GetLastWin32Error() != 0)
-                    MessageBox.Show("Unable to extract file. ErrCode: " + Convert.ToString(Marshal.GetLastWin32Error()));
+                string mpqFileName = listView1.SelectedItems[0].Text;
+                if (!MpqFuncs.fileExtact(mpqFileName))
+                {
+                    if (Marshal.GetLastWin32Error() != 0)
+                        MessageBox.Show("Unable to extract file. ErrCode: " + Convert.ToString(Marshal.GetLastWin32Error()));
+                }
             }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count == 0)
+            {
+                extractToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                extractToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+            }
+
+            if (mpqHandle == 0)
+                addToolStripMenuItem.Enabled = false;
+            else
+                addToolStripMenuItem.Enabled = true;
         }
     }
 }
