@@ -693,5 +693,15 @@ namespace eqmpqedit
 
             fp.ShowDialog();
         }
+
+        private void extractToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string mpqFileName = listView1.SelectedItems[0].Text;
+            if (!MpqFuncs.fileExtact(mpqFileName))
+            {
+                if(Marshal.GetLastWin32Error() != 0)
+                    MessageBox.Show("Unable to extract file. ErrCode: " + Convert.ToString(Marshal.GetLastWin32Error()));
+            }
+        }
     }
 }

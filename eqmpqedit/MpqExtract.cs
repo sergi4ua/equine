@@ -153,7 +153,7 @@ namespace eqmpqedit
                                     FileStream F = new FileStream("EquineData/DIABDAT/" + validMPQFiles[i], FileMode.Create, FileAccess.ReadWrite);
                                     F.Write(bs, 0, bs.Length);
                                     F.Close();
-                                    Storm.SFileCloseFile(hFile);
+                                    Storm.SFileCloseFile(_hFile);
                                 }
                             }
                             Progress_File = i;

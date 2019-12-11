@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace eqmpqedit
 {
@@ -21,12 +23,12 @@ namespace eqmpqedit
         {
             uint hFile = 0;
 
-            if(!Storm.SFileOpenFileEx(mpqHandle, fileName, 0, ref hFile))
+            if (!Storm.SFileOpenFileEx(mpqHandle, fileName, 0, ref hFile))
             {
                 throw new System.IO.FileNotFoundException("File not found in the MPQ: " + fileName);
             }
 
-            if(hFile != 0)
+            if (hFile != 0)
                 Storm.SFileCloseFile(hFile);
 
             System.Threading.Thread.Sleep(1000);
@@ -59,6 +61,44 @@ namespace eqmpqedit
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Extracts the file from the MPQ using SaveFileDialog
+        /// </summary>
+        /// <param name="fileName">File name to extract</param>
+        /// <returns></returns>
+        public static bool fileExtact(string fileName)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = Path.GetFileName(fileName);
+            sfd.Filter = "All files (*.*)|*.*";
+            sfd.Title = "Extract file...";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                int _hFile = -1;
+
+                if (Storm.SFileOpenFile(fileName, ref _hFile))
+                {
+                    uint fileSizeHigh = 0;
+                    uint fileSize = Storm.SFileGetFileSize(_hFile, ref fileSizeHigh);
+                    if ((fileSizeHigh == 0) && (fileSize > 0))
+                    {
+                        byte[] bs = new byte[fileSize];
+                        uint countRead = 0;
+
+                        Storm.SFileReadFile(_hFile, bs, fileSize, ref countRead, 0);
+
+                        FileStream F = new FileStream(sfd.FileName, FileMode.Create, FileAccess.ReadWrite);
+                        F.Write(bs, 0, bs.Length);
+                        F.Close();
+                        Storm.SFileCloseFile(_hFile);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
