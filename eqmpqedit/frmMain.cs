@@ -285,6 +285,9 @@ namespace eqmpqedit
                     mpqHandle = 0;
                     GC.Collect();
                     this.Text = "EQUINE MPQEdit";
+                    toolStripButton4.Enabled = false;
+                    toolStripButton5.Enabled = false;
+                    toolStripButton2.Enabled = false;
                 }
                 else
                     MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -310,6 +313,9 @@ namespace eqmpqedit
             appFiles.Text = "Files: " + listView1.Items.Count;
 
             this.Enabled = true;
+            toolStripButton2.Enabled = true;
+            toolStripButton4.Enabled = true;
+            toolStripButton5.Enabled = true;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -623,6 +629,9 @@ namespace eqmpqedit
                     listView1.Items.Clear();
                     GC.Collect();
                     this.Text = "EQUINE MPQEdit";
+                    toolStripButton4.Enabled = false;
+                    toolStripButton5.Enabled = false;
+                    toolStripButton2.Enabled = false;
                 }
                 else
                     MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -714,12 +723,24 @@ namespace eqmpqedit
             {
                 extractToolStripMenuItem.Enabled = true;
                 deleteToolStripMenuItem.Enabled = true;
+                toolStripButton4.Enabled = true;
+                toolStripButton5.Enabled = true;
             }
 
             if (mpqHandle == 0)
                 addToolStripMenuItem.Enabled = false;
             else
                 addToolStripMenuItem.Enabled = true;
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            extractToolStripMenuItem.PerformClick();
+        }
+
+        private void extractToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            extractToolStripMenuItem.PerformClick();
         }
     }
 }
