@@ -119,8 +119,8 @@ namespace EQUINE
 
         private void ExtractFile()
         {
-            try
-            {
+           // try
+           // {
                 if (!cancelled)
                 {
                     //button1.BeginInvoke((MethodInvoker)delegate () { button1.Enabled = false; });
@@ -149,10 +149,13 @@ namespace EQUINE
 
                     if (File.Exists(Application.StartupPath + "\\" + modName + "\\" + startExe0))
                     {
-                        this.WindowState = FormWindowState.Minimized;
-                        var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\" + startExe0);
+                        this.BeginInvoke((MethodInvoker)delegate () { this.WindowState = FormWindowState.Minimized; });
+                        var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\" + modName + "\\" + startExe0);
                         exe.WaitForExit();
-                        this.WindowState = FormWindowState.Normal;
+                        this.BeginInvoke((MethodInvoker)delegate ()
+                        {
+                            this.WindowState = FormWindowState.Normal;
+                        });
                     }
 
                     List<string> fileNames = new List<string> { "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq", "hellfire.mpq" };
@@ -178,17 +181,20 @@ namespace EQUINE
                         MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
 
-                    MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(!toolDLMode)
+                        MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Tool " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Restart();
                 }
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
-                this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
-                this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
-            }
-        }
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
+            //    this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
+            //    this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
+            //}
+        //}
 
         private void CreateUninstallFile()
         {

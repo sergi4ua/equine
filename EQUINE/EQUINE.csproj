@@ -131,6 +131,12 @@
     <Compile Include="frmExtractMPQ.Designer.cs">
       <DependentUpon>frmExtractMPQ.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFatalError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFatalError.Designer.cs">
+      <DependentUpon>frmFatalError.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmForceUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExtractMPQ.resx">
       <DependentUpon>frmExtractMPQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFatalError.resx">
+      <DependentUpon>frmFatalError.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmForceUpdate.resx">
       <DependentUpon>frmForceUpdate.cs</DependentUpon>

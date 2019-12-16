@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace EQUINE
 {
@@ -93,10 +94,41 @@ namespace EQUINE
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // custom exception handler
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Program_UnhandledException);
+            AppDomain.CurrentDomain.UnhandledException +=
+        new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+
             if (noInit == false)
                 Application.Run(new frmSplash());
             else
                 Application.Run(new frmSetupWizard());
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            foreach(Form form in Application.OpenForms)
+            {
+                form.Hide();
+            }
+
+            frmFatalError iamerror = new frmFatalError();
+            iamerror.OException = e;
+            iamerror.ShowDialog();
+        }
+
+        private static void Program_UnhandledException(object sender, ThreadExceptionEventArgs e)
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Hide();
+            }
+
+            frmFatalError iamerror = new frmFatalError();
+            iamerror.OException2 = e;
+            iamerror.ShowDialog();
         }
     }
 }

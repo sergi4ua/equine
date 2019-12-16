@@ -1200,14 +1200,24 @@ namespace EQUINE
         {
             // f my mozg
 
+            if (listView2.SelectedItems.Count == 0) // don't crash ok thx
+            {
+                installLaunchToolBtn.Enabled = false;
+                visitWebsiteBtn.Enabled = false;
+                uninstallToolBtn.Enabled = false;
+                return;
+            }
+
             if (File.Exists(Application.StartupPath + "/EquineData/ModdingTools/" + listView2.SelectedItems[0].Text + "/" +
-                toolInfo[listView2.SelectedIndices[0]]))
+                toolInfo[listView2.SelectedIndices[0]].Executable))
             {
                 installLaunchToolBtn.Text = "Launch";
+                installLaunchToolBtn.Enabled = true;
             }
             else
             {
                 installLaunchToolBtn.Text = "Install";
+                installLaunchToolBtn.Enabled = true;
             }
         }
 
@@ -1222,6 +1232,8 @@ namespace EQUINE
                 dl.modName = localToolInfo.Name;
                 dl.dlLink0 = localToolInfo.DL;
                 dl.startExe0 = localToolInfo.Executable;
+                dl.beforeDownloadMsg = "null";
+                dl.afterDownloadMsg = "null";
                 dl.ShowDialog();
             }
             else
