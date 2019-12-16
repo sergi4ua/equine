@@ -36,10 +36,14 @@ namespace EQUINE
     public partial class Form1 : Form
     {
         RootObject ModInfos;
-        private const bool _DEBUG = false;
-        private List<string> installedMods = new List<string>();
+        const bool _DEBUG = false;
+        List<string> installedMods = new List<string>();
         public static Config config { get; set; }
         List<CustomModInfo> customModInfos;
+        // toolinfo
+        List<ToolInfo> toolInfo;
+
+        bool failOnNextToolInfoDL = false;
 
         public Form1()
         {
@@ -55,6 +59,7 @@ namespace EQUINE
 
             initModList();
             initCustomModList();
+            initToolList();
             checkGameBackup();
             Random r = new Random();
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
@@ -64,6 +69,44 @@ namespace EQUINE
 
 
 
+        }
+
+        private void initToolList()
+        {
+            if (File.Exists(Application.StartupPath + "/EquineData/toolList.json"))
+            {
+                toolInfo = JsonConvert.DeserializeObject<List<ToolInfo>>(File.ReadAllText(Application.StartupPath + "/EquineData/toolList.json"));
+
+                for (int i = 0; i < toolInfo.Count; i++)
+                {
+                    ListViewItem lvi = new ListViewItem(toolInfo[i].Name);
+                    lvi.SubItems.Add(toolInfo[i].Description);
+                    lvi.SubItems.Add(toolInfo[i].Website);
+                    lvi.SubItems.Add(toolInfo[i].Version);
+                    lvi.SubItems.Add(toolInfo[i].Author);
+                    listView2.Items.Add(lvi);
+                }
+            }
+            else
+            {
+                // tool list doesn't exist download it
+
+                if (CheckForInternetConnection())
+                {
+                    if (!failOnNextToolInfoDL)
+                    {
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                        using (WebClient toolListDownloader = new WebClient())
+                        {
+                            toolListDownloader.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/toolList.json",
+                                Application.StartupPath + "/EquineData/toolList.json");
+                        }
+
+                        initToolList();
+                        failOnNextToolInfoDL = true;
+                    }
+                }
+            }
         }
 
         private void initCustomModList()
@@ -234,10 +277,23 @@ namespace EQUINE
                     WebClient modInfo = new WebClient();
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     modInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/modlist.json", Application.StartupPath + "\\EquineData\\modlist.json");
+                    modInfo.Dispose();
                 }
                 catch
                 {
                     MessageBox.Show("Error updating ModInfo :(");
+                }
+
+                try
+                {
+                    WebClient toolInfo = new WebClient();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    toolInfo.DownloadFile("https://raw.githubusercontent.com/sergi4ua/equine/master/EquineData/toolList.json", Application.StartupPath + "\\EquineData\\toolList.json");
+                    toolInfo.Dispose();
+                }
+                catch
+                {
+                    MessageBox.Show("Error updating ToolInfo :(");
                 }
             }
 
@@ -338,7 +394,8 @@ namespace EQUINE
             int index = listView1.SelectedIndices[0] + 1;
             int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
 
-            if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable)) {
+            if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable))
+            {
                 try
                 {
                     Process.Start(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable);
@@ -404,7 +461,7 @@ namespace EQUINE
                                 Uri modDLuri = new Uri(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL);
                                 string mod_fileName = Application.StartupPath + "/" + Path.GetFileName(modDLuri.LocalPath);
 
-                                if(File.Exists(mod_fileName))
+                                if (File.Exists(mod_fileName))
                                 {
                                     File.Delete(mod_fileName);
                                 }
@@ -1109,7 +1166,7 @@ namespace EQUINE
                         File.Delete(Application.StartupPath + "\\EQUINE.hash");
                         Process.Start(SelfProc);
                         Environment.Exit(0);
-                    } 
+                    }
                 }
                 else
                 {
@@ -1120,6 +1177,65 @@ namespace EQUINE
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to check for updates.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count == 0)
+            {
+                installLaunchToolBtn.Enabled = false;
+                uninstallToolBtn.Enabled = false;
+                visitWebsiteBtn.Enabled = false;
+            }
+            else
+            {
+                installLaunchToolBtn.Enabled = true;
+                uninstallToolBtn.Enabled = true;
+                visitWebsiteBtn.Enabled = true;
+            }
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // f my mozg
+
+            if (File.Exists(Application.StartupPath + "/EquineData/ModdingTools/" + listView2.SelectedItems[0].Text + "/" +
+                toolInfo[listView2.SelectedIndices[0]]))
+            {
+                installLaunchToolBtn.Text = "Launch";
+            }
+            else
+            {
+                installLaunchToolBtn.Text = "Install";
+            }
+        }
+
+        private void installLaunchToolBtn_Click(object sender, EventArgs e)
+        {
+            ToolInfo localToolInfo = toolInfo[listView2.SelectedIndices[0]];
+
+            if (installLaunchToolBtn.Text == "Install")
+            {
+                frmModDownloader dl = new frmModDownloader();
+                dl.toolDLMode = true;
+                dl.modName = localToolInfo.Name;
+                dl.dlLink0 = localToolInfo.DL;
+                dl.startExe0 = localToolInfo.Executable;
+                dl.ShowDialog();
+            }
+            else
+            {
+                try
+                {
+                    Process.Start(Application.StartupPath + "/EquineData/ModdingTools/" +
+                    localToolInfo.Name + "/" + localToolInfo.Executable);
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to launch.\nFile " + Application.StartupPath + "/EquineData/ModdingTools/" +
+                    localToolInfo.Name + "/" + localToolInfo.Executable + " is missing or corrupt.\nForce updating the tool may fix the problem", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
             }
         }
     }

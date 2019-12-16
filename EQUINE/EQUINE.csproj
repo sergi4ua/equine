@@ -204,6 +204,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="sha1.cs" />
+    <Compile Include="ToolInfo.cs" />
     <Compile Include="ZipStorer.cs" />
     <EmbeddedResource Include="AddAMod.resx">
       <DependentUpon>AddAMod.cs</DependentUpon>

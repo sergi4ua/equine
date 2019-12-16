@@ -127,7 +127,7 @@ namespace EQUINE
 
                             if (fromfilehash != apphash)
                             {
-                                BeginInvoke((MethodInvoker)delegate () { label3.Text = "UPDATE FOUND !"; });
+                                BeginInvoke((MethodInvoker)delegate () { label3.Text = "New update is out. Launching EQUINE Update Utility"; });
 
                                 var SelfProc = new ProcessStartInfo
                                 {

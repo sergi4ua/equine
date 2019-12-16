@@ -44,6 +44,8 @@ namespace EQUINE
         private List<string> extractedFileList = new List<string>();
         private string fileName;
 
+        public bool toolDLMode { get; set; }
+
         [DllImport("kernel32.dll")]
         static extern bool CreateSymbolicLink(
         string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
@@ -68,6 +70,9 @@ namespace EQUINE
             // file rozmir = file size in ukrainian (translit)
             label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
             getFileSize.RunWorkerAsync();
+
+            if (toolDLMode)
+                status.Text = "Downloading tool data...";
 
             if (beforeDownloadMsg != "null")
                 MessageBox.Show(beforeDownloadMsg, "Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -95,7 +100,11 @@ namespace EQUINE
             if (dl != null)
             {
                 progressBar1.Value = (int)dl.downloadProgress;
-                status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+                if(!toolDLMode)
+                    status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+                else
+                    status.Text = "Downloading mod tool (" + progressBar1.Value + "%)";
+
             }
             if (dl != null && dl.IsDone == true)
             {
@@ -103,7 +112,7 @@ namespace EQUINE
                 timer1.Enabled = false;
                 progressBar1.Style = ProgressBarStyle.Marquee;
                 progressBar1.MarqueeAnimationSpeed = 30;
-                status.Text = "Extracting mod ZIP-archive...";
+                status.Text = "Extracting ZIP-archive...";
                 backgroundWorker1.RunWorkerAsync();
             }
         }
@@ -123,8 +132,11 @@ namespace EQUINE
 
                     foreach (ZipStorer.ZipFileEntry entry in dir)
                     {
-                        extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
-                        zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                        //extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                        if(!toolDLMode)
+                            zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
+                        else
+                            zip.ExtractFile(entry, Application.StartupPath + "\\EquineData\\ModdingTools\\" + modName + "\\" + entry.FilenameInZip);
                     }
                     zip.Close();
                     System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
@@ -135,7 +147,7 @@ namespace EQUINE
 
                     CreateUninstallFile();
 
-                    if (File.Exists(Application.StartupPath + "\\" + startExe0))
+                    if (File.Exists(Application.StartupPath + "\\" + modName + "\\" + startExe0))
                     {
                         this.WindowState = FormWindowState.Minimized;
                         var exe = System.Diagnostics.Process.Start(Application.StartupPath + "\\" + startExe0);
@@ -147,13 +159,16 @@ namespace EQUINE
 
                     try
                     {
-
-                        for (short i = 0; i < fileNames.Count; i++)
+                        // don't create symlinks for the tools
+                        if (!toolDLMode)
                         {
-                            if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
+                            for (short i = 0; i < fileNames.Count; i++)
                             {
-                                CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
-                                Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+                                if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
+                                {
+                                    CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
+                                    Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+                                }
                             }
                         }
                     }
