@@ -68,6 +68,9 @@ namespace EQUINE
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "1.00 (not recommended)",
+            "1.02",
+            "1.03",
+            "1.04",
             "1.07",
             "1.08"});
             this.comboBox1.Location = new System.Drawing.Point(6, 19);

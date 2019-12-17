@@ -57,14 +57,29 @@ namespace EQUINE
                 break;
 
                 case 1:
-                    version = 1;
+                    version = 3;
                     backgroundWorker1.RunWorkerAsync();
                 break;
 
                 case 2:
-                    version = 2;
+                    version = 4;
                     backgroundWorker1.RunWorkerAsync();
                 break;
+
+                case 3:
+                    version = 5;
+                    backgroundWorker1.RunWorkerAsync();
+                    break;
+
+                case 4:
+                    version = 1;
+                    backgroundWorker1.RunWorkerAsync();
+                    break;
+
+                case 5:
+                    version = 2;
+                    backgroundWorker1.RunWorkerAsync();
+                    break;
 
                 default:
 
@@ -74,14 +89,14 @@ namespace EQUINE
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            try
-            {
+           // try
+           // {
                 download(version);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Downgrade failed!\nWindows reported the error:\n" + ex.Message + "\nUse 'Restore game data..' to return your game to it's original state.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
+           // }
+          //  catch(Exception ex)
+           // {
+           //     MessageBox.Show("Downgrade failed!\nWindows reported the error:\n" + ex.Message + "\nUse 'Restore game data..' to return your game to it's original state.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+           // }
         }
 
         private void download(short dl)
@@ -128,6 +143,60 @@ namespace EQUINE
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     wc.DownloadFile("https://sergi4ua.pp.ua/equine/versions/Diablo-1.08.zip", Application.StartupPath + "\\dv100.zip");
+                }
+
+                ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);
+                List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
+
+                foreach (ZipStorer.ZipFileEntry entry in dir)
+                {
+                    zip.ExtractFile(entry, Application.StartupPath + "\\" + entry.FilenameInZip);
+                }
+                zip.Close();
+                File.Delete(Application.StartupPath + "\\dv100.zip");
+            }
+            if (dl == 3)
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    wc.DownloadFile("https://www.sergi4ua.com/equine/versions/Diablo-1.02.zip", Application.StartupPath + "\\dv100.zip");
+                }
+
+                ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);
+                List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
+
+                foreach (ZipStorer.ZipFileEntry entry in dir)
+                {
+                    zip.ExtractFile(entry, Application.StartupPath + "\\" + entry.FilenameInZip);
+                }
+                zip.Close();
+                File.Delete(Application.StartupPath + "\\dv100.zip");
+            }
+            if (dl == 4)
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    wc.DownloadFile("https://www.sergi4ua.com/equine/versions/Diablo-1.03.zip", Application.StartupPath + "\\dv100.zip");
+                }
+
+                ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);
+                List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
+
+                foreach (ZipStorer.ZipFileEntry entry in dir)
+                {
+                    zip.ExtractFile(entry, Application.StartupPath + "\\" + entry.FilenameInZip);
+                }
+                zip.Close();
+                File.Delete(Application.StartupPath + "\\dv100.zip");
+            }
+            if (dl == 5)
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    wc.DownloadFile("https://www.sergi4ua.com/equine/versions/Diablo-1.04.zip", Application.StartupPath + "\\dv100.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);

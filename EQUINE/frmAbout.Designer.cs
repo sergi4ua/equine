@@ -92,23 +92,23 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(15, 148);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Beta testers:";
+            this.label5.Text = "Thanks :)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(15, 161);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 91);
+            this.label6.Size = new System.Drawing.Size(76, 104);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Qndel\r\nRadTang\r\nDavias\r\nOgodei\r\nSkarn\r\nfearedbliss\r\nbrunocar";
+            this.label6.Text = "Qndel\r\nRadTang\r\nDavias\r\nOgodei\r\nSkarn\r\nfearedbliss\r\nbrunocar\r\nRetroGamer02";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 266);
+            this.label7.Location = new System.Drawing.Point(15, 275);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 26);
             this.label7.TabIndex = 6;
