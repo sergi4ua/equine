@@ -23,7 +23,7 @@ namespace EQUINE
     public class GlobalVariableContainer
     {
         public static string Version = Application.ProductVersion.ToString();
-        public static string AppName = "EQUINE for Diablo 1 - Version 1.0";
+        public static string AppName = "EQUINE for Diablo 1 - Version 1.0 Beta 1";
         public static bool DIABDATPresent = false;
 
         public static string[] Messages =
@@ -45,7 +45,8 @@ namespace EQUINE
                "If you like Diablo 1, buy it on GOG!",
                "If you like Hellfire, buy it on GOG!",
                "The Hell is hellish enough.",
-               "Stop reading this and download some mods already!", // was Ha-ha! The items have been doubled!, may add it in the future.
+               "Stop reading this and download some mods already!",
+               "Ha-ha! Your items have been doubled!",
                "*rogue death sound*",
                "*warrior death sound*",
                "*potion sound*",

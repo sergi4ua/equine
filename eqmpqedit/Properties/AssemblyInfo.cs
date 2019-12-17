@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("eqmpqedit")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("EQUINE MPQEdit")]
+[assembly: AssemblyDescription("EQUINE MPQEdit")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("eqmpqedit")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("Sergi4UA")]
+[assembly: AssemblyProduct("EQUINE MPQEdit")]
+[assembly: AssemblyCopyright("Copyright © Sergi4UA 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

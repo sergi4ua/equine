@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -124,6 +124,15 @@ namespace EQUINE
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.visitWebsiteBtn = new System.Windows.Forms.Button();
+            this.uninstallToolBtn = new System.Windows.Forms.Button();
+            this.installLaunchToolBtn = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -139,15 +148,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.installLaunchToolBtn = new System.Windows.Forms.Button();
-            this.uninstallToolBtn = new System.Windows.Forms.Button();
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.visitWebsiteBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -586,9 +586,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -711,6 +711,79 @@ namespace EQUINE
             this.tabPage2.Text = "Tools";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // visitWebsiteBtn
+            // 
+            this.visitWebsiteBtn.Enabled = false;
+            this.visitWebsiteBtn.Location = new System.Drawing.Point(618, 437);
+            this.visitWebsiteBtn.Name = "visitWebsiteBtn";
+            this.visitWebsiteBtn.Size = new System.Drawing.Size(93, 29);
+            this.visitWebsiteBtn.TabIndex = 4;
+            this.visitWebsiteBtn.Text = "Visit Website";
+            this.visitWebsiteBtn.UseVisualStyleBackColor = true;
+            // 
+            // uninstallToolBtn
+            // 
+            this.uninstallToolBtn.Enabled = false;
+            this.uninstallToolBtn.Location = new System.Drawing.Point(717, 437);
+            this.uninstallToolBtn.Name = "uninstallToolBtn";
+            this.uninstallToolBtn.Size = new System.Drawing.Size(81, 29);
+            this.uninstallToolBtn.TabIndex = 3;
+            this.uninstallToolBtn.Text = "Uninstall";
+            this.uninstallToolBtn.UseVisualStyleBackColor = true;
+            // 
+            // installLaunchToolBtn
+            // 
+            this.installLaunchToolBtn.Enabled = false;
+            this.installLaunchToolBtn.Location = new System.Drawing.Point(804, 437);
+            this.installLaunchToolBtn.Name = "installLaunchToolBtn";
+            this.installLaunchToolBtn.Size = new System.Drawing.Size(81, 29);
+            this.installLaunchToolBtn.TabIndex = 2;
+            this.installLaunchToolBtn.Text = "Install";
+            this.installLaunchToolBtn.UseVisualStyleBackColor = true;
+            this.installLaunchToolBtn.Click += new System.EventHandler(this.installLaunchToolBtn_Click);
+            // 
+            // listView2
+            // 
+            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listView2.FullRowSelect = true;
+            this.listView2.GridLines = true;
+            this.listView2.Location = new System.Drawing.Point(9, 28);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(876, 406);
+            this.listView2.TabIndex = 1;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Name";
+            this.columnHeader8.Width = 121;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Description";
+            this.columnHeader9.Width = 385;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Website";
+            this.columnHeader10.Width = 140;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Version";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Author";
+            this.columnHeader12.Width = 149;
             // 
             // label2
             // 
@@ -865,79 +938,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // listView2
-            // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(9, 28);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(876, 406);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
-            // 
-            // installLaunchToolBtn
-            // 
-            this.installLaunchToolBtn.Enabled = false;
-            this.installLaunchToolBtn.Location = new System.Drawing.Point(804, 437);
-            this.installLaunchToolBtn.Name = "installLaunchToolBtn";
-            this.installLaunchToolBtn.Size = new System.Drawing.Size(81, 29);
-            this.installLaunchToolBtn.TabIndex = 2;
-            this.installLaunchToolBtn.Text = "Install";
-            this.installLaunchToolBtn.UseVisualStyleBackColor = true;
-            this.installLaunchToolBtn.Click += new System.EventHandler(this.installLaunchToolBtn_Click);
-            // 
-            // uninstallToolBtn
-            // 
-            this.uninstallToolBtn.Enabled = false;
-            this.uninstallToolBtn.Location = new System.Drawing.Point(717, 437);
-            this.uninstallToolBtn.Name = "uninstallToolBtn";
-            this.uninstallToolBtn.Size = new System.Drawing.Size(81, 29);
-            this.uninstallToolBtn.TabIndex = 3;
-            this.uninstallToolBtn.Text = "Uninstall";
-            this.uninstallToolBtn.UseVisualStyleBackColor = true;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Name";
-            this.columnHeader8.Width = 121;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Description";
-            this.columnHeader9.Width = 385;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Website";
-            this.columnHeader10.Width = 140;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Version";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Author";
-            this.columnHeader12.Width = 149;
-            // 
-            // visitWebsiteBtn
-            // 
-            this.visitWebsiteBtn.Enabled = false;
-            this.visitWebsiteBtn.Location = new System.Drawing.Point(618, 437);
-            this.visitWebsiteBtn.Name = "visitWebsiteBtn";
-            this.visitWebsiteBtn.Size = new System.Drawing.Size(93, 29);
-            this.visitWebsiteBtn.TabIndex = 4;
-            this.visitWebsiteBtn.Text = "Visit Website";
-            this.visitWebsiteBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
