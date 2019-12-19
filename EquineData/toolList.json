@@ -7,5 +7,14 @@
     "Executable": "WinMPQ.exe",
     "Author": "ShadowFlake",
 	"DL": "https://www.sergi4ua.com/equine/modtools/winmpq.zip"
+  },
+  {
+    "Name": "D1-GraphicsTool",
+    "Website": "https://github.com/savagesteel/d1-graphics-tool/",
+    "Description": "CEL/CL2 viewer/exporter",
+    "Version": "0.3.1",
+    "Executable": "D1GraphicsTool.exe",
+    "Author": "savagesteel",
+	"DL": "https://www.sergi4ua.com/equine/modtools/d1gt.zip"
   }
 ]
