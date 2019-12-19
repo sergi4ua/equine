@@ -374,6 +374,7 @@ namespace eqmpqedit
                 int listFileMPQ_handle = -1;
                 int _hMPQ = -1;
                 List<string> listFile = new List<string>();
+                listFile.Add("(listfile)");
                 bool fileExists = false;
 
                 if(mpqHandle == 0)
@@ -549,12 +550,19 @@ namespace eqmpqedit
 
         private static DialogResult ShowInputDialog(ref string input)
         {
-            System.Drawing.Size size = new System.Drawing.Size(200, 150);
+            System.Drawing.Size size = new System.Drawing.Size(250, 220);
             Form inputBox = new Form();
+            inputBox.StartPosition = FormStartPosition.CenterScreen;
 
             inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             inputBox.ClientSize = size;
             inputBox.Text = "Folder name";
+
+            Label label = new Label();
+            label.Text = "Please type the path, where the file can\nbe accessed within the MPQ (without \\ and filename).";
+            label.Size = new System.Drawing.Size(size.Width - 10, 50);
+            label.Location = new System.Drawing.Point(5, 63);
+            inputBox.Controls.Add(label);
 
             System.Windows.Forms.TextBox textBox = new TextBox();
             textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
@@ -741,6 +749,16 @@ namespace eqmpqedit
         private void extractToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             extractToolStripMenuItem.PerformClick();
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void moveToFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

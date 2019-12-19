@@ -151,5 +151,10 @@ namespace EQUINE
         {
             button1.PerformClick();
         }
+
+        private void frmSetupWizard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

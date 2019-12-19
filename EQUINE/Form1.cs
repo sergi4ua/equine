@@ -1213,11 +1213,15 @@ namespace EQUINE
             {
                 installLaunchToolBtn.Text = "Launch";
                 installLaunchToolBtn.Enabled = true;
+                uninstallToolBtn.Enabled = true;
+                visitWebsiteBtn.Enabled = true;
             }
             else
             {
                 installLaunchToolBtn.Text = "Install";
                 installLaunchToolBtn.Enabled = true;
+                uninstallToolBtn.Enabled = false;
+                visitWebsiteBtn.Enabled = false;
             }
         }
 
@@ -1249,6 +1253,31 @@ namespace EQUINE
                     localToolInfo.Name + "/" + localToolInfo.Executable + " is missing or corrupt.\nForce updating the tool may fix the problem", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
+        }
+
+        private void uninstallToolBtn_Click(object sender, EventArgs e)
+        {
+            ToolInfo localToolInfo = toolInfo[listView2.SelectedIndices[0]];
+            string toolPath = Application.StartupPath + "/EquineData/ModdingTools/" + localToolInfo.Name;
+
+            try
+            {
+                if (MessageBox.Show("Uninstall: " + localToolInfo.Name + "?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Directory.Delete(toolPath, true);
+                    MessageBox.Show("Tool " + localToolInfo.Name + " has been successfully uninstalled from your computer.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    uninstallToolBtn.Enabled = false;
+                    visitWebsiteBtn.Enabled = false;
+                    installLaunchToolBtn.Enabled = false;
+                    installLaunchToolBtn.Text = "Install";
+                    listView1.SelectedItems.Clear();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Failed to uninstall tool.", "EQUINE Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+                
         }
     }
 }

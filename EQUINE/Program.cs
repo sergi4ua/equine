@@ -90,7 +90,7 @@ namespace EQUINE
                 }
             }
 
-            
+            updateEquineUpdater();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -106,6 +106,37 @@ namespace EQUINE
             else
                 Application.Run(new frmSetupWizard());
         }
+
+        private static void updateEquineUpdater()
+        {
+            if (File.Exists(Application.StartupPath + "\\EquineData\\EQUINEUpdater_hash.sha"))
+            {
+                try
+                    {
+                        File.Copy(Application.StartupPath + "\\EquineData\\EQUINEUpdater.exe", Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash", true);
+
+                        sha1 hash = new sha1();
+                        string fromfilehash = "";
+                        string apphash = "";
+
+                        fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINEUpdater_hash.sha");
+                        apphash = hash.CheckFileHash(Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash");
+
+                        if (fromfilehash != apphash)
+                        {
+                            File.Delete(Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash");
+                            Application.SetCompatibleTextRenderingDefault(false);
+                            Application.Run(new frmUpdateEquineData());
+                        }
+
+                        File.Delete(Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash");
+                }
+                    catch
+                    {
+                        MessageBox.Show("Unable to update EQUINEUpdater.exe");
+                    }
+                }
+            }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
