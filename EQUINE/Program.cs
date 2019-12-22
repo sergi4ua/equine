@@ -63,7 +63,7 @@ namespace EQUINE
             if(!File.Exists("DIABDAT.MPQ"))
             {
                 if(noInit == false)
-                    MessageBox.Show("Unable to locate DIABDAT.MPQ. Game mods will not run without it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Unable to locate DIABDAT.MPQ. Some game mods will not run without it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
                 GlobalVariableContainer.DIABDATPresent = true;

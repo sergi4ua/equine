@@ -55,7 +55,7 @@ namespace EQUINE
             Preloader();
             Text = GlobalVariableContainer.AppName;
             if (!GlobalVariableContainer.DIABDATPresent)
-                menuItem2.Enabled = false;
+                menuItem40.Enabled = false;
 
             initModList();
             initCustomModList();
@@ -1278,6 +1278,11 @@ namespace EQUINE
                 MessageBox.Show("Failed to uninstall tool.", "EQUINE Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
                 
+        }
+
+        private void menuItem47_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://reddit.com/r/devilution");
         }
     }
 }

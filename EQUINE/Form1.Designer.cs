@@ -148,6 +148,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.menuItem47 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -319,6 +320,7 @@ namespace EQUINE
             this.menuItem33,
             this.menuItem34,
             this.menuItem35,
+            this.menuItem47,
             this.menuItem24,
             this.menuItem25});
             this.menuItem2.Text = "Community";
@@ -408,12 +410,12 @@ namespace EQUINE
             // 
             // menuItem24
             // 
-            this.menuItem24.Index = 8;
+            this.menuItem24.Index = 9;
             this.menuItem24.Text = "-";
             // 
             // menuItem25
             // 
-            this.menuItem25.Index = 9;
+            this.menuItem25.Index = 10;
             this.menuItem25.Text = "Submit Community/Website";
             this.menuItem25.Click += new System.EventHandler(this.menuItem25_Click);
             // 
@@ -940,6 +942,12 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // menuItem47
+            // 
+            this.menuItem47.Index = 8;
+            this.menuItem47.Text = "Devilution Subreddit";
+            this.menuItem47.Click += new System.EventHandler(this.menuItem47_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1072,6 +1080,7 @@ namespace EQUINE
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button visitWebsiteBtn;
+        private System.Windows.Forms.MenuItem menuItem47;
     }
 }
 
