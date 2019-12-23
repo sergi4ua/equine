@@ -88,6 +88,7 @@ namespace EQUINE
             this.menuItem33 = new System.Windows.Forms.MenuItem();
             this.menuItem34 = new System.Windows.Forms.MenuItem();
             this.menuItem35 = new System.Windows.Forms.MenuItem();
+            this.menuItem47 = new System.Windows.Forms.MenuItem();
             this.menuItem24 = new System.Windows.Forms.MenuItem();
             this.menuItem25 = new System.Windows.Forms.MenuItem();
             this.menuItem40 = new System.Windows.Forms.MenuItem();
@@ -148,7 +149,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem47 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -408,6 +408,12 @@ namespace EQUINE
             this.menuItem35.Text = "Diablo 1 Subreddit";
             this.menuItem35.Click += new System.EventHandler(this.MenuItem35_Click);
             // 
+            // menuItem47
+            // 
+            this.menuItem47.Index = 8;
+            this.menuItem47.Text = "Devilution Subreddit";
+            this.menuItem47.Click += new System.EventHandler(this.menuItem47_Click);
+            // 
             // menuItem24
             // 
             this.menuItem24.Index = 9;
@@ -443,7 +449,7 @@ namespace EQUINE
             // menuItem43
             // 
             this.menuItem43.Index = 2;
-            this.menuItem43.Text = "Recreate DIABDAT.MPQ";
+            this.menuItem43.Text = "Rebuild DIABDAT.MPQ";
             // 
             // menuItem29
             // 
@@ -941,12 +947,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // menuItem47
-            // 
-            this.menuItem47.Index = 8;
-            this.menuItem47.Text = "Devilution Subreddit";
-            this.menuItem47.Click += new System.EventHandler(this.menuItem47_Click);
             // 
             // Form1
             // 

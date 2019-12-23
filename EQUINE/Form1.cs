@@ -558,8 +558,8 @@ namespace EQUINE
 
         private void menuItem11_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("backup/restore feature is broken for mod folders", "Note");
             BackupSave saves = new BackupSave();
+            saves.installedMods = this.installedMods;
             saves.ShowDialog();
         }
 
