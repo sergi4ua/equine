@@ -15,7 +15,6 @@ namespace EQUINE
     {
         MpqExtract extractor = new MpqExtract();
         bool stopTimer = false;
-        double extractProgress = 0;
 
         public frmExtractMPQ()
         {

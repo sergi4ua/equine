@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -433,6 +433,7 @@ namespace EQUINE
             this.menuItem42,
             this.menuItem43});
             this.menuItem40.Text = "MPQ";
+            this.menuItem40.Click += new System.EventHandler(this.menuItem40_Click);
             // 
             // menuItem41
             // 
@@ -450,6 +451,7 @@ namespace EQUINE
             // 
             this.menuItem43.Index = 2;
             this.menuItem43.Text = "Rebuild DIABDAT.MPQ";
+            this.menuItem43.Click += new System.EventHandler(this.menuItem43_Click);
             // 
             // menuItem29
             // 
@@ -594,9 +596,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";

@@ -1117,15 +1117,18 @@ namespace EQUINE
 
         private void MenuItem42_Click(object sender, EventArgs e)
         {
-            try
+            if (MessageBox.Show("Extract DIABDAT.MPQ?", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                frmExtractMPQ extractor = new frmExtractMPQ();
-                extractor.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message,
-                    "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                try
+                {
+                    frmExtractMPQ extractor = new frmExtractMPQ();
+                    extractor.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error occured in eqmpqedit.dll\n" + ex.Message,
+                        "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
             }
         }
 
@@ -1174,7 +1177,7 @@ namespace EQUINE
                         "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Failed to check for updates.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
@@ -1283,6 +1286,31 @@ namespace EQUINE
         private void menuItem47_Click(object sender, EventArgs e)
         {
             Process.Start("https://reddit.com/r/devilution");
+        }
+
+        private void menuItem43_Click(object sender, EventArgs e)
+        {
+            DialogResult mpq = MessageBox.Show("Make backup of your current DIABDAT.MPQ? (recommended)\n\nThe original file will be overwritten.\n\nWARNING: The rebuild process is not perfect, any added file to the DIABDAT.listfile.txt will be included in the MPQ file. If the list doesn't include the file, it will not be included in the MPQ, this will also apply if the file doesn't exist. Improper editing of this file may corrupt your game. Freeablo will not recognize the MPQ created with EQUINE.\nUse EQUINE MPQEdit to edit Patch_rt.mpq if you just need to use custom graphics/music.", "EQUINE MPQEdit", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (mpq == DialogResult.Yes)
+            {
+                frmRebuildMpq rebuild = new frmRebuildMpq();
+                rebuild.CopyOriginal = true;
+                rebuild.ShowDialog();
+            }
+            else if(mpq == DialogResult.No)
+            {
+                frmRebuildMpq rebuild = new frmRebuildMpq();
+                rebuild.ShowDialog();
+            }
+        }
+
+        private void menuItem40_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(Application.StartupPath + "/EquineData/DIABLODAT"))
+                menuItem43.Enabled = false;
+            else
+                menuItem43.Enabled = true;
         }
     }
 }

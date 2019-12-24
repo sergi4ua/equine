@@ -167,6 +167,12 @@
     <Compile Include="frmProperties.Designer.cs">
       <DependentUpon>frmProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRebuildMpq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRebuildMpq.Designer.cs">
+      <DependentUpon>frmRebuildMpq.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRemoveAMod.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProperties.resx">
       <DependentUpon>frmProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRebuildMpq.resx">
+      <DependentUpon>frmRebuildMpq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRemoveAMod.resx">
       <DependentUpon>frmRemoveAMod.cs</DependentUpon>
