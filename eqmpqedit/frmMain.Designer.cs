@@ -301,7 +301,7 @@
             this.renameToolStripMenuItem1,
             this.propertiesToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 142);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(128, 120);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // addReplaceToolStripMenuItem
@@ -339,8 +339,8 @@
             // supportOnPatreonToolStripMenuItem
             // 
             this.supportOnPatreonToolStripMenuItem.Name = "supportOnPatreonToolStripMenuItem";
-            this.supportOnPatreonToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.supportOnPatreonToolStripMenuItem.Text = "Support on Patreon";
+            this.supportOnPatreonToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.supportOnPatreonToolStripMenuItem.Text = "Support us on Patreon";
             this.supportOnPatreonToolStripMenuItem.Click += new System.EventHandler(this.supportOnPatreonToolStripMenuItem_Click);
             // 
             // toolStripSeparator5

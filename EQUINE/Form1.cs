@@ -1018,6 +1018,7 @@ namespace EQUINE
         {
             frmAbout about = new frmAbout();
             about.ModsCounter = ModInfos.ModInfo.Count;
+            about.ToolsCounter = listView2.Items.Count;
             about.ShowDialog();
         }
 

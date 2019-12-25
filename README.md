@@ -1,5 +1,6 @@
 [![Downloads](https://img.shields.io/github/downloads/sergi4ua/equine/total.svg)](https://github.com/sergi4ua/equine/releases)
 [![Downloads](https://img.shields.io/github/license/sergi4ua/equine.svg)](https://github.com/sergi4ua/equine/releases)
+[![Downloads](https://img.shields.io/github/stars/sergi4ua/equine)
 
 [Discord Server](https://discord.gg/ymqHuWE)
 
@@ -48,6 +49,10 @@ for beta testing and suggestions
 # Inspiration:
 
 fearedbliss' Cactus: https://github.com/fearedbliss/Cactus
+
+# Support:
+
+If you like EQUINE please consider supporting my [Patreon](https://patreon.com/sergi4ua). Thanks :)
 
 # Legal
 

@@ -34,6 +34,8 @@ namespace EQUINE
             set { mods = value; }
         }
 
+        public int ToolsCounter { get; set; }
+
         private void LinkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://discord.gg/NVT93NU");
@@ -56,7 +58,7 @@ namespace EQUINE
 
         private void FrmAbout_Load(object sender, EventArgs e)
         {
-            label9.Text = "EQUINE currently hosts " + mods + " mods.";
+            label9.Text = "EQUINE currently hosts " + mods + " mods and " + ToolsCounter + " tools.";
         }
 
         private void LinkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
