@@ -30,8 +30,6 @@ namespace eqmpqedit
 
         unsafe void openMPQ(string fileName)
         {
-            bool listFileMPQ = false;
-
             if (SFileOpenArchive(fileName, 2, 0x8000, ref mpqHandle) == true)
             {
                 Text = "EQUINE MPQEdit - " + Path.GetFileName(fileName);
@@ -233,7 +231,8 @@ namespace eqmpqedit
 
                 if (Storm.SFileOpenFile(item, ref tempHFile))
                 {
-                    mpqFileSize[i] = SFileGetFileSize(tempHFile, ref nothing);
+                    if(GlobalVariableContainer.showMPQFileSize)
+                        mpqFileSize[i] = SFileGetFileSize(tempHFile, ref nothing);
                     mpqFileNames.Add(item);
                     i++;
                 }
@@ -247,7 +246,10 @@ namespace eqmpqedit
             {
                 ListViewItem tempItem = new ListViewItem();
                 tempItem.Text = mpqFileNames[i2];
-                tempItem.SubItems.Add(Convert.ToString(mpqFileSize[i2]));
+                if (GlobalVariableContainer.showMPQFileSize)
+                    tempItem.SubItems.Add(Convert.ToString(mpqFileSize[i2]));
+                else
+                    tempItem.SubItems.Add("N/A");
 
                 this.BeginInvoke((MethodInvoker)delegate () {
                     listView1.Items.Add(tempItem);
@@ -288,6 +290,7 @@ namespace eqmpqedit
                     toolStripButton4.Enabled = false;
                     toolStripButton5.Enabled = false;
                     toolStripButton2.Enabled = false;
+                    listFileMPQ = false;
                 }
                 else
                     MessageBox.Show("Internal error.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -338,6 +341,7 @@ namespace eqmpqedit
 
                 MpqCloseUpdatedArchive(hMPQ, 0);
                 hMPQ = 0;
+                listFileMPQ = false;
                 closeMpq();
                 System.Threading.Thread.Sleep(1000);
                 openMPQ(sfd.FileName);
@@ -420,6 +424,19 @@ namespace eqmpqedit
                     }
                 }
 
+                string folderName = "";
+                string originalSFD = shortFileName;
+                var dResult = ShowInputDialog(ref folderName);
+                if (dResult == DialogResult.Cancel)
+                {
+                    MpqCloseUpdatedArchive(_hMPQ, 0);
+                    MessageBox.Show("Operation cancelled.", "EQUINE MPQEdit");
+                    return;
+                }
+
+                if (folderName != "")
+                    shortFileName = folderName + "\\" + shortFileName;
+
                 if (Storm.SFileOpenFile(shortFileName, ref listFileMPQ_handle))
                 {
                     fileExists = true;
@@ -451,16 +468,9 @@ namespace eqmpqedit
                     throw new Exception("ErrCode: " + Convert.ToString(Marshal.GetLastWin32Error()));
                 }
 
-                string folderName = "";
-                string originalSFD = shortFileName;
-                ShowInputDialog(ref folderName);
-
-                if(folderName != "")
-                    shortFileName = folderName + "\\" + shortFileName;
-
                 if(replaceFile)
                 {
-                    MpqDeleteFile(_hMPQ, originalSFD);
+                    MpqDeleteFile(_hMPQ, shortFileName);
                 }
 
                 // MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, Storm.MAFA_COMPRESS_STANDARD, 0x00000001,
@@ -494,47 +504,54 @@ namespace eqmpqedit
                         break;
                 }
 
-                MpqDeleteFile(_hMPQ, "(listfile)");
+                if(!GlobalVariableContainer.dontGenerateListFile)
+                    MpqDeleteFile(_hMPQ, "(listfile)");
 
                 listFile.Add(shortFileName);
 
-                using (StreamWriter sw = new StreamWriter(Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp"))
+                if (!GlobalVariableContainer.dontGenerateListFile)
                 {
-                    foreach(var item in listFile)
+                    using (StreamWriter sw = new StreamWriter(Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp"))
                     {
-                        sw.WriteLine(item);
+                        foreach (var item in listFile.Distinct())
+                        {
+                            sw.WriteLine(item);
+                        }
+                        sw.Close();
                     }
-                    sw.Close();
                 }
 
-                switch(GlobalVariableContainer.compressionType)
+                if (!GlobalVariableContainer.dontGenerateListFile)
                 {
-                    case GlobalVariableContainer.CompressionType.STANDARD:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
-                    Storm.MAFA_COMPRESS_STANDARD);
-                        break;
+                    switch (GlobalVariableContainer.compressionType)
+                    {
+                        case GlobalVariableContainer.CompressionType.STANDARD:
+                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
+                        Storm.MAFA_COMPRESS_STANDARD);
+                            break;
 
-                    case GlobalVariableContainer.CompressionType.BZIP2:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, 0x10,
-                    Storm.MAFA_COMPRESS_STANDARD);
-                        break;
+                        case GlobalVariableContainer.CompressionType.BZIP2:
+                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, 0x10,
+                        Storm.MAFA_COMPRESS_STANDARD);
+                            break;
 
-                    case GlobalVariableContainer.CompressionType.ZLIB:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, MAFA_COMPRESS_DEFLATE,
-                    1);
-                        break;
+                        case GlobalVariableContainer.CompressionType.ZLIB:
+                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, MAFA_COMPRESS_DEFLATE,
+                        1);
+                            break;
 
-                    default:
-                        MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
-                    Storm.MAFA_COMPRESS_STANDARD);
-                        break;
+                        default:
+                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
+                        Storm.MAFA_COMPRESS_STANDARD);
+                            break;
+                    }
+
+
+                    MpqDeleteFile(_hMPQ, "(listfile)");
+
+                    MpqRenameFile(_hMPQ, "listfile.tmp", "(listfile)");
+
                 }
-                
-
-                MpqDeleteFile(_hMPQ, "(listfile)");
-
-                MpqRenameFile(_hMPQ, "listfile.tmp", "(listfile)");
-
                 MpqCloseUpdatedArchive(_hMPQ, 0);
 
                 listView1.Items.Clear();
@@ -550,7 +567,7 @@ namespace eqmpqedit
 
         private static DialogResult ShowInputDialog(ref string input)
         {
-            System.Drawing.Size size = new System.Drawing.Size(250, 220);
+            System.Drawing.Size size = new System.Drawing.Size(250, 180);
             Form inputBox = new Form();
             inputBox.StartPosition = FormStartPosition.CenterScreen;
 
@@ -559,7 +576,7 @@ namespace eqmpqedit
             inputBox.Text = "Folder name";
 
             Label label = new Label();
-            label.Text = "Please type the path, where the file can\nbe accessed within the MPQ (without \\ and filename).";
+            label.Text = "Please type the path, where the file can\nbe accessed inside the MPQ (without \\ and filename).\nIf the file already exists, it will be overwritten.";
             label.Size = new System.Drawing.Size(size.Width - 10, 50);
             label.Location = new System.Drawing.Point(5, 63);
             inputBox.Controls.Add(label);
@@ -722,17 +739,21 @@ namespace eqmpqedit
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(listView1.SelectedItems.Count == 0)
-            {
-                extractToolStripMenuItem.Enabled = false;
-                deleteToolStripMenuItem.Enabled = false;
-            }
-            else
+            if(listView1.SelectedItems.Count > 0)
             {
                 extractToolStripMenuItem.Enabled = true;
                 deleteToolStripMenuItem.Enabled = true;
+                renameToolStripMenuItem.Enabled = true;
                 toolStripButton4.Enabled = true;
                 toolStripButton5.Enabled = true;
+            }
+            else
+            {
+                extractToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                renameToolStripMenuItem.Enabled = false;
+                toolStripButton4.Enabled = false;
+                toolStripButton5.Enabled = false;
             }
 
             if (mpqHandle == 0)
@@ -753,12 +774,80 @@ namespace eqmpqedit
 
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string oldFileName = listView1.SelectedItems[0].Text;
+
+                frmRename rename = new frmRename();
+                rename.fileName = oldFileName;
+                rename.ShowDialog();
+                var dResult = rename.DialogResult;
+
+                if (dResult == DialogResult.OK)
+                {
+                    string currentMpqPath = openMPQPath;
+                    closeMpq();
+                    System.Threading.Thread.Sleep(1000);
+                    int __hMpq = MpqOpenArchiveForUpdate(currentMpqPath, MOAU_OPEN_EXISTING | MOAU_MAINTAIN_LISTFILE, GlobalVariableContainer.MAX_MPQ_FILES);
+                    if(__hMpq == -1)
+                    {
+                        MessageBox.Show("Failed to rename file.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        openMPQ(currentMpqPath);
+                        return;
+                    }
+
+                    MpqRenameFile(__hMpq, oldFileName, rename.fileName);
+                    MpqCloseUpdatedArchive(__hMpq, 0);
+                    openMPQ(currentMpqPath);
+                }
+            }
         }
 
         private void moveToFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void supportOnPatreonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://patreon.com/sergi4ua");
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            frmAbout about = new frmAbout();
+            about.ShowDialog();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                extractToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+                renameToolStripMenuItem.Enabled = true;
+                toolStripButton4.Enabled = true;
+                toolStripButton5.Enabled = true;
+            }
+            else
+            {
+                extractToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                renameToolStripMenuItem.Enabled = false;
+                toolStripButton4.Enabled = false;
+                toolStripButton5.Enabled = false;
+            }
+
+            if (mpqHandle == 0)
+                addToolStripMenuItem.Enabled = false;
+            else
+                addToolStripMenuItem.Enabled = true;
+        }
+
+        private void renameToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if(listView1.SelectedItems.Count > 0)
+                renameToolStripMenuItem.PerformClick();
         }
     }
 }

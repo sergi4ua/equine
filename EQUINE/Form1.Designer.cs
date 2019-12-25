@@ -43,7 +43,6 @@ namespace EQUINE
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
@@ -53,7 +52,7 @@ namespace EQUINE
             "N/A",
             "Yes"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.mainMenu1 = new System.Windows.Forms.MainMenu();
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem10 = new System.Windows.Forms.MenuItem();
             this.menuItem11 = new System.Windows.Forms.MenuItem();
@@ -116,7 +115,7 @@ namespace EQUINE
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.launchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uninstallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openModFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,6 +148,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.menuItem48 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -461,6 +461,7 @@ namespace EQUINE
             this.menuItem31,
             this.menuItem36,
             this.menuItem37,
+            this.menuItem48,
             this.menuItem32});
             this.menuItem29.Text = "Help";
             // 
@@ -490,7 +491,7 @@ namespace EQUINE
             // 
             // menuItem32
             // 
-            this.menuItem32.Index = 4;
+            this.menuItem32.Index = 5;
             this.menuItem32.Text = "About EQUINE...";
             this.menuItem32.Click += new System.EventHandler(this.MenuItem32_Click);
             // 
@@ -950,6 +951,12 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // menuItem48
+            // 
+            this.menuItem48.Index = 4;
+            this.menuItem48.Text = "Support on Patreon";
+            this.menuItem48.Click += new System.EventHandler(this.menuItem48_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1083,6 +1090,7 @@ namespace EQUINE
         private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.Button visitWebsiteBtn;
         private System.Windows.Forms.MenuItem menuItem47;
+        private System.Windows.Forms.MenuItem menuItem48;
     }
 }
 

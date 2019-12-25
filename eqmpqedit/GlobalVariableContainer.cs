@@ -24,5 +24,7 @@ namespace eqmpqedit
         public static bool ignoreEmbedListFile = false;
         public static uint MAX_MPQ_FILES = 4096;
         public static CompressionType compressionType = CompressionType.STANDARD;
+        public static bool showMPQFileSize = true;
+        public static bool dontGenerateListFile = false;
     }
 }

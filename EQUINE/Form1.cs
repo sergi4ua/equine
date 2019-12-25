@@ -1117,7 +1117,7 @@ namespace EQUINE
 
         private void MenuItem42_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Extract DIABDAT.MPQ?", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Extract DIABDAT.MPQ?", "EQUINE MPQEdit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 try
                 {
@@ -1311,6 +1311,11 @@ namespace EQUINE
                 menuItem43.Enabled = false;
             else
                 menuItem43.Enabled = true;
+        }
+
+        private void menuItem48_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://patreon.com/sergi4ua");
         }
     }
 }

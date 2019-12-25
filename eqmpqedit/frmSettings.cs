@@ -14,7 +14,7 @@ namespace eqmpqedit
     public partial class frmSettings : Form
     {
         public bool mpqOpen { get; set; }
-        bool listFileModified = false;
+        private bool listFileModified = false;
 
         public frmSettings()
         {
@@ -34,6 +34,8 @@ namespace eqmpqedit
             comboBox1.SelectedIndex = 0;
             numericUpDown1.Value = GlobalVariableContainer.MAX_MPQ_FILES;
             checkBox1.Checked = GlobalVariableContainer.ignoreEmbedListFile;
+            checkBox2.Checked = GlobalVariableContainer.showMPQFileSize;
+            checkBox3.Checked = GlobalVariableContainer.dontGenerateListFile;
 
             switch(GlobalVariableContainer.compressionType)
             {
@@ -82,6 +84,8 @@ namespace eqmpqedit
         {
             GlobalVariableContainer.ignoreEmbedListFile = checkBox1.Checked;
             GlobalVariableContainer.listFiles.Clear();
+            GlobalVariableContainer.showMPQFileSize = checkBox2.Checked;
+            GlobalVariableContainer.dontGenerateListFile = checkBox3.Checked;
 
             foreach (var item in listBox1.Items)
             {
@@ -133,6 +137,11 @@ namespace eqmpqedit
         private void frmSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
             listFileModified = false;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

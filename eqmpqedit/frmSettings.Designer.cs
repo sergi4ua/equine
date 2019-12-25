@@ -43,7 +43,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -187,36 +186,26 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(12, 188);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(158, 17);
+            this.checkBox2.Size = new System.Drawing.Size(97, 17);
             this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Don\'t display file size (faster)";
+            this.checkBox2.Text = "Display file size";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(176, 188);
+            this.checkBox3.Location = new System.Drawing.Point(12, 211);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(167, 17);
-            this.checkBox3.TabIndex = 7;
-            this.checkBox3.Text = "Get compression type (slower)";
+            this.checkBox3.Size = new System.Drawing.Size(218, 17);
+            this.checkBox3.TabIndex = 10;
+            this.checkBox3.Text = "Don\'t generate internal listfile (advanced)";
             this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(373, 180);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(156, 21);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "(listfile) Editor (advanced)";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 236);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button4);
@@ -261,6 +250,5 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Button button5;
     }
 }
