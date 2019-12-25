@@ -1,6 +1,6 @@
 [![Downloads](https://img.shields.io/github/downloads/sergi4ua/equine/total.svg)](https://github.com/sergi4ua/equine/releases)
-[![Downloads](https://img.shields.io/github/license/sergi4ua/equine.svg)](https://github.com/sergi4ua/equine/releases)
-[![Downloads](https://img.shields.io/github/stars/sergi4ua/equine)
+[![Downloads](https://img.shields.io/github/license/sergi4ua/equine.svg)]
+[![Downloads](https://img.shields.io/github/stars/sergi4ua/equine)]
 
 [Discord Server](https://discord.gg/ymqHuWE)
 
