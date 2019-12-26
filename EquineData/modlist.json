@@ -1,6 +1,24 @@
 {
     "ModInfo": [
-      {
+	  {
+	  "ModId": "-1",
+        "ModName": "Polish Localization",
+        "Game": "Diablo",
+        "Description": "Polska wersja Diablo",
+        "Author": "Noktis",
+        "ModVersion": "N/A",
+        "WebSite": "https://noktis.pl/",
+        "DL": "https://www.dropbox.com/s/1m0w1khophz1v7q/DiabloPolska.zip?dl=1",
+        "DL2": "null",
+        "md5": "3A0262276512A50A860C5953A4B554AB4A988822",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "null",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "DiabloPL.exe"
+      },
+	  {
         "ModId": "0",
         "ModName": "Infernity",
         "Game": "Diablo",
