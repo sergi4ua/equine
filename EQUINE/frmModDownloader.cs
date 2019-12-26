@@ -73,13 +73,13 @@ namespace EQUINE
             if (!Polska)
                 label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
             else
-                label1.Text = "EQUINE lokalizuje twoją instalację Diablo...";
+                label1.Text = "EQUINE zmienia język twojej instalacji Diablo na Polski...";
             getFileSize.RunWorkerAsync();
 
             if (Polska)
             {
                 groupBox1.Text = "Postęp";
-                label3.Text = "Rozmiar pliku";
+                label3.Text = "Rozmiar pliku:";
                 Text = "Instalowanie...";
             }
 

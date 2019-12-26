@@ -83,7 +83,7 @@ namespace EQUINE
             // fileSize
             // 
             this.fileSize.AutoSize = true;
-            this.fileSize.Location = new System.Drawing.Point(74, 118);
+            this.fileSize.Location = new System.Drawing.Point(93, 118);
             this.fileSize.Name = "fileSize";
             this.fileSize.Size = new System.Drawing.Size(53, 13);
             this.fileSize.TabIndex = 6;
