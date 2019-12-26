@@ -67,6 +67,13 @@ namespace eqmpqedit
                 case GlobalVariableContainer.CompressionType.WAVE:
                     comboBox1.SelectedIndex = 3;
                     break;
+                case GlobalVariableContainer.CompressionType.NO_COMPRESSION:
+                    comboBox1.SelectedIndex = 4;
+                    break;
+
+                case GlobalVariableContainer.CompressionType.ENCRYPT:
+                    comboBox1.SelectedIndex = 5;
+                    break;
             }
         }
 
@@ -125,6 +132,14 @@ namespace eqmpqedit
 
                 case 3:
                     GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.WAVE;
+                    break;
+
+                case 4:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.NO_COMPRESSION;
+                    break;
+
+                case 5:
+                    GlobalVariableContainer.compressionType = GlobalVariableContainer.CompressionType.ENCRYPT;
                     break;
             }
 

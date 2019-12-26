@@ -29,7 +29,9 @@ namespace eqmpqedit
             STANDARD = 0,
             BZIP2 = 1,
             ZLIB = 2,
-            WAVE = 3
+            WAVE = 3,
+            NO_COMPRESSION = 4,
+            ENCRYPT = 5
         }
 
         public static List<string> listFiles = new List<string>

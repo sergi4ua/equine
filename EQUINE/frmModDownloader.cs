@@ -44,6 +44,8 @@ namespace EQUINE
         private List<string> extractedFileList = new List<string>();
         private string fileName;
 
+        public bool Polska { get; set; }
+
         public bool toolDLMode { get; set; }
 
         [DllImport("kernel32.dll")]
@@ -68,8 +70,18 @@ namespace EQUINE
         private void frmModDownloader_Load(object sender, EventArgs e)
         {
             // file rozmir = file size in ukrainian (translit)
-            label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
+            if (!Polska)
+                label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";
+            else
+                label1.Text = "EQUINE lokalizuje twoją instalację Diablo...";
             getFileSize.RunWorkerAsync();
+
+            if (Polska)
+            {
+                groupBox1.Text = "Postęp";
+                label3.Text = "Rozmiar pliku";
+                Text = "Instalowanie...";
+            }
 
             if (toolDLMode)
                 status.Text = "Downloading tool data...";
@@ -100,8 +112,13 @@ namespace EQUINE
             if (dl != null)
             {
                 progressBar1.Value = (int)dl.downloadProgress;
-                if(!toolDLMode)
-                    status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+                if (!toolDLMode)
+                {
+                    if (!Polska)
+                        status.Text = "Downloading mod data (" + progressBar1.Value + "%)";
+                    else
+                        status.Text = "Pobieranie modyfikacji (" + progressBar1.Value + "%)";
+                }
                 else
                     status.Text = "Downloading mod tool (" + progressBar1.Value + "%)";
 
@@ -112,15 +129,18 @@ namespace EQUINE
                 timer1.Enabled = false;
                 progressBar1.Style = ProgressBarStyle.Marquee;
                 progressBar1.MarqueeAnimationSpeed = 30;
-                status.Text = "Extracting ZIP-archive...";
+                if (!Polska)
+                    status.Text = "Extracting ZIP-archive...";
+                else
+                    status.Text = "Wypakowywanie modyfikacji...";
                 backgroundWorker1.RunWorkerAsync();
             }
         }
 
         private void ExtractFile()
         {
-           // try
-           // {
+            try
+            {
                 if (!cancelled)
                 {
                     //button1.BeginInvoke((MethodInvoker)delegate () { button1.Enabled = false; });
@@ -181,20 +201,27 @@ namespace EQUINE
                         MessageBox.Show("Unknown error:\n" + ex.Message, "Critical Error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
 
-                    if(!toolDLMode)
+                if (!toolDLMode)
+                {
+                    if (!Polska)
                         MessageBox.Show("Mod " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     else
-                        MessageBox.Show("Tool " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Sukces. EQUINE uruchomi się ponownie.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Tool " + modName + " installed successfully!\nApplication will now restart (if it didn't, please restart the application manually)", "Installation complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Restart();
                 }
+
+                Polska = false;
             }
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
-            //    this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
-            //    this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
-            //}
-        //}
+            catch(Exception ex)
+            {
+                MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
+                this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
+                this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
+            }
+        }
 
         private void CreateUninstallFile()
         {

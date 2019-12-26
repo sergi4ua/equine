@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -100,6 +100,7 @@ namespace EQUINE
             this.menuItem31 = new System.Windows.Forms.MenuItem();
             this.menuItem36 = new System.Windows.Forms.MenuItem();
             this.menuItem37 = new System.Windows.Forms.MenuItem();
+            this.menuItem48 = new System.Windows.Forms.MenuItem();
             this.menuItem32 = new System.Windows.Forms.MenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -149,7 +150,6 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem48 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -490,6 +490,12 @@ namespace EQUINE
             this.menuItem37.Text = "Official Website";
             this.menuItem37.Click += new System.EventHandler(this.MenuItem37_Click);
             // 
+            // menuItem48
+            // 
+            this.menuItem48.Index = 4;
+            this.menuItem48.Text = "Support us on Patreon";
+            this.menuItem48.Click += new System.EventHandler(this.menuItem48_Click);
+            // 
             // menuItem32
             // 
             this.menuItem32.Index = 5;
@@ -598,9 +604,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -951,12 +957,6 @@ namespace EQUINE
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // menuItem48
-            // 
-            this.menuItem48.Index = 4;
-            this.menuItem48.Text = "Support us on Patreon";
-            this.menuItem48.Click += new System.EventHandler(this.menuItem48_Click);
             // 
             // Form1
             // 

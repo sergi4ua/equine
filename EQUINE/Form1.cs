@@ -67,9 +67,6 @@ namespace EQUINE
             readConfig();
             if (config.autoUpdate)
                 checkModUpdates();
-
-
-
         }
 
         private void initToolList()
@@ -457,6 +454,8 @@ namespace EQUINE
                                 modDL.modName = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].ModName;
                                 modDL.startExe0 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall;
                                 modDL.startExe1 = ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].RunExeAfterInstall2;
+                                if (modDL.modName == "Polish Localization")
+                                    modDL.Polska = true;
                                 modDL.ShowDialog();
 
                                 Uri modDLuri = new Uri(ModInfos.ModInfo[listView1.SelectedIndices[0] - 1].DL);

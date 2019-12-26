@@ -92,7 +92,7 @@ namespace eqmpqedit
         {
             OpenFileDialog mpqOpenDialog = new OpenFileDialog();
             mpqOpenDialog.Title = "Open MPQ...";
-            mpqOpenDialog.Filter = "MPQ Files (*.mpq)|*.mpq|The Hell 1/2 Archive (*.mor)|*.mor|All files (*.*)|*.*";
+            mpqOpenDialog.Filter = "MPQ Files (*.mpq)|*.mpq|The Hell 1/2 Archive (*.mor)|*.mor|Diablo 1 Save Files (*.sv)|*.sv|Hellfire Save Files (*.hsv)|*.hsv|All files (*.*)|*.*";
 
             if(mpqOpenDialog.ShowDialog() == DialogResult.OK)
             {
@@ -514,6 +514,10 @@ namespace eqmpqedit
                         MessageBox.Show("WAVE compression enabled.", "Note");
                         break;
 
+                    case GlobalVariableContainer.CompressionType.NO_COMPRESSION:
+                        MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x80000000, 0, 0);
+                        break;
+
                     default:
                         MpqAddFileToArchiveEx(_hMPQ, fileName, shortFileName, 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
                     Storm.MAFA_COMPRESS_STANDARD);
@@ -539,29 +543,8 @@ namespace eqmpqedit
 
                 if (!GlobalVariableContainer.dontGenerateListFile)
                 {
-                    switch (GlobalVariableContainer.compressionType)
-                    {
-                        case GlobalVariableContainer.CompressionType.STANDARD:
-                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
-                        Storm.MAFA_COMPRESS_STANDARD);
-                            break;
-
-                        case GlobalVariableContainer.CompressionType.BZIP2:
-                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, 0x10,
-                        Storm.MAFA_COMPRESS_STANDARD);
-                            break;
-
-                        case GlobalVariableContainer.CompressionType.ZLIB:
-                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000200, MAFA_COMPRESS_DEFLATE,
-                        1);
-                            break;
-
-                        default:
-                            MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
-                        Storm.MAFA_COMPRESS_STANDARD);
-                            break;
-                    }
-
+                    MpqAddFileToArchiveEx(_hMPQ, Application.StartupPath + "/EquineData/eqmpqedit/listfile.tmp", "listfile.tmp", 0x00000100, Storm.MAFA_COMPRESS_STANDARD,
+                       Storm.MAFA_COMPRESS_STANDARD);
 
                     MpqDeleteFile(_hMPQ, "(listfile)");
 
