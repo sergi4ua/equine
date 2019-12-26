@@ -240,7 +240,7 @@ namespace eqmpqedit
 
             // check if all files are valid
 
-            foreach (var item in listFileContent)
+            foreach (var item in listFileContent.Distinct())
             {
                 uint nothing = 0;
                 int tempHFile = 0;
@@ -847,6 +847,32 @@ namespace eqmpqedit
         {
             if(listView1.SelectedItems.Count > 0)
                 renameToolStripMenuItem.PerformClick();
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool no_results = true;
+
+            frmSearch searcher = new frmSearch();
+            searcher.ShowDialog();
+
+            if(searcher.DialogResult == DialogResult.OK)
+            {
+                listView1.SelectedIndices.Clear();
+                foreach(ListViewItem lvi in listView1.Items)
+                {
+                    if(lvi.Text == searcher.fileName)
+                    {
+                        listView1.SelectedIndices.Add(lvi.Index);
+                        listView1.EnsureVisible(lvi.Index);
+                        no_results = false;
+                        break;
+                    }
+                }
+
+                if (no_results)
+                    MessageBox.Show("No file found.", "EQUINE MPQEdit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
