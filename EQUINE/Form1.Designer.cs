@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -150,6 +150,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -604,9 +605,9 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem1.UseItemStyleForSubItems = false;
+            listViewItem2.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -716,6 +717,7 @@ namespace EQUINE
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.visitWebsiteBtn);
             this.tabPage2.Controls.Add(this.uninstallToolBtn);
             this.tabPage2.Controls.Add(this.installLaunchToolBtn);
@@ -739,6 +741,7 @@ namespace EQUINE
             this.visitWebsiteBtn.TabIndex = 4;
             this.visitWebsiteBtn.Text = "Visit Website";
             this.visitWebsiteBtn.UseVisualStyleBackColor = true;
+            this.visitWebsiteBtn.Click += new System.EventHandler(this.visitWebsiteBtn_Click);
             // 
             // uninstallToolBtn
             // 
@@ -958,6 +961,16 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 440);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Open Tools Folder";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1092,6 +1105,7 @@ namespace EQUINE
         private System.Windows.Forms.Button visitWebsiteBtn;
         private System.Windows.Forms.MenuItem menuItem47;
         private System.Windows.Forms.MenuItem menuItem48;
+        private System.Windows.Forms.Button button3;
     }
 }
 

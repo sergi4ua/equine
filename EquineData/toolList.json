@@ -16,5 +16,41 @@
     "Executable": "D1GraphicsTool.exe",
     "Author": "savagesteel",
 	"DL": "https://www.sergi4ua.com/equine/modtools/d1gt.zip"
+  },
+  {
+    "Name": "DunEdit",
+    "Website": "N/A",
+    "Description": "Level Editor (make sure to read the readme)",
+    "Version": "N/A",
+    "Executable": "edit_dun.exe",
+    "Author": "Ulmo",
+	"DL": "https://www.sergi4ua.com/equine/modtools/dunedit.zip"
+  },
+  {
+    "Name": "The Dark Graphics",
+    "Website": "N/A",
+    "Description": "CEL/CL2 editor",
+    "Version": "N/A",
+    "Executable": "TDG23.exe",
+    "Author": "The Dark Team",
+	"DL": "https://www.sergi4ua.com/equine/modtools/tdg.zip"
+  },
+  {
+    "Name": "Tile Viewer",
+    "Website": "N/A",
+    "Description": "Tile viewer",
+    "Version": "N/A",
+    "Executable": "ViewTile.exe",
+    "Author": "Ulmo",
+	"DL": "https://www.sergi4ua.com/equine/modtools/tileviewer.zip"
+  },
+  {
+    "Name": "CEL Maker",
+    "Website": "N/A",
+    "Description": "CEL Maker",
+    "Version": "N/A",
+    "Executable": "CEL Maker.exe",
+    "Author": "Ulmo",
+	"DL": "https://www.sergi4ua.com/equine/modtools/celmaker.zip"
   }
 ]

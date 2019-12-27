@@ -1318,5 +1318,24 @@ namespace EQUINE
         {
             Process.Start("https://patreon.com/sergi4ua");
         }
+
+        private void visitWebsiteBtn_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0)
+            {
+                ToolInfo localToolInfo = toolInfo[listView2.SelectedIndices[0]];
+
+                if (localToolInfo.Website != "N/A")
+                    Process.Start(localToolInfo.Website);
+            }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            if (Directory.Exists(Application.StartupPath + "/EquineData/ModdingTools"))
+                Directory.CreateDirectory(Application.StartupPath + "/EquineData/ModdingTools");
+
+            Process.Start(Application.StartupPath + "/EquineData/ModdingTools");
+        }
     }
 }
