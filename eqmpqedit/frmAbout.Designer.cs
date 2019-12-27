@@ -61,9 +61,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
+            this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Version: 0.6 Unihorn";
+            this.label3.Text = "Version: 0.6.1 Unihorn";
             // 
             // label4
             // 

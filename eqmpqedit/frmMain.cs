@@ -306,6 +306,7 @@ namespace eqmpqedit
                     toolStripButton4.Enabled = false;
                     toolStripButton5.Enabled = false;
                     toolStripButton2.Enabled = false;
+                    addToolStripMenuItem.Enabled = false;
                     listFileMPQ = false;
                 }
                 else
@@ -335,6 +336,7 @@ namespace eqmpqedit
             toolStripButton2.Enabled = true;
             toolStripButton4.Enabled = true;
             toolStripButton5.Enabled = true;
+            addToolStripMenuItem.Enabled = true;
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -361,6 +363,9 @@ namespace eqmpqedit
                 closeMpq();
                 System.Threading.Thread.Sleep(1000);
                 openMPQ(sfd.FileName);
+                addToolStripMenuItem.Enabled = true;
+                toolStripButton4.Enabled = false;
+                toolStripButton5.Enabled = false;
             }
         }
 
@@ -445,7 +450,8 @@ namespace eqmpqedit
                 var dResult = ShowInputDialog(ref folderName);
                 if (dResult == DialogResult.Cancel)
                 {
-                    MpqCloseUpdatedArchive(_hMPQ, 0);
+                    if(_hMPQ != -1)
+                        MpqCloseUpdatedArchive(_hMPQ, 0);
                     MessageBox.Show("Operation cancelled.", "EQUINE MPQEdit");
                     return;
                 }
@@ -576,7 +582,7 @@ namespace eqmpqedit
 
             Label label = new Label();
             label.Text = "Please type the path, where the file can\nbe accessed inside the MPQ (without \\ and filename).\nIf the file already exists, it will be overwritten.";
-            label.Size = new System.Drawing.Size(size.Width - 10, 50);
+            label.Size = new System.Drawing.Size(size.Width - 10, 70);
             label.Location = new System.Drawing.Point(5, 63);
             inputBox.Controls.Add(label);
 
