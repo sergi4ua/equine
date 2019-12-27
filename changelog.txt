@@ -1,3 +1,72 @@
+1.0:
+Codename: Unihorn
+
+Added:
+	- Tools tab
+	- MPQ editor (eqmpqedit.dll)
+	- Splash screen
+	- Added the ability to extract DIABDAT.MPQ
+	- Added rebuild functions for DIABDAT.MPQ
+	- Downloader now displays file size of the mod ZIP-file
+	- EQUINE Update Utility now allows you to press "No" to skip the update
+	- You can now disable automatic updates
+	- Custom exception handler
+	- -skipupdate command line switch
+	- Added link to Patreon page
+	- Added Devilution Subreddit to Community tab
+	- You can now downgrade to 1.02, 1.03, 1.04 (thanks RetroGamer02) (Beta 2)
+
+Changed:
+	- Uninstall feature no longer requires .uninstall files
+	- Status now shows current percentage of the progress bar in the downloader (aka green bar)
+	- EQUINE Update Utility received an overhaul
+
+Fixed:
+	- Bug fixes
+	- Uninstall fixed.
+	- EQUINE once again, can install Microsoft Visual C++ (if required) or show you the ReadMe file (if one exists).	
+
+1.0 RC1
+Added:
+	- Added rename feature to EQUINE MPQEdit
+	- Rebuild DIABDAT.MPQ
+	- Added link to Patreon page
+	- Added Devilution Subreddit to Community tab
+
+Fixed:
+	- Bug fixes for EQUINE MPQEdit
+	- Small bug fixes for EQUINE
+
+1.0 Beta 2
+Added:
+	- You can now downgrade to 1.02, 1.03, 1.04 (thanks RetroGamer02) (Beta 2)
+
+1.0 Beta 1
+Codename: Unihorn
+The biggest update yet!
+
+Added:
+	- Tools tab
+	- MPQ editor (eqmpqedit.dll)
+	- Splash screen
+	- Added the ability to extract DIABDAT.MPQ (the new MPQ submenu)
+	- Added rebuild functions for DIABDAT.MPQ (not implemented yet)
+	- Downloader now displays file size of the mod ZIP-file
+	- EQUINE Update Utility now allows you to press "No" to skip the update
+	- You can now disable automatic updates
+	- Custom exception handler
+	- -skipupdate command line switch
+
+Changed:
+	- Uninstall feature no longer requires .uninstall files
+	- Status now shows current percentage of the progress bar in the downloader (aka green bar)
+	- EQUINE Update Utility received an overhaul
+
+Fixed:
+	- Uninstall fixed.
+	- EQUINE once again, can install Microsoft Visual C++ (if required) or show you the ReadMe file (if one exists).
+	- Various small bug fixes and tweaks
+
 0.8.1 Codename: Pegasus
 Last Early Access version until release.
 
@@ -9,13 +78,18 @@ Added:
 	- Added Phrozen Keep to Community tab
 	- Added Diablo sub-reddit to Community tab
 	- Added Diablo 1 sub-reddit to Community tab
+	- Added Crucible Mod channel to Community > Discord Channels tab
 	- GOG support
+	- Create a mod shortcut on your desktop, finally!
+	- INIT-EQUINE link on the top-right corner of the initalization window (in cases, where you can't click the 'Initalize' button)
 
 Fixed:
 	- Fixed a bug with Hellfire mods not working due to missing hellfire.mpq
+	- Fixed Unhandled Exception that can sometimes happen when launching EQUINE.
 
 Changed:
 	- 'About' moved to the new 'Help' tab
+	- 'About' is now dialog
 
 0.8-a/b/c:
 - Fixes Tchernobog updates
