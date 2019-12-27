@@ -60,9 +60,9 @@ namespace EQUINE
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     if(_109b == false)
-                        wc.DownloadFile("http://sergi4ua.pp.ua/equine/versions/d1forceupdate.zip", Application.StartupPath + "\\d1forceupdate.zip");
+                        wc.DownloadFile("http://sergi4ua.com/equine/versions/d1forceupdate.zip", Application.StartupPath + "\\d1forceupdate.zip");
                     else
-                        wc.DownloadFile("http://sergi4ua.pp.ua/equine/versions/Diablo-1.09b.zip", Application.StartupPath + "\\d1forceupdate.zip");
+                        wc.DownloadFile("http://sergi4ua.com/equine/versions/Diablo-1.09b.zip", Application.StartupPath + "\\d1forceupdate.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\d1forceupdate.zip", System.IO.FileAccess.Read);

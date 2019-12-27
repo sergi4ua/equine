@@ -50,7 +50,7 @@ namespace EQUINE
                 // add support for TLS 1.2 (screaming)
                 WebClient wc = new WebClient();
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                wc.DownloadFile("https://sergi4ua.pp.ua/equine/EquineData.zip", Application.StartupPath + "\\equinedata.zip");
+                wc.DownloadFile("https://sergi4ua.com/equine/EquineData.zip", Application.StartupPath + "\\equinedata.zip");
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\equinedata.zip", FileAccess.Read);
                 List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();
@@ -117,7 +117,7 @@ namespace EQUINE
             try
             {
                 WebClient wc = new WebClient();
-                wc.DownloadFile(new Uri("http://sergi4ua.pp.ua/equine/EquineData.zip"), Application.StartupPath + "\\equinedata.zip");
+                wc.DownloadFile(new Uri("http://sergi4ua.com/equine/EquineData.zip"), Application.StartupPath + "\\equinedata.zip");
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\equinedata.zip", FileAccess.Read);
                 List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();

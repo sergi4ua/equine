@@ -103,7 +103,7 @@ namespace EQUINE
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     WebClient webClient = new WebClient();
-                    webClient.DownloadFile("https://sergi4ua.pp.ua/equine/EQUINE_hash.sha", Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
+                    webClient.DownloadFile("https://sergi4ua.com/equine/EQUINE_hash.sha", Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
                 }
             }
 

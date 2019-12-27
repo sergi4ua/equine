@@ -106,7 +106,7 @@ namespace EQUINE
                 using (WebClient wc = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    wc.DownloadFile("https://sergi4ua.pp.ua/equine/versions/Diablo-1.00.zip", Application.StartupPath + "\\dv100.zip");
+                    wc.DownloadFile("https://sergi4ua.com/equine/versions/Diablo-1.00.zip", Application.StartupPath + "\\dv100.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);
@@ -124,7 +124,7 @@ namespace EQUINE
                 using (WebClient wc = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    wc.DownloadFile("https://sergi4ua.pp.ua/equine/versions/Diablo-1.07.zip", Application.StartupPath + "\\dv100.zip");
+                    wc.DownloadFile("https://sergi4ua.com/equine/versions/Diablo-1.07.zip", Application.StartupPath + "\\dv100.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);
@@ -142,7 +142,7 @@ namespace EQUINE
                 using (WebClient wc = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                    wc.DownloadFile("https://sergi4ua.pp.ua/equine/versions/Diablo-1.08.zip", Application.StartupPath + "\\dv100.zip");
+                    wc.DownloadFile("https://sergi4ua.com/equine/versions/Diablo-1.08.zip", Application.StartupPath + "\\dv100.zip");
                 }
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\dv100.zip", System.IO.FileAccess.Read);

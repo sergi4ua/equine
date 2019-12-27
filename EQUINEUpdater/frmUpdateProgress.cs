@@ -44,7 +44,7 @@ namespace EQUINEUpdater
             {
                 WebClient wc = new WebClient();
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-                wc.DownloadFile("https://sergi4ua.pp.ua/equine/EQUINEUpdate.zip", Application.StartupPath + "\\..\\equineupdate.zip");
+                wc.DownloadFile("https://sergi4ua.com/equine/EQUINEUpdate.zip", Application.StartupPath + "\\..\\equineupdate.zip");
 
                 ZipStorer zip = ZipStorer.Open(Application.StartupPath + "\\..\\equineupdate.zip", FileAccess.Read);
                 List<ZipStorer.ZipFileEntry> dir = zip.ReadCentralDir();

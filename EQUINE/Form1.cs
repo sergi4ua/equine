@@ -1073,7 +1073,7 @@ namespace EQUINE
 
         private void MenuItem37_Click(object sender, EventArgs e)
         {
-            Process.Start("https://sergi4ua.pp.ua/equine");
+            Process.Start("https://sergi4ua.com/equine");
         }
 
         private void MenuItem38_Click(object sender, EventArgs e)

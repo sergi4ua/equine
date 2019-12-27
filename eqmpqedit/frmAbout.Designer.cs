@@ -70,9 +70,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(266, 13);
+            this.label4.Size = new System.Drawing.Size(263, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "This application uses SFmpq library from ShadowFlake.";
+            this.label4.Text = "This application uses SFmpq library from ShadowFlare.";
             // 
             // label5
             // 
@@ -81,7 +81,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(202, 39);
             this.label5.TabIndex = 4;
-            this.label5.Text = "EQUINE, EQUINE MPQEdit by Sergi4UA\r\nWinMPQ and SFmpq by ShadowFlake\r\nMusic: stupi" +
+            this.label5.Text = "EQUINE, EQUINE MPQEdit by Sergi4UA\r\nWinMPQ and SFmpq by ShadowFlare\r\nMusic: stupi" +
     "d_bird.mod by unknown artist";
             // 
             // linkLabel1

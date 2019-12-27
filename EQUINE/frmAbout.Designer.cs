@@ -92,9 +92,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(15, 148);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Thanks :)";
+            this.label5.Text = "Thanks to:)";
             // 
             // label6
             // 
@@ -103,7 +103,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 104);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Qndel\r\nRadTang\r\nDavias\r\nOgodei\r\nSkarn\r\nfearedbliss\r\nbrunocar\r\nRetroGamer02";
+            this.label6.Text = "qndel\r\nRadTang\r\nDavias\r\nOgodei\r\nSkarn\r\nfearedbliss\r\nbrunocar\r\nRetroGamer02";
             // 
             // label7
             // 
