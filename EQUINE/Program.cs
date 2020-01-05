@@ -135,8 +135,19 @@ namespace EQUINE
                     {
                         MessageBox.Show("Unable to update EQUINEUpdater.exe");
                     }
+            }
+            else
+            {
+                if (Directory.Exists(Application.StartupPath + "/EquineData"))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    WebClient wc = new WebClient();
+                    wc.DownloadFile("https://www.sergi4ua.com/equine/EQUINEUpdater_hash.sha", Application.StartupPath + "/EquineData/EQUINEUpdater_hash.sha");
+                    wc.Dispose();
+                    updateEquineUpdater();
                 }
             }
+         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
