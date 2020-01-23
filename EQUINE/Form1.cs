@@ -1337,5 +1337,65 @@ namespace EQUINE
 
             Process.Start(Application.StartupPath + "/EquineData/ModdingTools");
         }
+
+        private void menuItem49_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("EQUINE will now attempt to update your game to 1.09b. Battle.net gateways will be set to default.\n\n" +
+                "Because Diablo 1 is an old game, you will need to port forward 6112-6119. Please refer to your router instruction manual or contact your ISP technical support for assistance.\nYou can also attempt using UPnP to automatically port forward the required ports (you can use open-source UPnP Port Mapper app to do this: https://github.com/kaklakariada/portmapper)\n" +
+                "WARNING: PORT FORWARD WILL NOT WORK IF YOUR ISP DOES NOT SUPPORT IPV4. MAKE SURE YOUR ISP SUPPORT IPV4 BEFORE ATTEMPTING TO PORT-FORWARD ! (Diablo 1 does not support IPv6)\n\n\nContinue?", "Note", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                frmGOGBNETFixer gog = new frmGOGBNETFixer();
+                gog.ShowDialog();
+            }
+        }
+
+        private void menuItem50_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("OK to fix Battle.net Gateways?", "EQUINE", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    string[] battleNetGateway = new string[29];
+                    battleNetGateway[0] = "2000";
+                    battleNetGateway[1] = "08";
+                    battleNetGateway[2] = "connect-forever.classic.blizzard.com";
+                    battleNetGateway[3] = "-1";
+                    battleNetGateway[4] = "Global";
+                    battleNetGateway[5] = "94.76.252.154";
+                    battleNetGateway[6] = "-1";
+                    battleNetGateway[7] = "NetCraft";
+                    battleNetGateway[8] = "37.187.100.90";
+                    battleNetGateway[9] = "-1";
+                    battleNetGateway[10] = "EuroBattle";
+                    battleNetGateway[11] = "uswest.battle.net";
+                    battleNetGateway[12] = "8";
+                    battleNetGateway[13] = "US West";
+                    battleNetGateway[14] = "useast.battle.net";
+                    battleNetGateway[15] = "6";
+                    battleNetGateway[16] = "U.S. East";
+                    battleNetGateway[17] = "asia.battle.net";
+                    battleNetGateway[18] = "-9";
+                    battleNetGateway[19] = "Asia";
+                    battleNetGateway[20] = "europe.battle.net";
+                    battleNetGateway[21] = "-1";
+                    battleNetGateway[22] = "Europe";
+                    battleNetGateway[23] = "play.slashdiablo.net";
+                    battleNetGateway[24] = "0";
+                    battleNetGateway[25] = "Slash Diablo";
+                    battleNetGateway[26] = "rubattle.net";
+                    battleNetGateway[27] = "-1";
+                    battleNetGateway[28] = "RuBattle.net";
+
+                    Microsoft.Win32.Registry.SetValue("HKEY_CURRENT_USER\\Software\\Battle.net\\Configuration", "Battle.net Gateways",
+                         battleNetGateway, Microsoft.Win32.RegistryValueKind.MultiString);
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to set value in the Windows Registry", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+
+                MessageBox.Show("Operation completed successfully!", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

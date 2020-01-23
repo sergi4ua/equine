@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -69,6 +69,7 @@ namespace EQUINE
             this.menuItem6 = new System.Windows.Forms.MenuItem();
             this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem14 = new System.Windows.Forms.MenuItem();
+            this.menuItem49 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
@@ -126,6 +127,7 @@ namespace EQUINE
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.visitWebsiteBtn = new System.Windows.Forms.Button();
             this.uninstallToolBtn = new System.Windows.Forms.Button();
             this.installLaunchToolBtn = new System.Windows.Forms.Button();
@@ -150,7 +152,7 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button3 = new System.Windows.Forms.Button();
+            this.menuItem50 = new System.Windows.Forms.MenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -259,6 +261,8 @@ namespace EQUINE
             this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem7,
             this.menuItem14,
+            this.menuItem49,
+            this.menuItem50,
             this.menuItem8,
             this.menuItem9,
             this.menuItem20,
@@ -279,34 +283,40 @@ namespace EQUINE
             this.menuItem14.Text = "Force Update (1.09b)";
             this.menuItem14.Click += new System.EventHandler(this.menuItem14_Click);
             // 
+            // menuItem49
+            // 
+            this.menuItem49.Index = 2;
+            this.menuItem49.Text = "Force Update to 1.09b and Fix Battle.net Gateways";
+            this.menuItem49.Click += new System.EventHandler(this.menuItem49_Click);
+            // 
             // menuItem8
             // 
-            this.menuItem8.Index = 2;
+            this.menuItem8.Index = 4;
             this.menuItem8.Text = "Downgrade...";
             this.menuItem8.Click += new System.EventHandler(this.menuItem8_Click);
             // 
             // menuItem9
             // 
-            this.menuItem9.Index = 3;
+            this.menuItem9.Index = 5;
             this.menuItem9.Text = "DDraw Wrapper Setup";
             this.menuItem9.Click += new System.EventHandler(this.menuItem9_Click);
             // 
             // menuItem20
             // 
-            this.menuItem20.Index = 4;
+            this.menuItem20.Index = 6;
             this.menuItem20.Text = "Copy DIABDAT.MPQ from Diablo CD...";
             this.menuItem20.Click += new System.EventHandler(this.menuItem20_Click);
             // 
             // menuItem13
             // 
             this.menuItem13.Enabled = false;
-            this.menuItem13.Index = 5;
+            this.menuItem13.Index = 7;
             this.menuItem13.Text = "Restore game data...";
             this.menuItem13.Click += new System.EventHandler(this.menuItem13_Click);
             // 
             // menuItem44
             // 
-            this.menuItem44.Index = 6;
+            this.menuItem44.Index = 8;
             this.menuItem44.Text = "Open game directory";
             this.menuItem44.Click += new System.EventHandler(this.MenuItem44_Click);
             // 
@@ -605,9 +615,10 @@ namespace EQUINE
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            listViewItem2.UseItemStyleForSubItems = false;
+            this.listView1.HideSelection = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -732,6 +743,16 @@ namespace EQUINE
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(9, 440);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Open Tools Folder";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // visitWebsiteBtn
             // 
             this.visitWebsiteBtn.Enabled = false;
@@ -775,6 +796,7 @@ namespace EQUINE
             this.columnHeader12});
             this.listView2.FullRowSelect = true;
             this.listView2.GridLines = true;
+            this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(9, 28);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(876, 406);
@@ -961,15 +983,11 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // button3
+            // menuItem50
             // 
-            this.button3.Location = new System.Drawing.Point(9, 440);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(111, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Open Tools Folder";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.menuItem50.Index = 3;
+            this.menuItem50.Text = "Fix Battle.net Gateways (without updating)";
+            this.menuItem50.Click += new System.EventHandler(this.menuItem50_Click);
             // 
             // Form1
             // 
@@ -1106,6 +1124,8 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem47;
         private System.Windows.Forms.MenuItem menuItem48;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.MenuItem menuItem49;
+        private System.Windows.Forms.MenuItem menuItem50;
     }
 }
 

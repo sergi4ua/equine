@@ -143,6 +143,12 @@
     <Compile Include="frmForceUpdate.Designer.cs">
       <DependentUpon>frmForceUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGOGBNETFixer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGOGBNETFixer.Designer.cs">
+      <DependentUpon>frmGOGBNETFixer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmModDownloader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmForceUpdate.resx">
       <DependentUpon>frmForceUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGOGBNETFixer.resx">
+      <DependentUpon>frmGOGBNETFixer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmModDownloader.resx">
       <DependentUpon>frmModDownloader.cs</DependentUpon>

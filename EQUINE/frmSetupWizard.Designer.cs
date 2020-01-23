@@ -106,7 +106,7 @@ namespace EQUINE
             this.label5.Size = new System.Drawing.Size(428, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "After you did a full backup of your save data, click \'Initalize\' or \'INIT-EQUINE\'" +
-    " to conrinue.";
+    " to continue.";
             // 
             // label6
             // 
@@ -133,7 +133,7 @@ namespace EQUINE
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 33);
             this.button1.TabIndex = 7;
-            this.button1.Text = "Initalize!";
+            this.button1.Text = "Initialize!";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

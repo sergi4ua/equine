@@ -1,3 +1,9 @@
+1.0.1:
+Added:
+	- Ability to update to 1.09b (optional) and reset Battle.net gateways to default
+Fixed:
+	- Typos (thanks qndel :) )
+
 1.0:
 Codename: Unihorn
 
