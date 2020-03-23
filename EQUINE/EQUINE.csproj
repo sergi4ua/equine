@@ -307,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="equine.ico" />
+    <None Include="Resources\diablo-the-awakening.png" />
     <None Include="Resources\equine-loading.png" />
     <None Include="Resources\Discord-Logo-Color.png" />
   </ItemGroup>

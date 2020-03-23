@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -154,7 +154,11 @@ namespace EQUINE
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.updateModsRoutine = new System.ComponentModel.BackgroundWorker();
-            this.status = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.diabloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hellfireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -164,6 +168,7 @@ namespace EQUINE
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -533,12 +538,13 @@ namespace EQUINE
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(903, 495);
+            this.tabControl1.Size = new System.Drawing.Size(873, 502);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.linkLabel1);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.button2);
@@ -547,7 +553,7 @@ namespace EQUINE
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(895, 469);
+            this.tabPage1.Size = new System.Drawing.Size(865, 476);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Mod";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -555,8 +561,9 @@ namespace EQUINE
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(525, 445);
+            this.label4.Location = new System.Drawing.Point(621, 460);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 5;
@@ -564,8 +571,9 @@ namespace EQUINE
             // 
             // linkLabel1
             // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(483, 445);
+            this.linkLabel1.Location = new System.Drawing.Point(569, 460);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(46, 13);
             this.linkLabel1.TabIndex = 4;
@@ -575,8 +583,9 @@ namespace EQUINE
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 445);
+            this.label3.Location = new System.Drawing.Point(82, 460);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(481, 13);
             this.label3.TabIndex = 3;
@@ -587,7 +596,7 @@ namespace EQUINE
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(733, 440);
+            this.button2.Location = new System.Drawing.Point(703, 447);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 2;
@@ -599,7 +608,7 @@ namespace EQUINE
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(814, 440);
+            this.button1.Location = new System.Drawing.Point(784, 447);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -624,14 +633,14 @@ namespace EQUINE
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            listViewItem2.UseItemStyleForSubItems = false;
+            listViewItem1.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(880, 428);
+            this.listView1.Size = new System.Drawing.Size(850, 435);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -745,7 +754,7 @@ namespace EQUINE
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(895, 469);
+            this.tabPage2.Size = new System.Drawing.Size(895, 549);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "Tools";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -853,7 +862,7 @@ namespace EQUINE
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(895, 469);
+            this.tabPage3.Size = new System.Drawing.Size(895, 549);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -901,7 +910,7 @@ namespace EQUINE
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(895, 469);
+            this.tabPage6.Size = new System.Drawing.Size(895, 549);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "IPXWrapper";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -979,7 +988,7 @@ namespace EQUINE
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(8, 500);
+            this.label1.Location = new System.Drawing.Point(6, 445);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(258, 13);
             this.label1.TabIndex = 1;
@@ -995,24 +1004,56 @@ namespace EQUINE
             // 
             this.updateModsRoutine.DoWork += new System.ComponentModel.DoWorkEventHandler(this.updateModsRoutine_DoWork);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status,
+            this.toolStripDropDownButton1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 505);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(874, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // status
             // 
-            this.status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.status.Location = new System.Drawing.Point(596, 500);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(300, 17);
-            this.status.TabIndex = 2;
+            this.status.Size = new System.Drawing.Size(38, 17);
             this.status.Text = "Done.";
-            this.status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.diabloToolStripMenuItem,
+            this.hellfireToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = global::EQUINE.Properties.Resources.diablo_the_awakening;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(128, 20);
+            this.toolStripDropDownButton1.Text = "Set Game Version";
+            // 
+            // diabloToolStripMenuItem
+            // 
+            this.diabloToolStripMenuItem.Checked = true;
+            this.diabloToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.diabloToolStripMenuItem.Name = "diabloToolStripMenuItem";
+            this.diabloToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.diabloToolStripMenuItem.Text = "Diablo";
+            // 
+            // hellfireToolStripMenuItem
+            // 
+            this.hellfireToolStripMenuItem.Name = "hellfireToolStripMenuItem";
+            this.hellfireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hellfireToolStripMenuItem.Text = "Hellfire";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(904, 520);
-            this.Controls.Add(this.status);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(874, 527);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1036,6 +1077,8 @@ namespace EQUINE
             this.groupBox3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1144,7 +1187,11 @@ namespace EQUINE
         private System.Windows.Forms.MenuItem menuItem49;
         private System.Windows.Forms.MenuItem menuItem50;
         private System.ComponentModel.BackgroundWorker updateModsRoutine;
-        private System.Windows.Forms.Label status;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem diabloToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hellfireToolStripMenuItem;
     }
 }
 

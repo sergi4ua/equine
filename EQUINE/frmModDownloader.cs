@@ -19,12 +19,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -69,6 +73,23 @@ namespace EQUINE
 
         private void frmModDownloader_Load(object sender, EventArgs e)
         {
+            WindowsPrincipal pricipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
+            bool hasAdministrativeRight = pricipal.IsInRole(WindowsBuiltInRole.Administrator);
+
+            if (!hasAdministrativeRight)
+            {
+                MessageBox.Show("You must have Administrator rights to install or update mods. Relaunching application...", "This action requires elevation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                string fileName = Assembly.GetExecutingAssembly().Location;
+                ProcessStartInfo processInfo = new ProcessStartInfo();
+                processInfo.Verb = "runas";
+                processInfo.FileName = fileName;
+
+                Process.Start(processInfo);
+
+                Environment.Exit(0);
+             }
+
             // file rozmir = file size in ukrainian (translit)
             if (!Polska)
                 label1.Text = "Please wait while EQUINE installs " + modName + " to your Diablo installation.";

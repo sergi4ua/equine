@@ -21,6 +21,7 @@ using System.Net;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Threading;
+using System.Security.Principal;
 
 namespace EQUINE
 {
@@ -32,6 +33,8 @@ namespace EQUINE
         [STAThread]
         static void Main()
         {
+            //System.AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+
             // check if EQUINE is ran with -skipupdate argument
 
             string[] args = Environment.GetCommandLineArgs();
