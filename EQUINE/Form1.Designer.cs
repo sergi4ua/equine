@@ -44,7 +44,7 @@ namespace EQUINE
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Vanilla Game",
             "N/A",
             "N/A",
@@ -70,6 +70,7 @@ namespace EQUINE
             this.menuItem7 = new System.Windows.Forms.MenuItem();
             this.menuItem14 = new System.Windows.Forms.MenuItem();
             this.menuItem49 = new System.Windows.Forms.MenuItem();
+            this.menuItem50 = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem20 = new System.Windows.Forms.MenuItem();
@@ -152,7 +153,8 @@ namespace EQUINE
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.menuItem50 = new System.Windows.Forms.MenuItem();
+            this.updateModsRoutine = new System.ComponentModel.BackgroundWorker();
+            this.status = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -288,6 +290,12 @@ namespace EQUINE
             this.menuItem49.Index = 2;
             this.menuItem49.Text = "Force Update to 1.09b and Fix Battle.net Gateways";
             this.menuItem49.Click += new System.EventHandler(this.menuItem49_Click);
+            // 
+            // menuItem50
+            // 
+            this.menuItem50.Index = 3;
+            this.menuItem50.Text = "Fix Battle.net Gateways (without updating)";
+            this.menuItem50.Click += new System.EventHandler(this.menuItem50_Click);
             // 
             // menuItem8
             // 
@@ -616,9 +624,9 @@ namespace EQUINE
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            listViewItem1.UseItemStyleForSubItems = false;
+            listViewItem2.UseItemStyleForSubItems = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(9, 10);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -983,11 +991,19 @@ namespace EQUINE
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // menuItem50
+            // updateModsRoutine
             // 
-            this.menuItem50.Index = 3;
-            this.menuItem50.Text = "Fix Battle.net Gateways (without updating)";
-            this.menuItem50.Click += new System.EventHandler(this.menuItem50_Click);
+            this.updateModsRoutine.DoWork += new System.ComponentModel.DoWorkEventHandler(this.updateModsRoutine_DoWork);
+            // 
+            // status
+            // 
+            this.status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.status.Location = new System.Drawing.Point(596, 500);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(300, 17);
+            this.status.TabIndex = 2;
+            this.status.Text = "Done.";
+            this.status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -995,6 +1011,7 @@ namespace EQUINE
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(904, 520);
+            this.Controls.Add(this.status);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
@@ -1126,6 +1143,8 @@ namespace EQUINE
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.MenuItem menuItem49;
         private System.Windows.Forms.MenuItem menuItem50;
+        private System.ComponentModel.BackgroundWorker updateModsRoutine;
+        private System.Windows.Forms.Label status;
     }
 }
 

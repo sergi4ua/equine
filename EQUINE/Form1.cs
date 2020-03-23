@@ -66,7 +66,7 @@ namespace EQUINE
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
             readConfig();
             if (config.autoUpdate)
-                checkModUpdates();
+                updateModsRoutine.RunWorkerAsync();
         }
 
         private void initToolList()
@@ -147,6 +147,9 @@ namespace EQUINE
                     // check if mod installed
                     if (installedMods.Contains(ModInfos.ModInfo[i].ModName))
                     {
+                        BeginInvoke((MethodInvoker)delegate () { status.Text = "Checking for updates: " +
+                          ModInfos.ModInfo[i].ModName; });
+
                         // check for sha1 match
                         string modHash = "";
                         string jsonModHash = "";
@@ -159,10 +162,13 @@ namespace EQUINE
                             {
                                 if (!File.Exists(Application.StartupPath + "/Tchernobog/Tchernobog" + ModInfos.ModInfo[i].ModVersion + ".exe"))
                                 {
-                                    modName = ModInfos.ModInfo[i].ModName;
-                                    DL = ModInfos.ModInfo[i].DL;
-                                    EXE = ModInfos.ModInfo[i].Executable;
-                                    DL2 = ModInfos.ModInfo[i].DL2;
+                                    BeginInvoke((MethodInvoker)delegate ()
+                                    {
+                                        modName = ModInfos.ModInfo[i].ModName;
+                                        DL = ModInfos.ModInfo[i].DL;
+                                        EXE = ModInfos.ModInfo[i].Executable;
+                                        DL2 = ModInfos.ModInfo[i].DL2;
+                                    });
                                     break;
                                 }
                                 else
@@ -183,10 +189,13 @@ namespace EQUINE
                             else
                             {
                                 // mod needs updating
-                                modName = ModInfos.ModInfo[i].ModName;
-                                DL = ModInfos.ModInfo[i].DL;
-                                EXE = ModInfos.ModInfo[i].Executable;
-                                DL2 = ModInfos.ModInfo[i].DL2;
+                                BeginInvoke((MethodInvoker)delegate ()
+                                {
+                                    modName = ModInfos.ModInfo[i].ModName;
+                                    DL = ModInfos.ModInfo[i].DL;
+                                    EXE = ModInfos.ModInfo[i].Executable;
+                                    DL2 = ModInfos.ModInfo[i].DL2;
+                                });
                                 break;
                             }
                         }
@@ -195,11 +204,13 @@ namespace EQUINE
 
                 if (modName != "" && DL != "")
                 {
-                    frmNewUpdate u = new frmNewUpdate();
-                    u.modName = modName;
-                    u.DL = DL;
-                    u.DL2 = DL2;
-                    u.ShowDialog();
+                   
+                    BeginInvoke((MethodInvoker)delegate () {
+                        frmNewUpdate u = new frmNewUpdate();
+                        u.modName = modName;
+                        u.DL = DL;
+                        u.DL2 = DL2;
+                    }); 
                 }
             }
         }
@@ -1396,6 +1407,12 @@ namespace EQUINE
 
                 MessageBox.Show("Operation completed successfully!", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void updateModsRoutine_DoWork(object sender, DoWorkEventArgs e)
+        {
+            checkModUpdates();
+            BeginInvoke((MethodInvoker)delegate () { status.Text = "Done."; });
         }
     }
 }
