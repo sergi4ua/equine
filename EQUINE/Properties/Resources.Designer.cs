@@ -63,6 +63,16 @@ namespace EQUINE.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap diablo_the_awakening {
+            get {
+                object obj = ResourceManager.GetObject("diablo-the-awakening", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Discord_Logo_Color {
             get {
                 object obj = ResourceManager.GetObject("Discord_Logo_Color", resourceCulture);

@@ -1,3 +1,7 @@
+1.0.2b:
+Fixed:
+	- Mod updater not updating mods :P
+
 1.0.2:
 Fixed:
 	- Mod updater should no longer freeze the main thread
@@ -8,7 +12,6 @@ Changed:
 
 Removed:
 	- Removed support for Windows Vista
-
 
 1.0.1:
 Added:
