@@ -65,6 +65,7 @@ namespace EQUINE
             Random r = new Random();
             label1.Text = GlobalVariableContainer.Messages[r.Next(GlobalVariableContainer.Messages.Length)];
             readConfig();
+
             if (config.autoUpdate)
                 updateModsRoutine.RunWorkerAsync();
         }
@@ -189,13 +190,10 @@ namespace EQUINE
                             else
                             {
                                 // mod needs updating
-                                BeginInvoke((MethodInvoker)delegate ()
-                                {
                                     modName = ModInfos.ModInfo[i].ModName;
                                     DL = ModInfos.ModInfo[i].DL;
                                     EXE = ModInfos.ModInfo[i].Executable;
                                     DL2 = ModInfos.ModInfo[i].DL2;
-                                });
                                 break;
                             }
                         }
@@ -204,14 +202,17 @@ namespace EQUINE
 
                 if (modName != "" && DL != "")
                 {
-                   
-                    BeginInvoke((MethodInvoker)delegate () {
-                        frmNewUpdate u = new frmNewUpdate();
+                    BeginInvoke((MethodInvoker)delegate () { status.Text = "Fetching update information for: " + modName; });
+                    frmNewUpdate u = new frmNewUpdate();
                         u.modName = modName;
                         u.DL = DL;
                         u.DL2 = DL2;
+<<<<<<< HEAD
                         u.ShowDialog();
                     }); 
+=======
+                    u.ShowDialog();
+>>>>>>> 7f51d091e261e328ab7ee1c5136e9a1bae1b8f03
                 }
             }
         }
