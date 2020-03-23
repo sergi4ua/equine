@@ -210,6 +210,7 @@ namespace EQUINE
                         u.modName = modName;
                         u.DL = DL;
                         u.DL2 = DL2;
+                        u.ShowDialog();
                     }); 
                 }
             }

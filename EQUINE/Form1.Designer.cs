@@ -107,6 +107,7 @@ namespace EQUINE
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -151,7 +152,6 @@ namespace EQUINE
             this.panel1 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.updateModsRoutine = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -569,6 +569,18 @@ namespace EQUINE
             this.label4.TabIndex = 5;
             this.label4.Text = "to submit your mod.";
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 445);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(258, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // linkLabel1
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -754,7 +766,7 @@ namespace EQUINE
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(895, 549);
+            this.tabPage2.Size = new System.Drawing.Size(865, 476);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "Tools";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -862,7 +874,7 @@ namespace EQUINE
             this.tabPage3.Controls.Add(this.checkBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(895, 549);
+            this.tabPage3.Size = new System.Drawing.Size(865, 476);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -910,7 +922,7 @@ namespace EQUINE
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(895, 549);
+            this.tabPage6.Size = new System.Drawing.Size(865, 476);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "IPXWrapper";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -983,18 +995,6 @@ namespace EQUINE
             this.label7.TabIndex = 0;
             this.label7.Text = resources.GetString("label7.Text");
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 445);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "We don\'t have phones... we have PCs with ZeroTier!";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
@@ -1038,13 +1038,13 @@ namespace EQUINE
             this.diabloToolStripMenuItem.Checked = true;
             this.diabloToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.diabloToolStripMenuItem.Name = "diabloToolStripMenuItem";
-            this.diabloToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.diabloToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.diabloToolStripMenuItem.Text = "Diablo";
             // 
             // hellfireToolStripMenuItem
             // 
             this.hellfireToolStripMenuItem.Name = "hellfireToolStripMenuItem";
-            this.hellfireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hellfireToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.hellfireToolStripMenuItem.Text = "Hellfire";
             // 
             // Form1
