@@ -1,7 +1,7 @@
 {
     "ModInfo": [
 	  {
-	  "ModId": "-1",
+	  "ModId": "0",
         "ModName": "Polish Localization",
         "Game": "Diablo",
         "Description": "Polska wersja Diablo",
@@ -19,7 +19,7 @@
         "Executable": "DiabloPL.exe"
       },
 	  {
-        "ModId": "0",
+        "ModId": "1",
         "ModName": "Infernity",
         "Game": "Diablo",
         "Description": "MP Fixed. A mod that aims to improve Diablo 1 gameplay.",
@@ -37,7 +37,7 @@
         "Executable": "Infernity.exe"
       },
 	  {
-        "ModId": "18",
+        "ModId": "2",
         "ModName": "Infernity Classic",
         "Game": "Diablo",
         "Description": "Old version of Infernity with multiplayer support.",
@@ -55,7 +55,7 @@
         "Executable": "InfernityClassic.exe"
       },
       {
-        "ModId": "1",
+        "ModId": "3",
         "ModName": "The Hell",
         "Game": "Diablo",
         "Description": "The Hell, a mature mod for Diablo",
@@ -73,7 +73,7 @@
         "Executable": "equineLauncher.bat"
       },
 	  {
-        "ModId": "17",
+        "ModId": "4",
         "ModName": "The Hell 2",
         "Game": "Diablo",
         "Description": "The Hell 2 finally out of Beta!",
@@ -91,7 +91,7 @@
         "Executable": "TH2.exe"
       },
       {
-        "ModId": "2",
+        "ModId": "5",
         "ModName": "Purgatory",
         "Game": "Hellfire",
         "Description": "Purgatory mod for Hellfire 1.01",
@@ -109,7 +109,7 @@
         "Executable": "Purgatory.exe"
       },
       {
-        "ModId": "3",
+        "ModId": "6",
         "ModName": "The Dark",
         "Game": "Hellfire",
         "Description": "The Dark mod for Hellfire 1.01",
@@ -127,7 +127,7 @@
         "Executable": "HLFDRK54A.exe"
       },
       {
-        "ModId": "4",
+        "ModId": "7",
         "ModName": "Belzebub (HD Mod)",
         "Game": "Diablo",
         "Description": "Makes Diablo 1 HD and more Diablo II.",
@@ -145,7 +145,7 @@
         "Executable": "Belzebub.exe"
       },
       {
-        "ModId": "5",
+        "ModId": "8",
         "ModName": "VandK Middle Earth Mod",
         "Game": "Diablo",
         "Description": "Mod based on Tolkien.",
@@ -163,7 +163,7 @@
         "Executable": "VH.EXE"
       },
       {
-        "ModId": "6",
+        "ModId": "9",
         "ModName": "Sinwar",
         "Game": "Diablo",
         "Description": "N/A",
@@ -181,7 +181,7 @@
         "Executable": "Sinwar.exe"
       },
       {
-        "ModId": "7",
+        "ModId": "10",
         "ModName": "Abysmal Mod",
         "Game": "Diablo",
         "Description": "N/A",
@@ -199,7 +199,7 @@
         "Executable": "abysmal.exe"
       },
       {
-        "ModId": "8",
+        "ModId": "11",
         "ModName": "Tchernobog",
         "Game": "Diablo",
         "Description": "Multiplayer version of Belzebub.",
@@ -217,7 +217,7 @@
         "Executable": "Tchernobog0.1.6c.exe"
       },
       {
-        "ModId": "9",
+        "ModId": "12",
         "ModName": "Crucible",
         "Game": "Diablo",
         "Description": "A gruelling, deadly struggle through Hell itself. The feel of the vanilla game with a whole new level of challenge.",
@@ -235,7 +235,7 @@
         "Executable": "Crucible.exe"
       },
       {
-        "ModId": "10",
+        "ModId": "13",
         "ModName": "The Awakening",
         "Game": "Diablo",
         "Description": "After Diablo was defeated, the Hero embedded the Soulstone of the Lord of Terror into his forehead, hoping he will be able to master the daemon. The body of prince Albrecht retrieved its natural look and was buried in vault near the Cathedral. As the time goes, the Hero stared to feel that he is loosing the fight with the overtaking demonic force, which started to gradually forcing an entrance into his soul. Through the possessed body of the Hero, Diablo, The Lord of Terror, went east throughout the mighty deserts of Aranoch, surrounding ancient city of Lut Gholein, to get to the found of hell at the end, his domain, where the frightening army starts to gather.",
@@ -253,7 +253,7 @@
         "Executable": "AwakeEN.exe"
       },
       {
-        "ModId": "11",
+        "ModId": "14",
         "ModName": "DiabloPatch",
         "Game": "Diablo",
         "Description": "A 'must-have' patch for Diablo 1",
@@ -271,7 +271,7 @@
         "Executable": "DiabloPatchLoader.exe"
       },
       {
-        "ModId": "12",
+        "ModId": "15",
         "ModName": "Psycho Mod (German)",
         "Game": "Diablo",
         "Description": "Unknown",
@@ -289,7 +289,7 @@
         "Executable": "PsychoMod v103.exe"
       },
       {
-        "ModId": "13",
+        "ModId": "16",
         "ModName": "DevilutionX",
         "Game": "Diablo",
         "Description": "Making Diablo Cross-Platform. Check GitHub for details and source code.",
@@ -307,7 +307,7 @@
         "Executable": "devilutionx.exe"
       },
       {
-        "ModId": "14",
+        "ModId": "17",
         "ModName": "Retribution",
         "Game": "Diablo",
         "Description": "N/A",
@@ -325,7 +325,7 @@
         "Executable": "Retribution.exe"
       },
       {
-        "ModId": "15",
+        "ModId": "18",
         "ModName": "Ultra Mod",
         "Game": "Diablo",
         "Description": "N/A",
@@ -343,7 +343,7 @@
         "Executable": "UItra_V1-7.exe"
       },
       {
-        "ModId": "16",
+        "ModId": "19",
         "ModName": "Give Me Sanctuary",
         "Game": "Diablo",
         "Description": "(prealpha) Mod that aims to make Diablo 1 better",
