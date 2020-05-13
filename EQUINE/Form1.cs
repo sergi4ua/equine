@@ -14,6 +14,8 @@ This program is free software: you can redistribute it and/or modify
     along with this program.If not, see <https://www.gnu.org/licenses/>.
 */
 
+// Omg what I was thinking...
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -136,6 +138,8 @@ namespace EQUINE
 
         private void checkModUpdates()
         {
+            string currentMod = "";
+
             // check for internet connection
 
             if (CheckForInternetConnection())
@@ -148,8 +152,10 @@ namespace EQUINE
                     // check if mod installed
                     if (installedMods.Contains(ModInfos.ModInfo[i].ModName))
                     {
+                        currentMod = ModInfos.ModInfo[i].ModName;
+
                         BeginInvoke((MethodInvoker)delegate () { status.Text = "Checking for updates: " +
-                          ModInfos.ModInfo[i].ModName; });
+                          currentMod; });
 
                         // check for sha1 match
                         string modHash = "";
@@ -203,16 +209,15 @@ namespace EQUINE
                 if (modName != "" && DL != "")
                 {
                     BeginInvoke((MethodInvoker)delegate () { status.Text = "Fetching update information for: " + modName; });
-                    frmNewUpdate u = new frmNewUpdate();
+                    //BeginInvoke((MethodInvoker)delegate ()
+                    //{
+                        frmNewUpdate u = new frmNewUpdate();
                         u.modName = modName;
                         u.DL = DL;
                         u.DL2 = DL2;
-<<<<<<< HEAD
-                        u.ShowDialog();
-                    }); 
-=======
-                    u.ShowDialog();
->>>>>>> 7f51d091e261e328ab7ee1c5136e9a1bae1b8f03
+                        u.TopMost = true;
+                        u.ShowDialog(); 
+                    //});
                 }
             }
         }
@@ -279,8 +284,6 @@ namespace EQUINE
 
         void Preloader()
         {
-            //MessageBox.Show("NOTE! This version uses mod folders instead of the previous version where all mod files are downloaded and extracted to Diablo root directory.\nIf you have used EQUINE before you will notice that all your mods are no longer available. Don't worry all your saves are not deleted.\nYou will need to redownload your mod and copy your save games to the mod folder.\nFor instance, for The Hell you will copy your save files to the The Hell folder (for TH the save filenames are hellsp_x.hsv where x is a number.)\n\nBackup and Restore are currently Vanilla Only but will be fixed soon :)\nPlease report any bugs you found to the GitHub issue tracker (available from EQUINE > Report Bug).", "Sergi4UA", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             if (CheckForInternetConnection() == true && _DEBUG == false)
             {
                 try
@@ -292,7 +295,7 @@ namespace EQUINE
                 }
                 catch
                 {
-                    MessageBox.Show("Error updating ModInfo :(");
+                    MessageBox.Show("Error updating ModInfo!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
 
                 try
@@ -304,7 +307,7 @@ namespace EQUINE
                 }
                 catch
                 {
-                    MessageBox.Show("Error updating ToolInfo :(");
+                    MessageBox.Show("Error updating ToolInfo!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
 
@@ -345,7 +348,7 @@ namespace EQUINE
 
             ModInfos = JsonConvert.DeserializeObject<RootObject>(File.ReadAllText(Application.StartupPath + "\\EquineData\\modlist.json"), jsonSerializerSettings);
 
-
+            
             for (int i = 0; i < ModInfos.ModInfo.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem();
@@ -355,7 +358,7 @@ namespace EQUINE
                 lvi.SubItems.Add(ModInfos.ModInfo[i].Author);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].ModVersion);
                 lvi.SubItems.Add(ModInfos.ModInfo[i].WebSite);
-                if (!System.IO.File.Exists(ModInfos.ModInfo[i].ModName + "/" + ModInfos.ModInfo[i].Executable))
+                if (!File.Exists(ModInfos.ModInfo[i].ModName + "/" + ModInfos.ModInfo[i].Executable))
                 {
                     if (Directory.Exists(Application.StartupPath + "/Tchernobog") && lvi.Text == "Tchernobog")
                     {
@@ -402,23 +405,30 @@ namespace EQUINE
 
         private void installPlayCustomMod()
         {
-            int index = listView1.SelectedIndices[0] + 1;
-            int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
-
-            if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable))
+            try
             {
-                try
+                int index = listView1.SelectedIndices[0] + 1;
+                int it = (index - listView1.Items.Count) + customModInfos.Count - 1;
+
+                if (File.Exists(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable))
                 {
-                    Process.Start(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable);
+                    try
+                    {
+                        Process.Start(Application.StartupPath + "/" + customModInfos[it].Name + "/" + customModInfos[it].Executable);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Unable to launch custom mod.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Unable to launch custom mod.", "EQUINE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Mod exectuable file doesn't exist.", "EQUINE Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Mod exectuable file doesn't exist.", "EQUINE Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Custom Mod List corrupted.\n\nIf the error persist, delete the customModList.json file in EquineData.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

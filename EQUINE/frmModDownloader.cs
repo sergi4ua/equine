@@ -73,11 +73,13 @@ namespace EQUINE
 
         private void frmModDownloader_Load(object sender, EventArgs e)
         {
+            Logger.log("Init download for: " + modName, Logger.Level.INFO, Logger.App.MOD_DOWNLOADER);
             WindowsPrincipal pricipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
             bool hasAdministrativeRight = pricipal.IsInRole(WindowsBuiltInRole.Administrator);
 
             if (!hasAdministrativeRight)
             {
+                Logger.log("EQUINE is not running in admin mode", Logger.Level.WARNING, Logger.App.MOD_DOWNLOADER);
                 MessageBox.Show("You must have Administrator rights to install or update mods. Relaunching application...", "This action requires elevation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 string fileName = Assembly.GetExecutingAssembly().Location;
@@ -122,6 +124,7 @@ namespace EQUINE
             }
             catch
             {
+                Logger.log("Communication error.", Logger.Level.WARNING, Logger.App.MOD_DOWNLOADER);
                 MessageBox.Show("Unable to communicate.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 this.Hide();
                 this.Close();
@@ -160,6 +163,7 @@ namespace EQUINE
 
         private void ExtractFile()
         {
+            Logger.log("Extracting ZIP file: " + fileName, Logger.Level.INFO, Logger.App.MOD_DOWNLOADER);
             try
             {
                 if (!cancelled)
@@ -174,11 +178,13 @@ namespace EQUINE
                     foreach (ZipStorer.ZipFileEntry entry in dir)
                     {
                         //extractedFileList.Add(Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
-                        if(!toolDLMode)
+                        Logger.log("Extracting: " + modName + "\\" + entry.FilenameInZip, Logger.Level.INFO, Logger.App.MOD_DOWNLOADER);
+                        if (!toolDLMode)
                             zip.ExtractFile(entry, Application.StartupPath + "\\" + modName + "\\" + entry.FilenameInZip);
                         else
                             zip.ExtractFile(entry, Application.StartupPath + "\\EquineData\\ModdingTools\\" + modName + "\\" + entry.FilenameInZip);
                     }
+                    Logger.log("ZIP file extracted", Logger.Level.INFO, Logger.App.MOD_DOWNLOADER);
                     zip.Close();
                     System.IO.File.Delete(Application.StartupPath + "\\" + fileName);
                     if (afterDownloadMsg != "null")
@@ -201,17 +207,21 @@ namespace EQUINE
 
                     List<string> fileNames = new List<string> { "Storm.dll", "DiabloUI.dll", "Diablo.exe", "DIABDAT.MPQ", "SMACKW32.DLL", "ddraw.dll", "STANDARD.SNP", "BATTLE.SNP", "hellfrui.dll", "hfmonk.mpq", "hfmusic.mpq", "hfvoice.mpq", "hellfire.mpq" };
 
+
                     try
                     {
                         // don't create symlinks for the tools
                         if (!toolDLMode)
                         {
+                            
                             for (short i = 0; i < fileNames.Count; i++)
                             {
                                 if (File.Exists(Application.StartupPath + "\\" + fileNames[i]))
                                 {
+                                    Logger.log("Creating symlink: " + fileNames[i] + " for mod " + modName, Logger.Level.INFO, Logger.App.MOD_DOWNLOADER);
                                     CreateSymbolicLink(Application.StartupPath + "\\" + modName + "\\" + fileNames[i],
                                     Application.StartupPath + "\\" + fileNames[i], SymbolicLink.File);
+
                                 }
                             }
                         }
@@ -238,6 +248,7 @@ namespace EQUINE
             }
             catch(Exception ex)
             {
+                Logger.log("Download failed!", Logger.Level.ERROR, Logger.App.MOD_DOWNLOADER);
                 MessageBox.Show("Unable to install modification.\nEither download is unavailable or ZIP extracting error has occured.\nPlease try again, if the error persists please contact EQUINE developers.\n\n" + ex.Message, "Error", MessageBoxButtons.OK);
                 this.BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
                 this.BeginInvoke((MethodInvoker)delegate () { this.Close(); });
@@ -274,6 +285,7 @@ namespace EQUINE
             }
             else
             {
+                Logger.log("Can't get file size", Logger.Level.WARNING, Logger.App.MOD_DOWNLOADER);
                 fileSize.Text = "Failed to get file size";
             }
         }

@@ -41,6 +41,7 @@ namespace EQUINE
 
         public void BeginDownload()
         {
+            Logger.log("Begin download");
             Thread dlThread = new Thread(() =>
             {
                 Uri dlUri = new Uri(Urls[index]);
@@ -49,7 +50,9 @@ namespace EQUINE
                 webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
                 try
                 {
+                    Logger.log("Enabling HTTPS support...");
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+                    Logger.log("Downloading URL: " + dlUri);
                     webClient.DownloadFileTaskAsync(dlUri, destFolder + "\\" + fileName).Wait();
                 }
                 catch (System.AggregateException) { }
@@ -64,6 +67,7 @@ namespace EQUINE
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            Logger.log("Download complete.");
             if(e.Cancelled)
             {
                 return;

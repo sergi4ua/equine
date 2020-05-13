@@ -204,6 +204,7 @@
       <DependentUpon>frmUninstall.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalVariableContainer.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="ModInfo.cs" />
     <Compile Include="PictureBoxTransparency.cs">
       <SubType>Component</SubType>

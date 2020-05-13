@@ -52,6 +52,7 @@ namespace EQUINE
 
         private void FrmSplash_Load(object sender, EventArgs e)
         {
+            Logger.log("Init splash");
             label1.Parent = pictureBox1;
             label2.Parent = pictureBox1;
             label3.Parent = pictureBox1;
@@ -68,18 +69,20 @@ namespace EQUINE
                 using (var client = new WebClient())
                 using (client.OpenRead("http://clients3.google.com/generate_204"))
                 {
+                    Logger.log("PC is connected to the internet (Google reported 204)");
                     return true;
                 }
             }
             catch
             {
+                Logger.log("PC is NOT connected to the internet");
                 return false;
             }
         }
 
         private static void readJsonConfig()
         {
-
+            Logger.log("Loading configuration...");
             try
             {
                 if (File.Exists(Application.StartupPath + "/EquineData/config.json"))
@@ -90,6 +93,7 @@ namespace EQUINE
             }
             catch
             {
+                Logger.log("Cannot load configuration. Check config.json and try again", Logger.Level.ERROR);
                 MessageBox.Show("Unable to read config file.");
             }
         }
@@ -126,23 +130,27 @@ namespace EQUINE
             if (config.checkForUpdates && !GlobalVariableContainer.skipUpdates)
             {
                 BeginInvoke((MethodInvoker)delegate () { label3.Text = "Checking for updates"; });
+                Logger.log("Checking for application updates...");
                 if (File.Exists(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha"))
                 {
                     if (noInit == false)
                     {
                         try
                         {
+                            Logger.log("Hashing EQUINE.exe");
                             File.Copy(Application.ExecutablePath, Application.StartupPath + "\\EQUINE.hash", true);
 
                             sha1 hash = new sha1();
                             string fromfilehash = "";
                             string apphash = "";
 
+                            Logger.log("Checking hash...");
                             fromfilehash = File.ReadAllText(Application.StartupPath + "\\EquineData\\EQUINE_hash.sha");
                             apphash = hash.CheckFileHash(Application.StartupPath + "\\EQUINE.hash");
 
                             if (fromfilehash != apphash)
                             {
+                                Logger.log("SHA-1 hash mismatch. There is a probably a new update out...");
                                 BeginInvoke((MethodInvoker)delegate () { label3.Text = "New update is out. Launching EQUINE Update Utility"; });
 
                                 var SelfProc = new ProcessStartInfo
@@ -153,12 +161,14 @@ namespace EQUINE
                                     Arguments = "-update",
                                 };
                                 File.Delete(Application.StartupPath + "\\EQUINE.hash");
+                                Logger.log("Launching EQUINE Update Utility...");
                                 Process.Start(SelfProc);
                                 Environment.Exit(0);
                             }
                         }
                         catch (Exception ex)
                         {
+                            Logger.log(ex.Message, Logger.Level.ERROR);
                             MessageBox.Show("Failed to check for updates!\n" + ex.Message);
                         }
                     }
@@ -170,6 +180,7 @@ namespace EQUINE
             {
                 if (noInit == false)
                 {
+                    
                     Form1 mainForm = new Form1();
                     BeginInvoke((MethodInvoker)delegate () { mainForm.Show(); });
                     BeginInvoke((MethodInvoker)delegate () { this.Hide(); });
@@ -182,6 +193,7 @@ namespace EQUINE
                 Directory.Move(Application.StartupPath + "/Tchernobog (64 BIT ONLY)", Application.StartupPath + "/Tchernobog");
             }
 
+            Logger.log("Initalizing EQUINE main form");
             BeginInvoke((MethodInvoker)delegate () { label3.Text = "Launching"; });
             Form1 mainForm2 = new Form1();
             BeginInvoke((MethodInvoker)delegate () { mainForm2.Show(); }); 

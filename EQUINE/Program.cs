@@ -22,6 +22,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Security.Principal;
+using System.Runtime.CompilerServices;
 
 namespace EQUINE
 {
@@ -37,49 +38,72 @@ namespace EQUINE
 
             // check if EQUINE is ran with -skipupdate argument
 
+            Logger.initLogFile();
+            Logger.log("EQUINE initalizing...");
+
             string[] args = Environment.GetCommandLineArgs();
             if(args.Any("-skipupdate".Contains))
             {
                 GlobalVariableContainer.skipUpdates = true;
             }
 
+            Logger.log("Checking if NewtonSoft.Json.dll exists...");
+
             /* Check for JSON dll */
             if (!File.Exists("NewtonSoft.Json.dll"))
             {
+                Logger.log("File NewtonSoft.Json.dll does not exist, shutdown...", Logger.Level.ERROR, Logger.App.EQUINE);
                 MessageBox.Show("Unable to find NewtonSoft.Json.dll.\nYou probably forgot to extract it from the archive.");
                 Environment.Exit(1);
             }
             bool noInit = false;
 
+            Logger.log("Checking if Diablo.exe exists...");
+
             if(!File.Exists("Diablo.exe"))
             {
                 if (!File.Exists("Hellfire.exe"))
                 {
+                    Logger.log("File Diablo.exe does not exist, shutdown...", Logger.Level.ERROR, Logger.App.EQUINE);
                     MessageBox.Show("Unable to find Diablo.exe/Hellfire.exe!\nYou must put EQUINE.exe into your Diablo/Hellfire installation directory.\nProgram will now exit.", "Critical error!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Environment.Exit(1);
                 }
             }
 
-            if(!Directory.Exists("EquineData"))
-                noInit = true;
+            Logger.log("Files exist.");
 
-            if(!File.Exists("DIABDAT.MPQ"))
+            if (!Directory.Exists("EquineData"))
             {
-                if(noInit == false)
+                Logger.log("New install...");
+                noInit = true;
+            }
+
+            Logger.log("Checking if DIABDAT.MPQ exist...");
+            if (!File.Exists("DIABDAT.MPQ"))
+            {
+                Logger.log("DIABDAT.MPQ doesn't exist");
+                if (noInit == false)
                     MessageBox.Show("Unable to locate DIABDAT.MPQ. Some game mods will not run without it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
+            {
+                Logger.log("DIABDAT.MPQ is present");
                 GlobalVariableContainer.DIABDATPresent = true;
-            
+            }
+
+            Logger.log("Checking if IPX wrapper exist...");
             if(!Directory.Exists(Application.StartupPath + "\\EquineData\\ipx"))
             {
                 if (noInit == false)
                 {
+                    Logger.log("IPX wrapepr doesn't exist...");
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new frmUpdateEquineData());
                     return;
                 }
             }
+
+            Logger.log("IPX wrapper install directory is present...");
 
             if(!File.Exists(Application.StartupPath + "\\EquineData\\modlist.json"))
             {
@@ -93,11 +117,14 @@ namespace EQUINE
                 }
             }
 
+            Logger.log("Checking for updates for the updater...");
             updateEquineUpdater();
 
+            Logger.log("Enabling XP-styles...");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            Logger.log("Setting custom exception handler...");
             // custom exception handler
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Program_UnhandledException);
@@ -105,9 +132,15 @@ namespace EQUINE
         new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             if (noInit == false)
+            {
+                Logger.log("EQUINE is installed properly, launching...");
                 Application.Run(new frmSplash());
+            }
             else
+            {
+                Logger.log("Starting EQUINE Setup Wizard...");
                 Application.Run(new frmSetupWizard());
+            }
         }
 
         private static void updateEquineUpdater()
@@ -127,15 +160,18 @@ namespace EQUINE
 
                         if (fromfilehash != apphash)
                         {
+                        Logger.log("New update found for EQUINE Update Utility!");
                             File.Delete(Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash");
                             Application.SetCompatibleTextRenderingDefault(false);
                             Application.Run(new frmUpdateEquineData());
                         }
 
+                    Logger.log("No updates found for EQUINE Update Utility");
                         File.Delete(Application.StartupPath + "\\EquineData\\EQUINEUpdater.hash");
                 }
-                    catch
+                    catch(Exception ex)
                     {
+                        Logger.log("Couldn't update EQUINE Update Utility. The error was: " + ex.Message, Logger.Level.ERROR);
                         MessageBox.Show("Unable to update EQUINEUpdater.exe");
                     }
             }
@@ -143,6 +179,7 @@ namespace EQUINE
             {
                 if (Directory.Exists(Application.StartupPath + "/EquineData"))
                 {
+                    Logger.log("Updating SHA-1 hash for EQUINE Update Utility...");
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
                     WebClient wc = new WebClient();
                     wc.DownloadFile("https://www.sergi4ua.com/equine/EQUINEUpdater_hash.sha", Application.StartupPath + "/EquineData/EQUINEUpdater_hash.sha");
@@ -154,6 +191,7 @@ namespace EQUINE
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            Logger.log("EQUINE CRASHED !!! in CurrentDomain", Logger.Level.ERROR);
             foreach(Form form in Application.OpenForms)
             {
                 form.Hide();
@@ -166,6 +204,7 @@ namespace EQUINE
 
         private static void Program_UnhandledException(object sender, ThreadExceptionEventArgs e)
         {
+            Logger.log("EQUINE CRASHED !!!", Logger.Level.ERROR);
             foreach (Form form in Application.OpenForms)
             {
                 form.Hide();
