@@ -136,6 +136,8 @@ namespace EQUINE
 
         private void checkModUpdates()
         {
+            string currentMod = "";
+
             // check for internet connection
 
             if (CheckForInternetConnection())
@@ -148,8 +150,23 @@ namespace EQUINE
                     // check if mod installed
                     if (installedMods.Contains(ModInfos.ModInfo[i].ModName))
                     {
-                        BeginInvoke((MethodInvoker)delegate () { status.Text = "Checking for updates: " +
-                          ModInfos.ModInfo[i].ModName; });
+
+                        if (i > ModInfos.ModInfo.Count)
+                        {
+                            MessageBox.Show("checkModUpdates() :: overflow\nplease report to Sergi4UA", "EQUINE");
+                            break;
+                        }
+
+                        if(ModInfos.ModInfo[i] == null)
+                        {
+                            MessageBox.Show("checkModUpdates() :: null\nplease report to Sergi4UA", "EQUINE");
+                        }
+
+                        currentMod = ModInfos.ModInfo[i].ModName;
+
+                        BeginInvoke((MethodInvoker)delegate () {
+                            status.Text = "Checking for updates: " + currentMod;
+                        });
 
                         // check for sha1 match
                         string modHash = "";
@@ -190,10 +207,10 @@ namespace EQUINE
                             else
                             {
                                 // mod needs updating
-                                    modName = ModInfos.ModInfo[i].ModName;
-                                    DL = ModInfos.ModInfo[i].DL;
-                                    EXE = ModInfos.ModInfo[i].Executable;
-                                    DL2 = ModInfos.ModInfo[i].DL2;
+                                modName = ModInfos.ModInfo[i].ModName;
+                                DL = ModInfos.ModInfo[i].DL;
+                                EXE = ModInfos.ModInfo[i].Executable;
+                                DL2 = ModInfos.ModInfo[i].DL2;
                                 break;
                             }
                         }
@@ -203,19 +220,19 @@ namespace EQUINE
                 if (modName != "" && DL != "")
                 {
                     BeginInvoke((MethodInvoker)delegate () { status.Text = "Fetching update information for: " + modName; });
+                    //BeginInvoke((MethodInvoker)delegate ()
+                    //{
                     frmNewUpdate u = new frmNewUpdate();
-                        u.modName = modName;
-                        u.DL = DL;
-                        u.DL2 = DL2;
-<<<<<<< HEAD
-                        u.ShowDialog();
-                    }); 
-=======
+                    u.modName = modName;
+                    u.DL = DL;
+                    u.DL2 = DL2;
+                    u.TopMost = true;
                     u.ShowDialog();
->>>>>>> 7f51d091e261e328ab7ee1c5136e9a1bae1b8f03
+                    //});
                 }
             }
         }
+            
 
         private void checkGameBackup()
         {

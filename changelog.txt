@@ -1,3 +1,10 @@
+1.0.3:
+Fixed:
+	- Fixed a crash after installing DiabloPatch
+
+Changed:
+	- EQUINE no longer require administrator rights when launching mods (EQUINE still requires administrator rights when installing mods, due to how symbolic links works in Windows)
+
 1.0.2b:
 Fixed:
 	- Mod updater not updating mods :P

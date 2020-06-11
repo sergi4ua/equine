@@ -156,9 +156,6 @@ namespace EQUINE
             this.updateModsRoutine = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.diabloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hellfireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -563,7 +560,7 @@ namespace EQUINE
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(621, 460);
+            this.label4.Location = new System.Drawing.Point(545, 458);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 5;
@@ -585,7 +582,7 @@ namespace EQUINE
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(569, 460);
+            this.linkLabel1.Location = new System.Drawing.Point(493, 458);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(46, 13);
             this.linkLabel1.TabIndex = 4;
@@ -597,7 +594,7 @@ namespace EQUINE
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(82, 460);
+            this.label3.Location = new System.Drawing.Point(6, 458);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(481, 13);
             this.label3.TabIndex = 3;
@@ -1007,8 +1004,7 @@ namespace EQUINE
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.status,
-            this.toolStripDropDownButton1});
+            this.status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 505);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(874, 22);
@@ -1020,32 +1016,6 @@ namespace EQUINE
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(38, 17);
             this.status.Text = "Done.";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.diabloToolStripMenuItem,
-            this.hellfireToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = global::EQUINE.Properties.Resources.diablo_the_awakening;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(128, 20);
-            this.toolStripDropDownButton1.Text = "Set Game Version";
-            // 
-            // diabloToolStripMenuItem
-            // 
-            this.diabloToolStripMenuItem.Checked = true;
-            this.diabloToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.diabloToolStripMenuItem.Name = "diabloToolStripMenuItem";
-            this.diabloToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.diabloToolStripMenuItem.Text = "Diablo";
-            // 
-            // hellfireToolStripMenuItem
-            // 
-            this.hellfireToolStripMenuItem.Name = "hellfireToolStripMenuItem";
-            this.hellfireToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.hellfireToolStripMenuItem.Text = "Hellfire";
             // 
             // Form1
             // 
@@ -1189,9 +1159,6 @@ namespace EQUINE
         private System.ComponentModel.BackgroundWorker updateModsRoutine;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem diabloToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hellfireToolStripMenuItem;
     }
 }
 
