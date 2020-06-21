@@ -229,7 +229,7 @@
         "md5": "02D1CA1AD03964FBA6202B8973631F28C8345370",
         "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
-        "BeforeInstallMessage": "Please make sure your game is patched to v1.08 and NOT v1.09 as the mod may not work properly with the latter.",
+        "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "false",
         "Executable": "Crucible.exe"
