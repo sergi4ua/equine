@@ -377,6 +377,24 @@
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
         "Executable": "Diablo.exe"
+      },
+	  {
+        "ModId": "21",
+        "ModName": "Animated Health and Mana Orbs",
+        "Game": "Diablo",
+        "Description": "Alternative to DiabloPatch",
+        "Author": "Qndel",
+        "ModVersion": "N/A",
+        "WebSite": "N/A",
+        "DL": "https://www.sergi4ua.com/equine/qndel_qol.zip",
+        "DL2": "null",
+        "md5": "EBAEE2ACB462A0AE9C895A0E33079C94796CB0B6",
+        "RunExeAfterInstall": "null",
+        "RunExeAfterInstall2": "null",
+        "BeforeInstallMessage": "null",
+        "AfterInstallMessage": "null",
+        "DiabdatRequired": "true",
+        "Executable": "Diablo.exe"
       }
     ]
   }
