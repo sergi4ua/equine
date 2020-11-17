@@ -214,7 +214,7 @@
         "BeforeInstallMessage": "null",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
-        "Executable": "Tchernobog.exe"
+        "Executable": "Tchernobog0.1.6c.exe"
       },
       {
         "ModId": "12",
