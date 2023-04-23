@@ -424,13 +424,13 @@
         "WebSite": "https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod",
         "DL": "https://www.sergi4ua.com/equine/meModDX.zip",
         "DL2": "null",
-        "md5": "6412D221D936742097955282BA4341433D2F9E8C",
+        "md5": "8078B32A7A97DEE3AAFE8DDE7D176E42ADBC4E38",
         "RunExeAfterInstall": "null",
         "RunExeAfterInstall2": "null",
         "BeforeInstallMessage": "Please check the mod website for information on new features this mod add.",
         "AfterInstallMessage": "null",
         "DiabdatRequired": "true",
-        "Executable": "Theodore's lair.exe"
+        "Executable": "middleearthmod.exe"
       }
     ]
   }
