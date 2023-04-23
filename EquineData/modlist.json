@@ -418,7 +418,7 @@
         "ModId": "23",
         "ModName": "Middle Earth Mod (DevilutionX)",
         "Game": "DevilutionX",
-        "Description": "Based on data files I had for the Mod, and a copy of the modified binary I compared to Diablo 1.07, I think I've determined most, if not all of the changes that V&K implemented in Diablo.",
+        "Description": "Middle Earth Mod created by Varaya and Khan for Diablo 1.07, now ported to Devilution X.",
         "Author": "dinde451DakkJaniels",
         "ModVersion": "1.4.0",
         "WebSite": "https://github.com/DakkJaniels/DevilutionX-MiddleEarthMod",
