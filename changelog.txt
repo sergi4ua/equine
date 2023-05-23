@@ -1,3 +1,8 @@
+1.0.3.1:
+Added:
+	EQUINE.exe and eqmpqedit.dll are now digitally signed.
+	Infernity, DevilutionX and Tchernobog are upcoming mods to be digitally signed.
+
 1.0.3:
 Fixed:
 	- Fixed a crash after installing DiabloPatch
