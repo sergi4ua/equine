@@ -1,3 +1,5 @@
+# This application is now obsolete. There is an archive with all the mods, Diablo patches and tools here: [https://archive.org/details/diablo-1-equine-mods](https://archive.org/details/diablo-1-equine-mods). Thank you for your support! This was my biggest project, but it is time to move on... :(
+
 [![Downloads](https://img.shields.io/github/downloads/sergi4ua/equine/total.svg)](https://github.com/sergi4ua/equine/releases)
 [![License](https://img.shields.io/github/license/sergi4ua/equine.svg)](https://github.com/sergi4ua/equine/blob/master/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/sergi4ua/equine)](https://img.shields.io/github/stars/sergi4ua/equine)
